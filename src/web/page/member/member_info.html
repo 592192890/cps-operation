@@ -1,0 +1,326 @@
+<div ng-controller="memberInfoController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>会员管理</li>
+            <li class="active">添加会员 </li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>平台会员资料完善</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+<form  name="memberInfoForm" novalidate class="memberInfoForm">
+<table width="1140" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;background-color:#ecf8fb;" colspan="5" scope="col"><div align="left">基本信息</div></th>
+  </tr>
+  <tr>
+    <td style="height: 33px; width: 185px; padding-left: 5px;" ><label style="color:red">*</label>登录名：</td>
+    <td style="padding-left: 5px;" colspan="4"><input name="upAccount" ng-model="queryModel.entityDTO.upAccount" width="600" type="text" name="textfield22" required />
+    	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.upAccount.$error.required && sumbmited" >登录名必填</span>
+									 </div>
+    
+    </td>
+  </tr>
+  <tr>
+ <td style="height: 33px; padding-left: 5px;" >账户类型：</td>
+    <td style="padding-left: 5px;" colspan="2">公司</td>
+    <td style="height: 33px; padding-left: 5px;" >会员类型：</td>
+    <td style="padding-left: 5px;" >平台</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;" ><label style="color:red">*</label>公司名称：</td>
+    <td style="padding-left: 5px;" colspan="4"><input name="companyName" ng-model="queryModel.entityDTO.companyName" style="width:600px" type="text" name="textfield22" required />
+        	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.companyName.$error.required && sumbmited" >公司名称必填</span>
+									 </div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;" ><label style="color:red">*</label>公司地址：</td>
+    <td style="padding-left: 5px;" colspan="4"><input name="companyAddress" ng-model="queryModel.entityDTO.companyAddress" style="width:600px" type="text" name="textfield22" required />
+            	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.companyAddress.$error.required && sumbmited" >公司地址必填</span>
+									 </div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;" ><label style="color:red">*</label>联系人姓名：</td>
+    <td style="padding-left: 5px;" colspan="2"><input name="contactName" ng-model="queryModel.entityDTO.contactName" width="269"type="text" name="textfield3" required />
+    
+                	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.contactName.$error.required && sumbmited" >联系人姓名必填</span>
+									 </div>
+    
+    </td>
+    <td style="height: 33px; padding-left: 5px;" ><label style="color:red">*</label>联系人身份证号码：</td>
+    <td style="padding-left: 5px;"><input name="idNumber" ng-model="queryModel.entityDTO.idNumber" type="text" name="textfield4" required />
+    
+                    	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.idNumber.$error.required && sumbmited" >联系人身份证号码必填</span>
+									 </div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>联系人手机号码：</td>
+    <td style="padding-left: 5px;" colspan="2"><input name="phoneNumber" ng-model="queryModel.entityDTO.phoneNumber" width="269"type="text" name="textfield32" required ng-pattern="/^(1\d{10})$/" />
+    
+                        	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.phoneNumber.$error.required && sumbmited" >联系人手机号码必填</span>
+											<span class="glyphicon glyphicon-remove"
+								             ng-show="memberInfoForm.phoneNumber.$error.pattern">手机号码格式错误</span>
+									 </div>
+    
+    </td>
+    <td style="height: 33px; padding-left: 5px;" ><label style="color:red">*</label>联系人邮箱：</td>
+    <td style="padding-left: 5px;"><input name="email" ng-model="queryModel.entityDTO.email" width="269"type="text" name="email" required ng-pattern="/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/ " />
+    
+                            	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.email.$error.required && sumbmited" >联系人邮箱必填</span>
+											 							<span class="glyphicon glyphicon-remove"
+								  ng-show="memberInfoForm.email.$error.pattern">邮箱格式错误</span>
+									 </div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2" style="padding-left: 5px;">附件：</td>
+    <td width="295" style="height: 33px; padding-left: 5px;text-align:right;background-color:#ecf8fb"><label style="color:red">*</label>企业营业执照副本复印件加盖公章：</td>
+    <td width="240" style="padding-left: 5px;background-color:white;text-align:left" ng-if="businessLicense == '1'" >
+          已上传 <a style="padding-left: 5px;" ng-click="preview('business_license')">预览</a> <a style="padding-left: 5px;" ng-click="modify('1')">修改</a>
+    </td>
+    <td width="110px" style="padding-left: 5px;background-color:white" ng-if="businessLicense == '0'">
+    
+    <input nv-file-select uploader="enBusLicenBackUpUploaderBusinessLicenseUrl" type="file"
+               ng-click="clearUploader(enBusLicenBackUpUploaderBusinessLicenseUrl, 'input[uploader=enBusLicenBackUpUploaderBusinessLicenseUrl]')" ></input>
+               
+    </td>
+    <td style="width: 255px; padding-left: 5px;text-align:right;background-color:#ecf8fb"><label style="color:red">*</label>企业税务登记证副本复印件加盖公章：</td>
+    <td style="padding-left: 5px;width:240px;background-color:white;text-align:left" ng-if="taxRegistration == '1'" >
+          已上传 <a style="padding-left: 5px;" ng-click="preview('tax_registration')">预览</a> <a style="padding-left: 5px;" ng-click="modify('2')">修改</a>
+    <td style="padding-left: 5px;background-color:white" ng-if="taxRegistration == '0'" >
+    
+    <input  nv-file-select uploader="enBusLicenBackUpUploaderTaxRegistrationUrl" type="file"
+               ng-click="clearUploader(enBusLicenBackUpUploaderTaxRegistrationUrl, 'input[uploader=enBusLicenBackUpUploaderTaxRegistrationUrl]')"></input>        
+               </td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>企业法人身份证正反面复印件加盖公章：</td>
+    
+    
+    <td style="padding-left: 5px;" ng-if="corporateIdentityCard == '1'" >
+    
+          已上传 <a style="padding-left: 5px;" ng-click="preview('corporate_identity_card')">预览</a> <a style="padding-left: 5px;" ng-click="modify('3')">修改</a>
+    
+    <td style="padding-left: 5px;" ng-if="corporateIdentityCard == '0'" >
+    
+    
+    <input  nv-file-select uploader="enBusLicenBackUpUploaderCorporateIdentityCardUrl" type="file"
+               ng-click="clearUploader(enBusLicenBackUpUploaderCorporateIdentityCardUrl, 'input[uploader=enBusLicenBackUpUploaderCorporateIdentityCardUrl]')"></input> 
+               
+               </td>
+    <td style="padding-left: 5px;"><label style="color:red">*</label>联系人身份证正反面复印件加盖公章：</td>
+    
+    <td style="padding-left: 5px;" ng-if="contactIdentityCard == '1'" >
+    
+          已上传 <a style="padding-left: 5px;" ng-click="preview('contact_identity_card')">预览</a> <a style="padding-left: 5px;" ng-click="modify('4')">修改</a>
+    
+    <td style="padding-left: 5px;" ng-if="contactIdentityCard == '0'" >
+    
+    
+    <input  nv-file-select uploader="enBusLicenBackUpUploaderContactIdentityCardUrl" type="file"
+               ng-click="clearUploader(enBusLicenBackUpUploaderContactIdentityCardUrl, 'input[uploader=enBusLicenBackUpUploaderContactIdentityCardUrl]')"></input> 
+               
+               
+               </td>
+  </tr>
+</table>
+
+<table style="margin-top: 5px;"  width="1140" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;background-color:#ecf8fb;background-color:#ecf8fb;" colspan="5" scope="col" ><div align="left">收款账号信息</div></th>
+  </tr>
+  <tr>
+<td style="width: 158px; height: 33px; padding-left: 5px;"><label style="color:red">*</label>收款公司名称：</td>
+    <td style="width: 284px; padding-left: 5px;" colspan="2"><input name="recipientComanyName" ng-model="queryModel.entityDTO.recipientComanyName" width="269"type="text" name="textfield3" required />
+    
+                                	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientComanyName.$error.required && sumbmited" >收款公司名称必填</span>
+											 	<span class="glyphicon glyphicon-remove"
+								  ng-show="!memberInfoForm.recipientComanyName.$error.required && queryModel.entityDTO.recipientComanyName != queryModel.entityDTO.companyName" >与您上述填写的“公司名称”一致</span>
+									 </div>
+    
+    </td>
+    <td style="width: 218px; height: 33px; padding-left: 5px;"><label style="color:red">*</label>收款银行账号：</td>
+    <td style="width: 252px; padding-left: 5px;"><input name="recipientBankAccount" ng-model="queryModel.entityDTO.recipientBankAccount" width="269"type="text" name="textfield4" required />
+    
+                                    	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientBankAccount.$error.required && sumbmited" >收款银行账号必填</span>
+									 </div>
+    
+    </td>
+  </tr>
+  <tr>
+   <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>收款银行：</td>
+    <td colspan="2" style="padding-left: 5px;">
+
+							<select class="form-control" ng-model="queryModel.entityDTO.recipientBank" name="recipientBank" ng-change="getProvinceNameList(queryModel.entityDTO.recipientBank)" style="border-radius: 0px; width: 135px; font-size: 12px; height: 30px;margin-left: 0px" required >
+<option ng-repeat = "result in bankNameListResult" ng-selected=" result.bankName == queryCompanyAccInfoResult.recipientBank"  ng-value="result.bankName">{{result.bankName}}</option>
+							</select>
+							
+							 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientBank.$error.required && sumbmited" >收款银行账号必填</span>
+							 </div>
+							
+
+    </td>
+    <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>账户开户行：</td>
+    <td style="padding-left: 5px; width: 512px; height: 40px;">
+    
+    						<div class="col-sm-2" style="width: 90px; padding-left: 0px; padding-top: 2px;">
+							<select class="form-control" ng-model="queryModel.entityDTO.recipientBankProvince" name="recipientBankProvince" ng-change="getCityNameList(queryModel.entityDTO.recipientBank,queryModel.entityDTO.recipientBankCity);addUpdateColumnList('recipientBankCity')" style="border-radius: 0px; font-size: 12px; width: 90px; height: 30px;margin-left: 0px" required >
+<option ng-repeat = "result in provinceNameListResult" ng-selected=" result.bankProvinceName == queryCompanyAccInfoResult.recipientBankProvince"  ng-value="result.bankProvinceName">{{result.bankProvinceName}}</option>
+							</select>
+														 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientBankCity.$error.required && sumbmited" >账户开户行必填</span>
+							 </div>
+						</div>
+						<div class="col-sm-2" style="width: 90px; padding-left: 5px; padding-top: 2px;">
+							<select class="form-control" ng-model="queryModel.entityDTO.recipientBankCity" name="recipientBankCity" ng-change="getBranchBankList(queryModel.entityDTO.recipientBank,queryModel.entityDTO.recipientBankProvince,queryModel.entityDTO.recipientBankCity);addUpdateColumnList('recipientBankProvince')" style="border-radius: 0px; font-size: 12px; height: 30px; width: 90px;margin-left: 0px" required ng-disabled="result.status != queryCompanyAccInfoResult.allowModifyRecipientInfo" >
+						<option ng-repeat = "result in cityNameListResult" ng-selected=" result.bankCityName == queryCompanyAccInfoResult.recipientBankCity"  ng-value="result.bankCityName">{{result.bankCityName}}</option>
+							</select>
+						</div>
+												<div class="col-sm-4" style="width: 325px; padding-left: 10px; padding-top: 2px;">
+							<select class="form-control" ng-model="queryModel.entityDTO.recipientBankBranch" name="recipientBankBranch" style="border-radius: 0px; font-size: 12px; height: 30px;margin-left: 0px" required ng-disabled="result.status != queryCompanyAccInfoResult.allowModifyRecipientInfo"
+							ng-options=" result.bankBranchName +','+result.bankBranchNum as result.bankBranchName for result in branchBankListResult" ng-change="addUpdateColumnList('recipientBankBranch')" >
+							</select>
+																					 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientBankBranch.$error.required && sumbmited" >支行必填</span>
+							 </div>
+						</div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>财务联系人姓名：</td>
+    <td style="padding-left: 5px;"  colspan="2"><input ng-model="queryModel.entityDTO.recipientFinanceContact" width="269"type="text" name="recipientFinanceContact" required />
+    
+    																					 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientFinanceContact.$error.required && sumbmited" >财务联系人姓名必填</span>
+							 </div>
+    
+    </td>
+    <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>财务联系人手机号码：</td>
+    <td style="padding-left: 5px;"><input ng-model="queryModel.entityDTO.recipientFinanceContactPhone" width="269"type="text" name="recipientFinanceContactPhone" required ng-pattern="/^(1\d{10})$/" />
+        																					 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientFinanceContactPhone.$error.required && sumbmited" >财务联系人手机号码必填</span>
+											 	<span class="glyphicon glyphicon-remove"
+								  ng-show="memberInfoForm.recipientFinanceContactPhone.$error.pattern">手机号码格式错误</span>
+							 </div>
+    
+    </td>
+  </tr>
+  <tr>
+   <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>财务联系人邮箱：</td>
+    <td style="padding-left: 5px;"  colspan="2"><input ng-model="queryModel.entityDTO.recipientFinanceContactEmail" width="269"type="text" name="recipientFinanceContactEmail" required ng-pattern="/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/ " />
+    
+     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.recipientFinanceContactEmail.$error.required && sumbmited" >财务联系人邮箱必填</span>
+											 	<span class="glyphicon glyphicon-remove"
+								  ng-show="memberInfoForm.recipientFinanceContactEmail.$error.pattern">邮箱格式错误</span>
+							 </div>
+    
+    </td>
+    <td style="height: 33px; padding-left: 5px;"><label style="color:red">*</label>供应商银行信息确认函：</td>
+    
+    
+    <td style="padding-left: 5px;" ng-if="supplierBankConfirm == '1'" >
+           已上传 <a style="padding-left: 5px;" ng-click="preview('supplier_bank_confirm')">预览</a> <a style="padding-left: 5px;" ng-click="modify('5')">修改</a>
+    
+    <td style="padding-left: 5px;" ng-if="supplierBankConfirm == '0'" >
+    
+    
+    
+    <input  nv-file-select uploader="enBusLicenBackUpUploaderSupplierBankConfirmUrl" type="file"
+               ng-click="clearUploader(enBusLicenBackUpUploaderSupplierBankConfirmUrl, 'input[uploader=enBusLicenBackUpUploaderSupplierBankConfirmUrl]')" />
+               
+               </td>
+  </tr>
+</table>
+
+<table style="margin-top: 5px;"  width="1140" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;background-color:#ecf8fb;" colspan="5" scope="col"><div align="left">纳税信息</div></th>
+  </tr>
+  <tr>
+<td style="width: 158px; padding-left: 5px;"><label style="color:red">*</label>供应商纳税类型：</td>
+    <td style="width: 284px; height: 33px; padding-left: 5px;" colspan="2">
+    							<select class="form-control" ng-model="queryModel.entityDTO.taxType" name="taxType" style="border-radius: 0px; width: 135px; font-size: 12px; height: 30px;margin-left:0px" required >
+<option ng-repeat = "result in taxTypeResult" ng-value="result.optionKey">{{result.optionValue}}</option>
+							</select>
+         <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.taxType.$error.required && sumbmited" >供应商纳税类型必填</span>
+							 </div>
+    
+    </td>
+    <td style="width: 217px; padding-left: 5px;"><label style="color:red">*</label>税号：</td>
+    <td style="width: 252px; padding-left: 5px;"><input ng-model="queryModel.entityDTO.taxNumber" width="269"type="text" name="taxNumber" required />
+    
+         <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="memberInfoForm.taxNumber.$error.required && sumbmited" >税号必填</span>
+							 </div>
+    
+    </td>
+  </tr>
+</table>
+
+<table style="margin-top: 5px;"  width="1140" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;background-color:#ecf8fb;" colspan="5" scope="col"><div align="left">操作区</div></th>
+  </tr>
+  <tr>
+<td style="width: 158px; height: 45px; padding-left: 5px;">操作：</td>
+                                      <td class="td-value">
+                            <button  style="margin-left: 60px; width: 101px;" type="button" class="btn btn-primary" ng-click="createMember(memberInfoForm.$valid)" >保存</button>
+                            <button style="width: 101px;" type="button" class="btn btn-primary btn-follow" ng-click="reset()" >清除</button>
+                        </td>
+
+  </tr>
+</table>
+</form>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+</div>

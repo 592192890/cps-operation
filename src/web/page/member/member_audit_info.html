@@ -1,0 +1,195 @@
+<div ng-controller="memberAuditInfoController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>会员管理</li>
+            <li>会员认证</li>
+            <li class="active">认证会员详情 </li>
+        </ol>
+    </div>
+    <div class="location-end" ng-if="memberDetailResult.approveType == 2">
+        <span>认证会员详情</span>
+        <label style="padding-top: 0px; padding-left: 10px; font-size: 12px; color: red;" >红色字段表示该信息已修改</label>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+<table width="1141" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;" colspan="4" scope="col"><div align="left">概要信息</div></th>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">登录名</td>
+    <td style="width: 427px; height: 33px; padding-left: 5px;" class="upAccount">{{memberDetailResult.upAccount}}</td>
+    <td style="height: 33px; padding-left: 5px;">&nbsp;</td>
+    <td style="height: 33px; padding-left: 5px;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">账户类型：</td>
+    <td style="height: 33px; padding-left: 5px;" class="accountType">{{accountTypeResult | key: 'optionKey': memberDetailResult.accountType: 'optionValue'}}</td>
+    <td style="height: 33px; padding-left: 5px;">会员类型：</td>
+    <td style="height: 33px; padding-left: 5px;" class="memberType">{{memberTypeResult | key: 'optionKey': memberDetailResult.memberType: 'optionValue'}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">注册时间：</td>
+    <td style="height: 33px; padding-left: 5px;" class="upRegistDate">{{memberDetailResult.upRegistDate}}</td>
+    <td style="height: 33px; padding-left: 5px;">更新时间：</td>
+    <td style="height: 33px; padding-left: 5px;" class="updateDate">{{memberDetailResult.updateDate}}</td>
+  </tr>
+  <tr>
+    <td style="width: 171px; height: 33px; padding-left: 5px;">账号状态：</td>
+    <td style="height: 33px; padding-left: 5px;" class="accountStatus">{{accountStatusResult | key: 'optionKey': memberDetailResult.accountStatus: 'optionValue'}}</td>
+    <td style="width: 235px; height: 33px; padding-left: 5px;">审核状态：</td>
+    <td style="height: 33px; padding-left: 5px;" class="approveStatus"> {{memberApproveTypeResult | key: 'optionKey': memberDetailResult.approveType: 'optionValue'}}、 {{memberApproveStatusResult | key: 'optionKey': memberDetailResult.approveStatus: 'optionValue'}}</td>
+  </tr>
+</table>
+
+<table  style="margin-top: 5px;" width="1141" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;" colspan="5" scope="col"><div align="left">基本信息</div></th>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">公司名称：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="2" class="companyName">{{memberDetailResult.companyName}}</td>
+    <td style="width: 235px; height: 33px; padding-left: 5px;">&nbsp;</td>
+    <td style="width: 307px; height: 33px; padding-left: 5px;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">公司地址：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="4" class="companyAddress">{{memberDetailResult.companyAddress}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">联系人姓名：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="2" class="contactName">{{memberDetailResult.contactName}}</td>
+    <td style="height: 33px; padding-left: 5px;">联系人身份证号码：</td>
+    <td style="height: 33px; padding-left: 5px;" class="idNumber">{{memberDetailResult.idNumber}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">联系人手机号码：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="2" class="phoneNumber">{{memberDetailResult.phoneNumber}}</td>
+    <td style="height: 33px; padding-left: 5px;">联系人邮箱：</td>
+    <td style="height: 33px; padding-left: 5px;" class="email">{{memberDetailResult.email}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;" rowspan="2">附件：</td>
+    <td style="height: 33px; padding-left: 5px;">企业营业执照副本复印件加盖公章</td>
+    <td style="height: 33px; padding-left: 5px;"><a ng-click="preview('business_license')" >点击查看</a></td>
+    <td style="height: 33px; padding-left: 5px;">企业税务登记证副本复印件加盖公章</td>
+    <td style="height: 33px; padding-left: 5px;"><a ng-click="preview('tax_registration')" >点击查看</a></td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">企业法人身份证正反面复印件加盖公章</td>
+    <td style="height: 33px; padding-left: 5px;"><a ng-click="preview('corporate_identity_card')" >点击查看</a></td>
+    <td style="height: 33px; padding-left: 5px;">联系人身份证正反面复印件加盖公章</td>
+    <td style="height: 33px; padding-left: 5px;"><a ng-click="preview('contact_identity_card')" >点击查看</a></td>
+  </tr>
+</table>
+
+<table style="margin-top: 5px;" width="1141" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;" colspan="5" scope="col"><div align="left">收款账户信息</div></th>
+  </tr>
+  <tr>
+    <td style="width: 171px; height: 33px; padding-left: 5px;">收款公司名称：</td>
+    <td style="width: 427px; height: 33px; padding-left: 5px;" class="recipientComanyName">>{{memberDetailResult.recipientComanyName}}</td>
+    <td style="height: 33px; padding-left: 5px;">收款银行账号：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="2" class="recipientBankAccount">{{memberDetailResult.recipientBankAccount}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">收款银行：</td>
+    <td style="height: 33px; padding-left: 5px;" class="recipientBank">{{memberDetailResult.recipientBank}}</td>
+    <td style="height: 33px; padding-left: 5px;">账户开户行：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="2" class="recipientBankBranch">{{memberDetailResult.recipientBankBranch}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">财务联系人姓名：</td>
+    <td style="height: 33px; padding-left: 5px;" class="recipientFinanceContact">{{memberDetailResult.recipientFinanceContact}}</td>
+    <td style="height: 33px; padding-left: 5px;">财务联系人手机号码：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="2" class="recipientFinanceContactPhone">{{memberDetailResult.recipientFinanceContactPhone}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px;">财务联系人邮箱：</td>
+    <td style="height: 33px; padding-left: 5px;" class="recipientFinanceContactEmail">{{memberDetailResult.recipientFinanceContactEmail}}</td>
+    <td style="height: 33px; padding-left: 5px;">附件：</td>
+    <td style="height: 33px; padding-left: 5px;">供应商银行信息确认函</td>
+    <td style="height: 33px; padding-left: 5px;"><a ng-click="preview('supplier_bank_confirm')" >点击查看</a></td>
+  </tr>
+</table>
+
+<table style="margin-top: 5px;" width="1141" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;" colspan="5" scope="col"><div align="left">纳税信息</div></th>
+  </tr>
+  <tr>
+    <td style="width: 171px; height: 33px; padding-left: 5px;">供应商纳税类型：</td>
+    <td style="width: 427px; height: 33px; padding-left: 5px;" class="taxType">{{taxTypeResult | key: 'optionKey': memberDetailResult.taxType: 'optionValue'}}</td>
+    <td style="width: 235px; height: 33px; padding-left: 5px;">税号：</td>
+    <td style="height: 33px; padding-left: 5px;" colspan="2" class="taxNumber">{{memberDetailResult.taxNumber}}</td>
+  </tr>
+
+</table>
+
+<table  style="margin-top: 5px;"  width="1141" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;" colspan="5" scope="col"><div align="left">操作区</div></th>
+  </tr>
+  <tr>
+<td style="width: 171px; height: 45px; padding-left: 5px;">操作：</td>
+                                      <td class="td-value">
+                            <button  style="margin-left: 60px; width: 96px;" type="button" class="btn btn-primary" ng-click="approvePass(1)" >审核通过</button>
+                            <button type="button" class="btn btn-primary btn-follow" ng-click="approveNotPass(0)" >审核不通过</button>
+                        </td>
+
+
+  </tr>
+  
+   
+
+</table>
+
+<table style="margin-top: 5px;" width="1141" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="height: 33px; padding-left: 5px;" colspan="5" scope="col"><div align="left">审核信息记录（数量：{{totalPages}}）
+    
+    <img ng-show="hidden == false" style="padding-left: 920px;" src="./src/web/static/images/u156.png" ng-click="hidden = true;" />
+    
+    <img ng-show="hidden == true" style="padding-left: 920px;" src="./src/web/static/images/u223.png" ng-click="hidden = false;" />
+    
+    </div></th>
+  </tr>
+  <tr ng-show="hidden == true" style="text-align: center;">
+    <td style="width: 171px; height: 33px;">审核人</td>
+    <td style="width: 427px; height: 33px;">审核时间</td>
+    <td style="width: 235px; height: 33px;">审核结果</td>
+    <td style="height: 33px; "colspan="2">审核不通过原因</td>
+  </tr>
+    <tr ng-show="hidden == true" style="text-align: center; " ng-repeat='result in queryMemberAuditListResult'>
+    <td style="height: 33px;">{{result.userName}}</td>
+    <td style="height: 33px;">{{result.createTime}}</td>
+    <td style="height: 33px;">{{memberApproveResult | key: 'optionKey': result.result: 'optionValue'}}</td>
+    <td style="height: 33px;" colspan="2">{{result.remark}}</td>
+  </tr>
+
+</table>
+                <div  ng-show="hidden == true" class="location-page">
+                    <el-paging total="totalPages" size="10" specificsize="10" index="pageIndex"
+                               searcher="doPagingSearch" />
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <el-content-confirm confirm="noPassReason" title="审核不通过" msg="请选择原因：" ng-model="memberApproveRemarkResult">
+  </el-content-confirm>
+
+</div>
+</div>

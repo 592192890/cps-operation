@@ -1,0 +1,26 @@
+<!-- 
+/***********************************************************************
+ * -----------------------------------------------------------------<br>
+ * **********************************************************************
+ */
+ -->
+<div class="common_header">
+	<img src="./src/web/static/images/u15.png" class="header_logo">
+	<div class="top-nav">
+		<ul class="nav nav-pills">
+			<li   ng-repeat="menuInfo in menuInfoList">
+				<a   ng-class="{'active':menuInfo.name ==activeMenu.name  }" ng-click="getChildMenu(menuInfo);">{{menuInfo.name}}</a>
+			</li>
+		</ul>
+	</div>
+	<div class="my-message">
+		<span class="welcome">欢迎{{userInfo.userName}}登陆管理系统</span>
+		<a class="change-pwd">
+			<span >修改密码</span>
+		</a>
+		<a class="quit">
+			<span >安全退出</span>
+		</a>
+	</div>
+
+</div>

@@ -1,0 +1,172 @@
+<div ng-controller="helpCenterListController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>页面管理</li>
+	            <li>帮助中心管理</li>
+	            <li class="active">帮助中心</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>帮助中心 </span>
+	    </div>
+	    <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;">
+	        <button type="button" class="btn btn-primary" style="padding: 4px;" ng-click="checkHotQuestion();">查看热门问题</button>   
+	    </div>
+	</div>
+	<div class="helpcenterLeftPanel" style="width:39%;float:left">
+		 <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;width:auto;">
+	        <button type="button" class="btn btn-primary" style="padding: 4px;" ng-click="addHelpCategory();">+添加分类</button>
+	        <button type="button" class="btn btn-primary" style="padding: 4px;" ng-disabled="disableUDbuttom" ng-click="updateHelpCategory();">修改</button>  
+	        <button type="button" class="btn btn-primary" style="padding: 4px;" ng-disabled="disableUDbuttom" ng-click="deleteCategory();">删除</button>
+	        <img src="./src/web/static/images/FAQ_arrow_up.png"  ng-disabled="disableUDbuttom" ng-click="disableUDbuttom||sortCategoryQuestion('up')" >
+			<img src="./src/web/static/images/FAQ_arrow_down.png" ng-disabled="disableUDbuttom" ng-click="disableUDbuttom||sortCategoryQuestion('down')" >     
+	    </div>
+		<product-Attribute-Tree></product-Attribute-Tree> 
+	</div>
+
+	<div class="helpcenterRightPanel" ng-if="!notSummary" style="width:60%;float:right">
+		<!-- Tab panes -->
+        <div class="panel panel-default">
+            <div class="panel-body">				            
+            <table border="1" bordercolor="#0099FF">
+            	  <tr>
+				    <td style="height: 45px; padding-left: 5px;text-align: center;font-size: 19px;font-weight: bolder;" colspan="2">概述</td>
+				  </tr>
+				  <tr>
+				    <th style="padding-left: 5px; height: 444px;width:10%" scope="col" >概述内容：</th>
+				    <th scope="col">				    
+        	     	<div class="errorMessage" id="contentError" >
+						<span class="glyphicon glyphicon-remove" ng-show="error_message_content == 1" >概述内容必填</span>
+					</div>
+				    <div id="editor" cps-editor ng-model="queryModel.entityDTO.answer" name="answer"></div>				    
+				    </th>
+				  </tr>
+				  <tr>
+				    <td style="height: 45px; padding-left: 5px;">操作：</td>
+				    <td>                            
+                    <button type="button" class="btn btn-primary btn-follow" style="width: 82px;margin-left:10px" ng-click="saveMessage()" >保存</button>               
+                	<button type="button" class="btn btn-primary btn-follow" style="width: 82px;" ng-click="reset()">重置</button>
+                </td>
+				  </tr>
+				</table>
+            </div>
+        </div>
+	</div>
+	<div class="helpcenterRightPanel" ng-if="notSummary" style="width:60%;float:right">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation" ng-class="{active:tab!==2}" style="float:left!important"><a ng-click="tab = 1" aria-controls="home" role="tab" data-toggle="tab">基本信息</a></li>
+		    <li role="presentation" ng-class="{active:tab==2}" style="float:left!important"><a ng-click="tab = 2" aria-controls="profile" role="tab" data-toggle="tab">FAQ列表</a></li>
+		</ul>
+		<!-- Tab panes -->
+		<div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" ng-show="tab !== 2">
+				     <div class="info">
+				        <div class="panel panel-default">
+				            <div class="panel-body">				            
+           	                	<table class="table">
+				                    <tbody>
+				                     <tr>
+				                        <td class="td-label">父分类名称：</td>
+				                        <td class="td-value-config" style="padding-left: 22px;border:1px solid #99ccff">
+				                        	帮助分类
+				                        </td>				                        
+				                    </tr>
+				                     <tr>
+				                        <td class="td-label">分类名称：</td>
+ 										<td class="td-value-config" style="padding-left: 22px;border:1px solid #99ccff">
+				                        	{{queryFaqTypeDetails.faqTypeName}}
+				                        </td>					                        
+				                    </tr>
+				                     <tr>
+				                        <td class="td-label">展示标题：</td>
+ 										<td class="td-value-config" style="padding-left: 22px;border:1px solid #99ccff">
+				                        	{{queryFaqTypeDetails.displayTitle}}
+				                        </td>					                        
+				                    </tr>
+				                    <tr>
+				                        <td class="td-label">是否叶子节点:</td>
+				                        <td class="td-value-config" style="padding-left: 22px;border:1px solid #99ccff">
+				                        	{{isLeafResult|key: 'optionKey': queryFaqTypeDetails.isLeaf: 'optionValue'}}
+				                        </td>				                        
+				                    </tr>
+				                    <tr>
+				                        <td class="td-label">状态:</td>
+				                        <td class="td-value-config" style="padding-left: 22px;border:1px solid #99ccff">
+				                        	{{isHotquestionResult|key: 'optionKey': queryFaqTypeDetails.status: 'optionValue'}}
+				                        </td>				                        
+				                    </tr>
+				                    <tr>
+				                        <td class="td-label">创建时间:</td>
+				                        <td class="td-value-config" style="padding-left: 22px;border:1px solid #99ccff">
+				                        	{{queryFaqTypeDetails.createDate}}
+				                        </td>				                        
+				                    </tr>
+				                    </tbody>
+				                </table>
+				              
+				            </div>
+				        </div>
+				</div>
+		    </div>
+		    <div role="tabpanel" class="tab-pane active" ng-show="tab == 2">
+		    	<div class="helpcenterright">
+					<div class="breadcrumbsright">
+				        <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;width:auto;">
+				               <button type="button" class="btn btn-primary" style="padding: 4px;" ng-click="addHelpCenter(passfaqTypeName);">+添加FAQ</button>    
+		               	</div>
+				    </div>
+				    <div class="infoLlist">
+				        <div class="panel panel-default">
+				            <div class="panel-body">
+				            	<div class="scrollTable" style="overflow:auto">
+					                <table class="table table-bordered" style="table-layout:fixed">
+					                    <thead class="table-header">
+					                    <tr>
+					                        <td>标题</td>
+					                        <td>回答</td>
+					                        <td>类型</td>
+					                        <td>是否热门问题</td>
+					                        <td>操作</td>
+					                        <td>排序</td>
+					                    </tr>
+					                    </thead>
+					                    <tbody class="table-tbody">
+					                    <tr ng-repeat="result in queryQuestionListResult">
+					                        <td title="{{result.title}}">{{result.title}}</td>
+					                        <td title="{{result.answer}}">{{result.answer}}</td>
+					                        <td>{{questionTypeResult | key: 'optionKey': result.type: 'optionValue'}}</td>
+					                        <td>{{isHotquestionResult | key: 'optionKey': result.isHotQuestion: 'optionValue'}}</td>
+					                        <td>
+					                        	<a ng-click="updateHelpCenter(result);">修改</a>
+					                        	<a ng-click="deleteQuestion(result)" >删除</a>
+					                        </td>
+					                         <td>
+					                        <img src="./src/web/static/images/FAQ_arrow_stick.png" ng-click="sortQuestion('top',result.faqId)" >
+					                        <img src="./src/web/static/images/FAQ_arrow_up.png" ng-click="sortQuestion('up',result.faqId)" >
+					                        <img src="./src/web/static/images/FAQ_arrow_down.png" ng-click="sortQuestion('down',result.faqId)" >
+					                        <img src="./src/web/static/images/FAQ_arrow_bottom.png" ng-click="sortQuestion('bottom',result.faqId)" >
+					                         </td>
+					                    </tr>
+					                   
+					                    </tbody>
+					                </table>
+					            </div>
+				                <div class="location-page">
+				                    <el-paging total="totalPages" size="10" index="pageIndex"
+				                               searcher="doPagingSearch" />
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+		    </div>
+		</div>
+	</div>
+	    <el-confirm confirm="deleteQuestionConfirm" title="提示" msg="确定删除此问题?"></el-confirm>
+	    <el-confirm confirm="deleteSeCategoryConfirm" title="提示" msg="确定删除此分类?"></el-confirm>
+	</div>
+</div>

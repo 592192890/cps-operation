@@ -1,0 +1,124 @@
+<div ng-controller="mediaAuditInfoController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>媒体管理</li>
+            <li>媒体审核</li>
+            <li class="active">审核媒体信息 </li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>审核媒体信息</span>
+         <button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <table width="1141" border="1" bordercolor="#0099FF">
+                  <tr style="height: 33px; ">
+                    <th style="padding-left: 5px;" colspan="4" scope="col"><div align="left">概要信息</div></th>
+                  </tr>
+                  <tr style="height: 33px;">
+                    <th style="padding-left: 5px; width: 171px;" scope="col"><div align="left">会员帐号：</div></th>
+                    <th style="padding-left: 5px; width: 427px;" scope="col">{{memberId}}</th>
+                    <th style="padding-left: 5px; width: 235px;" scope="col">状态：</th>
+                    <th style="padding-left: 5px;" scope="col">{{mediaStatusArr | key: 'optionKey': auditInfo.mediaStatus: 'optionValue'}}</th>
+                  </tr>
+                </table>
+                <table style="margin-top: 5px;" width="1141" border="1" bordercolor="#0099FF">
+                  <tr style="height: 33px;">
+                    <th style="padding-left: 5px;" colspan="2" scope="col"><div align="left">基本信息</div></th>
+                  </tr>
+                  <tr style="height: 33px;">
+                    <td style="width: 171px; padding-left: 5px;">网站名称：</td>
+                    <td style="padding-left: 5px;">{{auditInfo.websiteName}}</td>
+                  </tr>
+                  <tr style="height: 33px;">
+                    <td style="padding-left: 5px;">网站域名：</td>
+                    <td style="padding-left: 5px;">{{auditInfo.websiteDomain}}</td>
+                  </tr>
+                  <tr style="height: 33px;">
+                    <td style="padding-left: 5px;">网站类型：</td>
+                    <td style="padding-left: 5px;">{{websiteTypeArr | key: 'optionKey': auditInfo.websiteType: 'optionValue'}}</td>
+                  </tr>
+                  <tr style="height: 33px;">
+                    <td style="padding-left: 5px;">媒体类型：</td>
+                    <td style="padding-left: 5px;">{{mediaTypeArr | key: 'optionKey': auditInfo.mediaType: 'optionValue'}}</td>
+                  </tr>
+                  <tr style="height: 33px;">
+                    <td style="padding-left: 5px;">日访问量：</td>
+                    <td style="padding-left: 5px;">{{auditInfo.websitePv}}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding-left: 5px;">网站描述：</td>
+                    <td style="height: 101px; line-height: 20px; padding-left: 5px;">{{auditInfo.websiteDecription}}</td>
+                  </tr>
+                  <tr style="height: 33px;">
+                    <td style="padding-left: 5px;">备案信息：</td>
+                    <td style="padding-left: 5px;">{{auditInfo.websiteRecord}}</td>
+                  </tr>
+                </table>
+
+
+                <table style="margin-top: 5px;"  width="1141" border="1" bordercolor="#0099FF">
+                  <tr>
+                    <th style="height: 33px; padding-left: 5px;" colspan="5" scope="col"><div align="left">操作区</div></th>
+                  </tr>
+                  <tr>
+                    <td style="width: 171px; height: 45px; padding-left: 5px;">操作：</td>
+                        <td class="td-value">
+                            <button  style="margin-left: 60px; width: 96px;" type="button" class="btn btn-primary" ng-click="auditPass(auditInfo)">审核通过</button>
+                            <button type="button" class="btn btn-primary btn-follow" ng-click="auditNoPass(auditInfo)">审核不通过</button>
+                        </td>
+
+                  </tr>
+                </table>
+
+
+                <table style="margin-top: 5px;" width="1141" border="1" bordercolor="#0099FF">
+                  <tr>
+                    <th style="height: 33px; padding-left: 5px;" colspan="5" scope="col"><div align="left">审核信息记录（数量：{{totalPages}}）
+                    
+                    <img ng-show="hidden == false" style="padding-left: 930px;" src="./src/web/static/images/u156.png" ng-click="hidden = true;" />
+                    
+                    <img ng-show="hidden == true" style="padding-left: 930px;" src="./src/web/static/images/u223.png" ng-click="hidden = false;" />
+                    
+                    </div></th>
+                  </tr>
+                  <tr ng-show="hidden == true" style="text-align: center;">
+                    <td style="width: 171px; height: 33px;">审核人</td>
+                    <td style="width: 427px; height: 33px;">审核时间</td>
+                    <td style="width: 235px; height: 33px;">审核结果</td>
+                    <td style="height: 33px; "colspan="2">审核不通过原因</td>
+                  </tr>
+                  <tr ng-show="hidden == true" style="text-align: center;" ng-repeat="auditInfo in searchedMediasAuditList">
+                    <td style="height: 33px;">{{auditInfo.userName}}</td>
+                    <td style="height: 33px;">{{auditInfo.createTime}}</td>
+                    <td style="height: 33px;">{{auditInfo.result}}</td>
+                    <td style="height: 33px;" colspan="2">{{auditInfo.remark}}</td>
+                  </tr>
+                    
+
+                </table>
+
+               <div ng-show="hidden == true" class="location-page">
+                    <el-paging total="totalPages" size="10" specificsize="10" index="pageIndex"
+                               searcher="doPagingSearch" />
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <el-content-confirm confirm="noPassReason" title="审核不通过" msg="请选择原因：" ng-model="noPassAuditReasonArr">
+  </el-content-confirm>
+
+</div>
+</div>

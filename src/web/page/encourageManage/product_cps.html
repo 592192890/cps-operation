@@ -1,0 +1,36 @@
+<div ng-controller="productCPSController">
+     <div class="location-modal">
+	        <span style="margin-top: 10px;display: -webkit-inline-box;">选择CPS分类  </span>
+	        <button type="button" class="close cps-modal-close" 
+	           data-dismiss="tab-pane" ng-click="close()">
+	           <img style="height: 40px;" src='./src/web/static/images/close.png' />
+	         </button>
+	    </div>
+
+	<div class="infoLlist">
+	        <div class="panel panel-default" style="border-color: rgba(0,0,0,.0001);">
+	            <div class="panel-body">
+	                <table class="table table-bordered" style=" width: 90%;margin-left: 30px;">
+	                    <thead class="table-header">
+	                    <tr>
+	                        <td>编号</td>
+	                        <td>CPS分类</td>
+	                        <td>操作</td>
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody">
+	                     <tr ng-repeat="result in cpstypeResultList">
+	                     	 <td>{{result.cpstypeId}}</td>
+	                        <td>{{result.cpstypeName}}</td>
+	                        <td><a ng-click="selectedCPSType(result);">选择</a></td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+</div>

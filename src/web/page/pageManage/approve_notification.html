@@ -1,0 +1,86 @@
+<div ng-controller="noticeApproveController ">
+<div>
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	        	<li>页面管理</li>
+	            <li>公告管理</li>
+	            <li>公告列表</li>
+	            <li class="active">审核公告</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>审核列表 </span>
+			<button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+
+	                <table class="table table-bordered">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>标题：</td>
+	                       
+	
+	                        	<td>
+	                        	
+	                        	{{memberMessageDetailResult.title}}
+
+
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>类型：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        {{noticeTypeResult | key: 'optionKey': memberMessageDetailResult.type: 'optionValue'}}
+	                        	
+	                        </td>
+	                        
+	                    </tr>
+	                     
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>内容：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+
+								<div id="editor" cps-editor  ng-model="memberMessageDetailResult.content" >
+								
+
+								
+								</div>
+								
+
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">是否发送消息：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	{{isSendMsgResult | key: 'optionKey': memberMessageDetailResult.isSendMsg: 'optionValue'}}
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">操作：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="approveNotice(1)">审核通过</button>
+	                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="approveNotice(0)">审核不通过</button>
+	                        </td>
+	                        
+	                    </tr>
+	                    </tbody>
+	                </table>
+
+	            </div>
+	
+	        </div>
+	         
+	    </div>
+	    
+	</div>
+</div>
+</div>

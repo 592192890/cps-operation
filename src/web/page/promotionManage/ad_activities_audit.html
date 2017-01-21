@@ -1,0 +1,188 @@
+<div ng-controller="adActivitiesAuditController ">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>广告管理 </li>
+	            <li class="">广告投放活动列表 </li>
+	            <li class="active"> 审核广告投放活动 </li>
+	           
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>审核广告投放活动 </span>
+			<label ng-show="acitivityDetailResult.activityStatus == 4 || acitivityDetailResult.activityStatus == 5 " style="padding-top: 0px; padding-left: 10px; font-size: 12px; color: red;" >红色字段表示该信息已修改</label>
+	        <button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	               <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">活动名称:</td>
+	                        <td class="td-value name" >{{acitivityDetailResult.name}}</td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R"></td>
+	                    </tr>
+	                    <tr>
+	                         <td class="td-label">活动开始时间：</td>
+	                        <td class="td-value startDate">
+{{acitivityDetailResult.startDate}}
+	                        </td>
+	                        <td class="td-label">活动结束时间：</td>
+	                        <td class="td-value-R endDate">
+{{acitivityDetailResult.endDate}}
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">活动类型:</td>
+	                        <td class="td-value activityType">
+{{activityTypeDropListResult | key: 'optionKey': acitivityDetailResult.activityType: 'optionValue'}}
+	                        </td>
+	                          <td class="td-label">推广类型:</td>
+	                        <td class="td-value-R promoteType">
+{{promoteTypeDropListResult | key: 'optionKey': acitivityDetailResult.promoteType: 'optionValue'}}
+							  </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">审核方式:</td>
+	                        <td class="td-value approveMethod">
+ {{approveMethodDropListResult | key: 'optionKey': acitivityDetailResult.approveMethod: 'optionValue'}}
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+							  </td>
+	                    </tr>
+						<tr>
+							<td class="td-label">活动logo:</td>
+							<td class="td-value">
+<a  ng-click="preview();" >点击查看</a>
+							</td>
+							<td class="td-label"></td>
+							<td class="td-value-R">
+							</td>
+						</tr>
+						<tr>
+							<td class="td-label">活动介绍:</td>  
+							<td class="td-value activityIntruduce">
+								{{acitivityDetailResult.activityIntruduce}}
+							</td>
+							<td class="td-label"></td>
+							<td class="td-value-R">
+							</td>
+						</tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	    </div>
+	     <div class="breadcrumbs">
+		    <div class="location-end">
+		        <span>广告内容 </span>
+				<label ng-show="acitivityDetailResult.activityStatus == 4 || acitivityDetailResult.activityStatus == 5 " style="padding-top: 0px; padding-left: 10px; font-size: 12px; color: red;" >红色字段表示该信息已修改</label>
+		    </div>
+		</div>
+	      <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	               <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">内容名称:</td>
+	                        <td class="td-value contentName">{{acitivityDetailResult.contentName}}</td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R" style="width: 455px;"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">内容类型:</td>
+	                        <td class="td-value contentType">
+	                    {{contentTypeDropListResult | key: 'optionKey': acitivityDetailResult.contentType: 'optionValue'}}
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">推广链接:</td>
+	                        <td class="td-value promoteUrl" >
+	                        {{acitivityDetailResult.promoteUrl}}
+	                        </td>
+	                          <td class="td-label"></td>
+	                        <td class="td-value-R">
+							  </td>
+	                    </tr>
+						<tr>
+							<td class="td-label">备注:</td>
+							<td class="td-value remark" >
+								{{acitivityDetailResult.remark}}
+							</td>
+							<td class="td-label"></td>
+							<td class="td-value-R">
+							</td>
+						</tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+	    <div ng-show ="acitivityDetailResult.contentType == 2" >
+		     <div class="info">
+		        <div class="panel panel-default">
+		            <div class="panel-body">
+		               <table class="table">
+		                    <tbody>
+		                    <tr>
+		                        <td class="td-label" >推广文字链：</td>
+		                        <td class="td-value promoteText" ng-if ="!checkColumnInList('promoteText')">{{acitivityDetailResult.promoteText}}</td>
+		                        <td class="td-value promoteText" ng-if ="checkColumnInList('promoteText')">{{acitivityDetailResult.promoteTextUpdate}}</td>
+		                        <td class="td-label"></td>
+		                        <td class="td-value-R" style="width: 455px;"></td>
+		                    </tr>
+		                   
+		                    </tbody>
+		                </table>
+		            </div>
+		        </div>
+		    </div>
+	   </div>
+	    <div ng-show ="acitivityDetailResult.contentType == 1" >
+
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table table-bordered">
+	                    <thead class="table-header">
+	                    <tr>
+	                        <td>素材编号</td>
+	                        <td>素材尺寸</td>
+	                        <td>预览</td>
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody">
+	                    	                    <tr ng-repeat='result in queryActivityMaterialListResult' >
+	                        <td>{{result.materialId}}</td>
+	                        <td>{{result.size}}</td>
+	                        <td><a ng-click="preview(result.url);" >预览</a></td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	                	                                <div class="location-page">
+                    <el-paging total="totalPages" size="10" index="pageIndex"
+                               searcher="doPagingSearch" />
+                </div>
+	            </div>
+	        </div>
+	   	 </div>
+	   </div>
+		   审核意见:	<input type="text" ng-model="queryModel.entityDTO.failedReason" class="form-control">
+	    <div class="breadcrumbs">
+		    <button style=" width: 90px;margin-bottom: 10px;" type="button" class="btn btn-primary" ng-click="approvePass(1);">审核通过</button>
+		    <button style=" width: 90px;margin-bottom: 10px;" type="button" class="btn btn-primary" ng-click="approvePass(0);">审核不通过</button>
+		</div>
+	</div>
+</div>

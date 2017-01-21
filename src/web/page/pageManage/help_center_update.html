@@ -1,0 +1,108 @@
+<div ng-controller="helpCenterUpdateController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>页面管理</li>
+	            <li>帮助中心管理</li>
+	            <li class="active">修改FAQ</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>修改FAQ </span>
+	    </div>
+	    <form  name="questionInfoForm" novalidate>
+	     <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            
+	               	                 <table class="table">
+	                    <tbody>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>分类名称：</td>
+	                        <td class="td-value-config" style="padding-left: 22px;">
+	                        	{{queryModel.entityDTO.faqTypeName}}
+	                        </td>
+	                        
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>标题：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input ng-model="queryModel.entityDTO.title" name="title" type="text" style="margin-left:20px" required >
+	                        		                        	                        	                        	    	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="questionInfoForm.title.$error.required && sumbmited" >标题必填</span>
+									 </div>
+	                        </td>
+	                        
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>类型：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        <select class="cps-select" ng-model="queryModel.entityDTO.type" name="type" required >
+	                        
+	                        <option ng-repeat = "result in questionTypeResult" ng-selected=" result.optionKey == questionDetailResult.type"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+							  		 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="questionInfoForm.type.$error.required && sumbmited" >类型必选</span>
+									 </div>
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>是否热门问题：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff;padding-left: 22px;" >
+	                        	<input type="radio" name="hotQuestion" required ng-model="queryModel.entityDTO.isHotQuestion" value="1">是
+	                        	<input type="radio" name="hotQuestion" required style="margin-left:20px" ng-model="queryModel.entityDTO.isHotQuestion" value="0">否
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr ng-if ="queryModel.entityDTO.type == 0 || queryModel.entityDTO.type == 1 ">
+	                        <td class="td-label"><label style="color:red">*</label>回答：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input name="answer" ng-model="queryModel.entityDTO.answer" type="text" style="margin-left:20px" required maxLength="6500">
+	                        	 <div class="errorMessage">
+									<span class="glyphicon glyphicon-remove"
+									 ng-show="questionInfoForm.answer.$error.required && sumbmited" >回答必填</span>
+									 <span class="glyphicon glyphicon-remove"
+									 ng-show="questionInfoForm.answer.$error.maxLength && sumbmited" >回答长度限制在6500个字符</span>
+								 </div>
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr ng-if ="queryModel.entityDTO.type == 2" >
+	                        <td class="td-label"><label style="color:red">*</label>回答：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+							 <div class="errorMessage" id="contentErrorRequire">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="errorMessageRequire == '1'" >回答必填</span>
+									 </div>
+   									 <div class="errorMessage" id="contentErrorLength">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="errorMessageLength == '1'" >回答长度限制在6500个字符</span>
+									 </div>
+									<div id="editor" cps-editor  ng-model="queryModel.entityDTO.answer"></div>
+
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">操作：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="updateQuestion(questionInfoForm.$valid)">保存</button>
+	                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="goBack()">取消</button>
+	                        </td>
+	                        
+	                    </tr>
+	                    </tbody>
+	                </table>
+	              
+	            </div>
+	        </div>
+	    </div>
+	    </form>
+	</div>
+	</div>
+</div>

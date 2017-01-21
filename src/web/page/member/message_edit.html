@@ -1,0 +1,169 @@
+<div ng-controller="messageEditController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>消息管理</li>
+            <li>消息列表</li>
+            <li class="active">编辑消息</li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>编辑消息</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+<form name="messageInfoForm" novalidate >
+<table width="1140" border="1" bordercolor="#0099FF">
+
+  <tr>
+    <th scope="col" style="height: 33px; padding-left: 5px;" >消息标题：</th>
+<td style="padding-left: 5px;" colspan="4"><input style="width: 794px;" type="text" name="title" ng-model="queryModel.entityDTO.title" />
+
+	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="messageInfoForm.title.$error.required && sumbmited" >消息标题必填</span>
+									 </div>
+
+
+</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >接收范围：</td>
+    <td>
+
+        <input style="margin-left: 5px;" type="radio" name="reciverRange" value="1" ng-model="queryModel.entityDTO.reciverRange" ng-click="hidden_range = 0; hidden_member = 0;" required />
+
+  全部会员
+
+      <input type="radio" name="reciverRange" value="2" ng-model="queryModel.entityDTO.reciverRange" ng-click="hidden_range = 1; hidden_member = 0;" required />
+
+   指定范围
+    
+    <input type="radio" name="reciverRange" value="3" ng-model="queryModel.entityDTO.reciverRange" ng-click="hidden_member = 1; hidden_range = 0;" required />
+   
+    指定会员 
+    
+        	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="messageInfoForm.reciverRange.$error.required && sumbmited" >接收范围必选</span>
+									 </div>
+    </td>
+  </tr>
+  
+  <tr ng-show="hidden_range == 1 || queryModel.entityDTO.reciverRange == 2" >
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >账号类型：</td>
+    <td>
+
+        <input ng-true-value="true" ng-false-value="false" ng-click="accountTypeRow(0)" ng-checked="accountTypeRows.indexOf(0) != -1" style="margin-left: 5px;" type="checkbox" ng-model="query.entityDTO.accountAll" name="accountType" value="0"  />
+
+  全部
+
+      <input ng-true-value="true" ng-false-value="false" ng-click="accountTypeRow(1)" ng-checked="accountTypeRows.indexOf(1) != -1" style="margin-left: 25px;" type="checkbox" ng-model="query.entityDTO.person" name="accountType" value="1" />
+
+个人
+    
+    <input ng-true-value="true" ng-false-value="false" ng-click="accountTypeRow(2)" ng-checked="accountTypeRows.indexOf(2) != -1" style="margin-left: 25px;" type="checkbox" ng-model="query.entityDTO.company" name="accountType" value="2" />
+   
+    公司
+    
+            	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="error_message_accountType == 1" >账号类型必选</span>
+									 </div>
+    </td>
+  </tr>
+  
+    <tr ng-show="hidden_range == 1 || queryModel.entityDTO.reciverRange == 2 ">
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >会员类型：</td>
+    <td>
+
+        <input ng-click="memberTypeRow(0)" ng-true-value="true" ng-false-value="false" ng-checked="memberTypeRows.indexOf(0) != -1" style="margin-left: 5px;" type="checkbox" ng-model="query.entityDTO.memberAll" name="radiobutton" value="0"  />
+
+  全部
+
+      <input ng-click="memberTypeRow(1)" ng-true-value="true" ng-false-value="false" ng-checked="memberTypeRows.indexOf(1) != -1" style="margin-left: 25px;" type="checkbox" ng-model="query.entityDTO.platform" name="radiobutton" value="1" />
+
+平台
+    
+    <input ng-click="memberTypeRow(2)" ng-true-value="true" ng-false-value="false" ng-checked="memberTypeRows.indexOf(2) != -1" style="margin-left: 25px;" type="checkbox" ng-model="query.entityDTO.normal" name="radiobutton" value="2" />
+   
+    一般
+                	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="error_message_memberType == 1" >会员类型必选</span>
+									 </div>
+    </td>
+  </tr>
+  
+    <tr ng-show="hidden_member == 1 || queryModel.entityDTO.reciverRange == 3 ">
+    <th scope="col" style="height: 33px; padding-left: 5px; height: 111px;" >会员账号：</th>
+<td style="padding-left: 5px;" colspan="4"><textarea ng-model="queryModel.entityDTO.memberIds" style="width: 640px; height: 91px;" name="textarea"></textarea>
+
+    	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="error_message_memberIds == 1" >会员账号必填</span>
+									 </div>
+
+
+
+
+<a ng-click="downloadTemplateFile();" style="float: right; margin-right: 60px; padding-top: 3px;">格式下载</a>
+
+<input style="float: right; width: 170px;"  nv-file-select uploader="enBusLicenBackUpUploaderCorporateIdentityCardUrl" type="file" required
+               ng-click="clearUploader(enBusLicenBackUpUploaderCorporateIdentityCardUrl, 'input[uploader=enBusLicenBackUpUploaderCorporateIdentityCardUrl]')"/>
+</td>
+
+
+
+  </tr>
+  
+
+</table>
+
+<table style="margin-top: 5px;"  width="1140" border="1" bordercolor="#0099FF">
+  <tr>
+    <th style="padding-left: 5px; height: 444px; width: 184px;" scope="col">消息内容：</th>
+    
+    
+    <th scope="col">
+    
+                	                        	     <div class="errorMessage" id="contentError" >
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="error_message_content == 1" >消息内容必填</span>
+									 </div>
+    
+    
+        <div id="editor" cps-editor   ng-model="queryModel.entityDTO.content" name="content" ></div>
+    </th>
+  </tr>
+  <tr>
+    <td style="width: 161px; height: 45px; padding-left: 5px;">操作：</td>
+    <td>                            <button  style="margin-left: 60px;" type="button" class="btn btn-primary" ng-click="sendMessage(messageInfoForm.$valid);" >立即发送</button>
+                            <button type="button" class="btn btn-primary btn-follow" style="width: 82px;" ng-click="updateMessage(messageInfoForm.$valid);" >保存</button></td>
+  </tr>
+</table>
+
+ </form>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+</div>

@@ -1,0 +1,70 @@
+.common_header {
+	background-image: url(../../images/head_bg_1px.png);
+	background-repeat:repeat;
+	width: 1323px;
+	padding: 0;
+	height: 75px;
+}
+
+.common_header > .header_logo {
+	margin: 0px 20px 0px 0px;
+	float: left;
+	height: 75px;
+}
+
+.common_header > .top-nav {
+	float: left;
+	margin-top: auto;
+	margin-top: 35px;
+}
+
+.common_header > .my-message {
+
+	background-image:-webkit-linear-gradient(to top, white, lightblue);
+	background-image:linear-gradient(to top, white, lightblue);
+	width: 360px;
+	height: 21px;
+	float: right;
+	color: #555555;
+	font-size: 12px;
+	margin: 0px 15px auto auto;
+	-moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	border-radius: 0.3em;
+	-webkit-box-shadow: 3px 3px 3px #A9E2F3;
+	-moz-box-shadow: 3px 3px 3px #A9E2F3;
+	box-shadow: 3px 3px 3px #A9E2F3;
+}
+
+.common_header > .my-message > .welcome{
+	margin: 5px 8px;
+}
+
+.common_header > .my-message > .change-pwd{
+	margin: 5px 35px;
+	color: #00BFFF;
+	cursor: pointer;
+}
+
+.common_header > .my-message > .quit{
+	margin: 5px 3px;
+	color: #555555;
+	cursor: pointer;
+}
+
+.common_header > .top-nav > .nav-pills > li > a {
+	background-image: url(../../images/u3.png);
+	width: 91px;
+	height: 41px;
+	background-color: transparent;
+	font-family: "Arial Normal", "Arial";
+	font-size: 13px;
+	font-style: normal;
+	color: #333333;
+	padding: 7px 12px;
+}
+ .common_header > .top-nav > .nav-pills > li>a.active, .common_header > .top-nav > .nav-pills > li > a:hover {
+	background-image: url(../../images/u3_mouseOver.png);
+	color: #fff;
+}
+

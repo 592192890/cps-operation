@@ -1,0 +1,33 @@
+<div ng-controller="productTypeController">
+     <div class="location-modal">
+	        <span>选择商品分类  </span>
+	        <button type="button" class="close cps-modal-close" 
+	           data-dismiss="tab-pane" ng-click="close()">
+	           <img style="height: 40px;" src='./src/web/static/images/close.png' />
+	         </button>
+	    </div>
+
+	<div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table table-bordered">
+	                    <thead class="table-header">
+	                    <tr>
+	                        <td>编号</td>
+	                        <td>商品分类</td>
+	                        <td>操作</td>
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody">
+	                    <tr ng-repeat='result in queryPmsTypeListResult'>
+	                        <td>{{result.code}}</td>
+	                        <td>{{result.name}}</td>
+	                        <td><a ng-click="selectedProductType(result);">选择</a></td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+
+	            </div>
+	        </div>
+	    </div>
+</div>

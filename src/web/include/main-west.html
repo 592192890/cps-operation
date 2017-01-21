@@ -1,0 +1,25 @@
+<div class="left">
+	<div class="tabbable left_nav">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span>->{{activeMenu.name}}</span>
+			</div>
+		</div>
+		<div class="panel-body">
+			<ul class="nav nav-tabs vertical-tab">
+				<li role="presentation" ng-repeat="firstMenuInfo in activeMenu.subMenuList">
+					<div id="a" class="collapse in">
+						<div class="accordion-inner">
+							<span>>{{firstMenuInfo.name}}</span>
+						</div>
+					</div>
+					<div id="a" class="collapseChild in">
+						<div class="accordion-inner" ng-repeat="secondMenuInfo in firstMenuInfo.subMenuList" ng-show="!secondMenuInfo.hidden">
+							<a  ui-sref="{{secondMenuInfo.sref}}"><span>>{{secondMenuInfo.name}}</span></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,88 @@
+<div ng-controller="configManagementController ">
+    <div class="main_content">
+    <div class="breadcrumbs">
+        <div class="location-list">
+            <span class="location breadcrumb">您的位置：</span>
+            <ol class="breadcrumb">
+                <li>系统管理</li>
+                <li>配置管理</li>
+                <li class="active">配置项管理 </li>
+            </ol>
+        </div>
+        <div class="location-end">
+            <span>配置项管理</span>
+        </div>
+    </div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="td-label">名称：</td>
+                            <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.typeName"></td>
+                            <td class="td-label">分类：</td>
+                            <td class="td-value-R">
+                            	<select ng-model="query.entityDTO.status" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;">
+    								 <option selected value="">全部</option>   								   
+    							</select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-label"></td>
+                            <td class="td-value">
+                                <button type="button" class="btn btn-primary" ng-click="doPagingSearch()">搜索</button>
+                                <button type="button" class="btn btn-primary btn-follow" ng-click="reset()">重置</button>
+                            </td>
+                            <td class="td-label"></td>
+                            <td class="td-value-R"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;">
+        <button ng-click="createConfig()" type="button" class="btn btn-primary" style="padding: 4px; width: 75px;" >添加</button>
+    </div>
+    <div class="infoLlist">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table">
+                    <thead class="table-header">
+                        <tr>
+                            <td><input type="checkbox" value="checkbox" /></td>
+                            <td>分类</td>
+                            <td>配置项名称</td>
+                            <td>key</td>
+                            <td>value</td>
+                            <td>备注</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                        <tr ng-repeat="config in searchedConfigList">
+                            <td><input type="checkbox" value="checkbox" /></td>
+                            <td>{{config.typeCode}}</td>
+                            <td>{{config.typeName}}</td>
+                            <td>{{config.optionKey}}</td>
+                            <td>{{config.optionValue}}</td>
+                            <td>{{config.remark}}</td>
+                            <td>
+                                <a ng-click="editConfig(config)" >修改</a>
+                                <a  ng-if="config.isDelete" ng-click="deleteConfig(config)">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="location-page">
+                    <el-paging total="totalPages" size="10" index="pageIndex"
+                               searcher="doPagingSearch" />
+                </div>
+            </div>
+            <el-confirm confirm="deleteConfigConfirm" title="提示" msg="确定删除？"></el-confirm>
+        </div>
+    </div>
+
+</div>

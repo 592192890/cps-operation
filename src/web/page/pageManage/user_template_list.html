@@ -1,0 +1,78 @@
+<div ng-controller="templateListController">
+	<div class="main_content">
+		<div class="breadcrumbs">
+		    <div class="location-list">
+		        <span class="location breadcrumb">您的位置：</span>
+		        <ol class="breadcrumb">
+		            <li>页面管理</li>
+		            <li>模板管理</li>
+		            <li class="active">模板列表</li>
+		        </ol>
+		    </div>
+		    <div class="location-end">
+		        <span>模板列表 </span>
+		    </div>
+		</div>
+
+		<div>
+			<ul class="nav nav-tabs">
+				<li style="float:left!important"><a ng-click="goAllTemplate()">所有</a></li>
+				<li style="float:left!important"><a ng-click="goSystemTemplate()">系统</a></li>
+				<li class="active" style="float:left!important"><a ng-click="goUserTemplate()">用户</a></li>
+			</ul>
+			
+		    <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;">
+	            <button type="button" class="btn btn-primary" style="padding: 4px;" ng-click="addTemplate();">+添加模板</button>
+			</div>
+		    <div class="infoLlist">
+		        <div class="panel panel-default">
+		            <div class="panel-body">
+		            	<div class="scrollTable" style="overflow:auto">
+			                <table class="table table-bordered" style="table-layout:fixed;">
+			                    <thead class="table-header">
+			                    <tr style="background-color: #ecf8fb">
+			                    	<td style="width:20px"><input type="checkbox" value="checkbox" /></td>
+			                        <td>类型</td>
+			                        <td>占位符</td>
+			                        <td>描述</td>
+			                        <td>创建人</td>
+			                        <td>创建时间</td>
+			                        <td>更新人</td>
+			                        <td>更新时间</td>
+			                        <td>操作</td>
+			                       
+			                    </tr>
+			                    </thead>
+			                    <tbody class="table-tbody">
+				                    <tr ng-repeat="temp in searchedUserTemplateList">
+				                        <td><input type="checkbox" value="checkbox" /></td>
+				                        <td ng-if="temp.type==0">系统</td>
+				                        <td ng-if="temp.type==1">用户</td>
+				                        <td title="{{temp.placeholder}}">{{temp.placeholder}}</td>
+				                        <td title="{{temp.placeholderDesc}}">{{temp.placeholderDesc}}</td>
+				                        <td>{{temp.createBy}}</td>
+				                        <td>{{temp.createDate}}</td>
+				                        <td>{{temp.updateBy}}</td>
+				                        <td>{{temp.updateDate}}</td>
+				                        <td>
+				                        	<a ng-click="editTemplate(temp)">编辑</a>
+				                        	<a ng-if="temp.isDelete==1" ng-click="deleteTemplate(temp)">删除</a>
+				                        </td>
+				                        
+				                    </tr>
+			                    
+			                   
+			                   
+			                    </tbody>
+			                </table>
+			            </div>
+		                <div class="location-page">
+		                    <el-paging total="totalPagesUser" size="10" index="pageIndexUser"
+		                               searcher="doPagingSearchUser" />
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>

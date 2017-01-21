@@ -1,0 +1,247 @@
+<div ng-controller="promotionEffectReportController"> 
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>运营报表</li>
+	            <li>运营报表</li>
+	            <li class="active">渠道推广效果报表</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>渠道推广效果报表 </span>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">会员账号：</td>
+	                        <td class="td-value"><input type="text" class="form-control"  ng-model="queryModel.entityDTO.memberId"></td>
+	                        <td class="td-label">会员类型：</td>
+	                        <td class="td-value-R">
+							  	<select class="cps-select"  ng-model="queryModel.entityDTO.memberType" ng-options="result.optionKey as result.optionValue for result in memberTypeDropListResult">
+									<option  value="">全部</option>
+								</select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">媒体类型：</td>
+	                        <td class="td-value">
+							  	<select class="cps-select"  ng-model="queryModel.entityDTO.mediaType" ng-options="result.optionKey as result.optionValue for result in mediaTypeDropListResult">
+									<option  value="">全部</option>
+								</select>
+	                        </td>
+	                        <td class="td-label">时间：</td>
+	                        <td class="td-value-R">
+	                      	<span class="col-xs-5 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.startTime" style="height: 22px; margin-left: 4px;"
+										   custom-class="startTimepicker.className"
+										   datepicker-popup="{{startTimepicker.format}}"
+										   is-open="startTimepicker.status"
+										   datepicker-options="startTimepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭" show-weeks="false"
+										   ng-click="startTimepicker.status = true" ng-change="parseDate('queryModel.entityDTO.startTime');" />
+								</span>
+                            	<span class="col-xs-1 no-padding align-center">—</span>
+                            	<span class="col-xs-5 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.endTime" style="height: 22px;"
+									   custom-class="endTimepicker.className"
+									   datepicker-popup="{{endTimepicker.format}}"
+									   is-open="endTimepicker.status"
+									   datepicker-options="endTimepicker.options" show-weeks="false"
+									   current-text="今天" clear-text="清除" close-text="关闭" min-date="queryModel.entityDTO.startTime"
+									   ng-click="endTimepicker.status = true" ng-change="parseDate('queryModel.entityDTO.endTime');" />
+                            	</span>
+                            </td>
+	                         
+	                    </tr>
+	                    <tr>
+	                      
+	                        <td class="td-label">媒体名称：</td>
+	                        <td class="td-value">
+	                      	  <input type="text" class="form-control" ng-model="queryModel.entityDTO.websiteName">
+	                        </td>
+	                        <td class="td-label">推广位名称：</td>
+	                        <td class="td-value-R">
+	                           <input type="text" class="form-control" ng-model="queryModel.entityDTO.name">
+	                        </td>
+	                    </tr>
+	                    
+	                    
+	                    <tr>
+	                        <td class="td-label">CPS商品分类：</td>
+	                        <td class="td-value">
+							  	<select class="cps-select"  ng-model="queryModel.entityDTO.productType" ng-options="result.cpstypeId as result.cpstypeName for result in productTypeDropListResult">
+									<option  value="">全部</option>
+								</select>
+	                        </td>
+	                        <td class="td-label">
+	                        	<select class="cps-select" ng-model="queryModel.entityDTO.dropDownCode" style="width: 80%" 
+									ng-options="result.optionKey as result.optionValue for result in dropDownCodeListResult">
+								</select>
+	                        </td>
+	                        <td class="td-value-R">
+	                      	  <input type="text" class="form-control" ng-model="queryModel.entityDTO.dropDownValue">
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td class="td-label">展示方式：</td>
+	                        <td class="td-value">
+	                      	  <input type="radio" ng-checked="displayMethod == 1" name="displayMethod" style="margin-left:20px" ng-click="displayMethod=1;doPagingSearch(1);">时间视图<input ng-click="displayMethod=2;doPagingSearch(1);" name="displayMethod" type="radio" style="margin-left:70px">媒体视图
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        	
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reportExport();">导出</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        	
+							  </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	        
+	    </div>
+	    <div class="infoLlist" ng-show="displayMethod ==1">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="location-end" style="font-weight:100">
+	            		<span>时间视图</span>
+	            	</div>
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered"  id="timeViewTable">
+		                    <thead class="table-header">
+		                    <tr>
+		                        <td>时间</td>
+		                        <td>联盟会员</td>
+		                        <td>媒体</td>
+		                        <td>推广位</td>
+		                        <td>有效销售额</td>
+		                        <td>下单数</td>
+		                        <td>下单金额</td>
+		                        <td>下单台数</td>
+		                        <td>支付单数</td>
+		                        <td>支付金额</td>
+		                        <td>支付台数</td>
+		                        <td>支付转化率</td>
+		                        <td>支付后取消单数</td>
+		                        <td>支付后取消台数</td>
+		                        <td>支付后取消订单金额</td>
+		                        <td>支付后取消订单率</td>
+		                        
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                     <tr ng-repeat="result in queryResult" on-finish-render-filters class="timeViewTable">
+		                        <td ng-if="result.seqDate!='合计'">{{result.seqDate}}</td>
+		                        <td ng-if="result.seqDate=='合计'">{{result.seqDate}}</td>
+
+		                        <td ng-if="result.cid!='小计'">{{result.cid}}</td>
+		                        <td ng-if="result.cid=='小计'">{{result.cid}}</td>
+
+		                        <td>{{result.websiteName}}</td>
+		                        <td>{{result.promotePositionName}}</td>
+		                        <td>{{result.effectSaleAmount}}</td>
+		                        <td>{{result.createNum}}</td>
+		                        <td>{{result.createMoney}}</td>
+		                        <td>{{result.createProductNum}}</td>
+		                        <td>{{result.payedNum}}</td>
+		                        <td>{{result.payedMoney}}</td>
+		                        <td>{{result.payedProductNum}}</td>
+		                        <td>{{result.payConversionRate}}</td>
+		                        <td>{{result.cancelNum}}</td>
+		                        <td>{{result.cancelMoney}}</td>
+		                        <td>{{result.cancelProductNum}}</td>
+		                        <td>{{result.cancelConversionRate}}</td>
+		                    </tr>
+		                    </tbody>
+		                </table>
+		            </div>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="infoLlist" ng-show="displayMethod ==2">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="location-end" style="font-weight:100">
+	            		<span>媒体视图</span>
+	            	</div>
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered" id="mediaViewTable">
+		                    <thead class="table-header">
+		                    <tr>
+		                        <td>联盟会员</td>
+		                        <td>媒体</td>
+		                        <td>推广位</td>
+		                        <td>时间</td>
+		                        <td>有效销售额</td>
+		                        <td>下单数</td>
+		                        <td>下单金额</td>
+		                        <td>下单台数</td>
+		                        <td>支付单数</td>
+		                        <td>支付金额</td>
+		                        <td>支付台数</td>
+		                        <td>支付转化率</td>
+		                        <td>支付后取消单数</td>
+		                        <td>支付后取消台数</td>
+		                        <td>支付后取消订单金额</td>
+		                        <td>支付后取消订单率</td>
+		                        
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                   	 <tr ng-repeat="result in queryResult" on-finish-render-filters class="mediaViewTable">
+		                        <td ng-if="result.cid!='合计'">{{result.cid}}</td>
+		                        <td ng-if="result.cid=='合计'" >{{result.cid}}</td>
+
+		                        <td ng-if="result.websiteName!='小计'">{{result.websiteName}}</td>
+		                        <td ng-if="result.websiteName=='小计'" >{{result.websiteName}}</td>
+
+		                        <td>{{result.promotePositionName}}</td>
+		                        <td>{{result.seqDate}}</td>
+		                        <td>{{result.effectSaleAmount}}</td>
+		                        <td>{{result.createNum}}</td>
+		                        <td>{{result.createMoney}}</td>
+		                        <td>{{result.createProductNum}}</td>
+		                        <td>{{result.payedNum}}</td>
+		                        <td>{{result.payedMoney}}</td>
+		                        <td>{{result.payedProductNum}}</td>
+		                        <td>{{result.payConversionRate}}</td>
+		                        <td>{{result.cancelNum}}</td>
+		                        <td>{{result.cancelMoney}}</td>
+		                        <td>{{result.cancelProductNum}}</td>
+		                        <td>{{result.cancelConversionRate}}</td>
+		                    </tr>
+		                    </tbody>
+		                </table>
+		            </div>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>

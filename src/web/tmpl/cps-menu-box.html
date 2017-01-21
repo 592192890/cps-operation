@@ -1,0 +1,8 @@
+
+<div class="el-menu-box list-group">
+	<a href="javascript:;" class="list-group-item" ng-repeat="item in items" ng-class="{'link': $index == menuItem.linkIndex}" ng-click="doLink($index, item.link)">
+		<i style="background: url('{{item.img.default.url}}') {{item.img.default.left}}px {{item.img.default.top}}px no-repeat;"></i>
+		<b style="background: url('{{item.img.active.url}}') {{item.img.active.left}}px {{item.img.active.top}}px no-repeat;"></b>
+		{{item.name}}
+	</a>
+</div>

@@ -1,0 +1,18 @@
+
+<script type="text/ng-template" id="multipButtonConfirmTpl.html">
+	<dl>
+		<dd class="modal-header">
+			<span class="glyphicon glyphicon-info-sign" style="color: #F0AA48"></span>
+			{{multipButtonConfirmContext.confirmTitle}}
+		</dd>
+		<dd class="modal-body">
+			<button type="button"  id="passAuditButton" class="btn btn-default active" ng-click="multipButtonConfirmContext.hidden = true;multipButtonConfirmContext.passStatus()">审核通过</button>
+			<button type="button" id="noPassAuditButton" class="btn btn-default" ng-click="multipButtonConfirmContext.hidden = false;multipButtonConfirmContext.noPassStatus()">审核不通过</button>
+			<textarea ng-show="multipButtonConfirmContext.hidden == false" type="text" ng-model="multipButtonConfirmContext.confirmContent"  rows="4" cols="30" style="margin-top:20px"></textarea>
+		</dd>
+		<dd class="modal-footer" style="text-align: center; border-top: none;">
+			<button class="btn btn-primary btn-xs" ng-click="multipButtonConfirmContext.doConfirm()">确定</button>
+			<button class="btn btn-warning btn-xs" ng-click="multipButtonConfirmContext.doCancel()">取消</button>
+		</dd>
+	</dl>
+</script>

@@ -1,0 +1,83 @@
+<div ng-controller="messageDetailController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>消息管理</li>
+            <li>用户消息查询</li>
+            <li class="active">查看消息详情</li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>查看消息详情</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+<table width="1140" border="1" bordercolor="#0099FF">
+
+  <tr>
+    <th scope="col" style="height: 33px; padding-left: 5px;" >会员账号：</th>
+<td style="padding-left: 5px;" colspan="4">{{memberMessageDetailResult.memberId}}</td>
+  </tr>
+  <tr>
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >消息标题：</td>
+    <td style="padding-left: 5px;">{{memberMessageDetailResult.title}}</td>
+  </tr>
+  
+    <tr>
+    <th style="padding-left: 5px; height: 444px; width: 184px;" scope="col">消息内容：</th>
+    <th scope="col"><div id="editor" cps-editor   ng-model="memberMessageDetailResult.content" name="content"></div>
+    </th>
+  </tr>
+  
+    <tr>
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >消息类型：</td>
+    <td style="padding-left: 5px;">{{messageTypeResult | key: 'optionKey': memberMessageDetailResult.messageType: 'optionValue'}}</td>
+  </tr>
+  
+    <tr>
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >用户状态：</td>
+    <td style="padding-left: 5px;">{{userMessageStatusResult | key: 'optionKey': memberMessageDetailResult.status: 'optionValue'}}</td>
+  </tr>
+  
+    <tr>
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >发送人：</td>
+    <td style="padding-left: 5px;">{{memberMessageDetailResult.createBy}}</td>
+  </tr>
+  
+    <tr>
+    <td style="height: 33px; padding-left: 5px; width: 184px;" >发送时间：</td>
+    <td style="padding-left: 5px;">{{memberMessageDetailResult.sendDate}}</td>
+  </tr>
+  
+  
+   
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+</div>

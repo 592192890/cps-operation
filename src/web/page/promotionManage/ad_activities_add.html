@@ -1,0 +1,271 @@
+<div ng-controller="adActivitiesAddController ">
+<form  name="activityInfoForm" novalidate>
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>广告管理 </li>
+	            <li class="">广告投放活动列表 </li>
+	            <li class="active"> 新建广告投放活动 </li>
+	           
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>新建广告投放活动 </span>
+	        <button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+	    </div>
+	</div>
+	
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	               <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>活动名称:</td>
+	                        <td class="td-value"><input ng-model="queryModel.entityDTO.name" type="text" name="name" class="form-control" required />
+	                        
+	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.name.$error.required && sumbmited" >活动名称必填</span>
+									 </div>
+	                        
+	                        
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R"></td>
+	                    </tr>
+	                    <tr>
+	                         <td class="td-label"><label style="color:red">*</label>活动开始时间:</td>
+	                        <td class="td-value">
+	                        		                           <span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" name="startDate" ng-model="queryModel.entityDTO.startDate" style="height: 22px; margin-left: 5px; width: 220px;"
+										   custom-class="entrustStartDatepicker.className"
+										   datepicker-popup="{{entrustStartDatepicker.format}}"
+										   is-open="entrustStartDatepicker.status"
+										   datepicker-options="entrustStartDatepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭"
+										   ng-click="entrustStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.startDate')" show-weeks= "false" required />
+										   
+
+								</span>
+																		   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.startDate.$error.required && sumbmited" >活动开始时间必填</span>
+									 </div>
+	                        </td>
+	                        <td class="td-label"><label style="color:red">*</label>活动结束时间:</td>
+	                        <td class="td-value-R">
+	                     	   								<span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" name="endDate" ng-model="queryModel.entityDTO.endDate" style="height: 22px; width: 220px; margin-left: 5px;"
+										   custom-class="entrustEndDatepicker.className"
+										   datepicker-popup="{{entrustEndDatepicker.format}}"
+										   is-open="entrustEndDatepicker.status"
+										   datepicker-options="entrustEndDatepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭" min-date="queryModel.entityDTO.startDate"
+										   ng-click="entrustEndDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.endDate')" show-weeks= "false" required />
+								</span>
+																		   	                        	     <div class="errorMessage" style="padding-left: 103px;">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.endDate.$error.required && sumbmited" >活动结束时间必填</span>
+									 </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>活动类型:</td>
+	                        <td class="td-value">
+	                            <select name="activityType" class="cps-select" ng-model="queryModel.entityDTO.activityType" required >
+                                <option ng-repeat = "result in activityTypeDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+							  																			   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.activityType.$error.required && sumbmited" >活动类型必选</span>
+									 </div>
+	                        </td>
+	                          <td class="td-label"><label style="color:red">*</label>推广类型:</td>
+	                        <td class="td-value-R">
+	                        	<select class="cps-select" name="promoteType" ng-model="queryModel.entityDTO.promoteType" required >
+									<option ng-repeat = "result in promoteTypeDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+							  	
+							  								  																			   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.promoteType.$error.required && sumbmited" >推广类型必选</span>
+									 </div>
+							  </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>审核方式:</td>
+	                        <td class="td-value">
+								<select name="approveMethod" class="cps-select" ng-model="queryModel.entityDTO.approveMethod" required >
+							<option ng-repeat = "result in approveMethodDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+								</select>
+															  								  																			   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.approveMethod.$error.required && sumbmited" >审核方式必选</span>
+									 </div>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+							  </td>
+	                    </tr>
+						<tr>
+							<td class="td-label">活动logo:</td>
+							<td class="td-value">
+								<input  style="margin-left: 20px;" nv-file-select uploader="activityLogoUploader" type="file" 
+										ng-click="clearUploader(activityLogoUploader, 'input[uploader=activityLogoUploader]')"/>
+							</td>
+							<td class="td-label"></td>
+							<td class="td-value-R">
+							</td>
+						</tr>
+						<tr>
+							<td class="td-label"><label style="color:red">*</label>活动介绍:</td>
+							<td class="td-value">
+								<input name="activityIntruduce" ng-model="queryModel.entityDTO.activityIntruduce" type="text" class="form-control" required >
+									   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.activityIntruduce.$error.required && sumbmited" >活动介绍必填</span>
+									 </div>
+							</td>
+							<td class="td-label"></td>
+							<td class="td-value-R">
+							</td>
+						</tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	    </div>
+	     <div class="breadcrumbs">
+		    <div class="location-end">
+		        <span>广告内容 </span>
+		    </div>
+		</div>
+	      <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	               <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>内容名称:</td>
+	                        <td class="td-value"><input name="contentName" ng-model="queryModel.entityDTO.contentName" type="text" class="form-control" required />
+	                        
+	                        
+	                        									   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.contentName.$error.required && sumbmited" >内容名称必填</span>
+									 </div>
+	                        
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R" style="width: 455px;"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>内容类型:</td>
+	                        <td class="td-value">
+	                       		<select class="cps-select" name="contentType" ng-model="queryModel.entityDTO.contentType" required >
+										<option ng-repeat = "result in contentTypeDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+							  		                        									   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.contentType.$error.required && sumbmited" >内容类型必选</span>
+									 </div>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>推广链接:</td>
+	                        <td class="td-value">
+	                        <input type="text" name="promoteUrl" ng-model="queryModel.entityDTO.promoteUrl" class="form-control" required />
+	                        
+	                        	                        									   	                        	     <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="activityInfoForm.promoteUrl.$error.required && sumbmited" >推广链接必填</span>
+									 </div>
+	                        </td>
+	                          <td class="td-label"></td>
+	                        <td class="td-value-R">
+							  </td>
+	                    </tr>
+						<tr>
+							<td class="td-label">备注:</td>
+							<td class="td-value">
+								<input type="text" ng-model="queryModel.entityDTO.remark" class="form-control">
+							</td>
+							<td class="td-label"></td>
+							<td class="td-value-R">
+							</td>
+						</tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+	    <div ng-show ="queryModel.entityDTO.contentType == 2" >
+		     <div class="info">
+		        <div class="panel panel-default">
+		            <div class="panel-body">
+		               <table class="table">
+		                    <tbody>
+		                    <tr>
+		                        <td class="td-label">推广文字链:</td>
+		                        <td class="td-value"><input ng-model="queryModel.entityDTO.promoteText" type="text" class="form-control"></td>
+		                        <td class="td-label"></td>
+		                        <td class="td-value-R" style="width: 455px;"></td>
+		                    </tr>
+		                   
+		                    </tbody>
+		                </table>
+		            </div>
+		        </div>
+		    </div>
+	   </div>
+	    <div ng-show ="queryModel.entityDTO.contentType == 1" >
+	    <div class="breadcrumbs">
+		    <input  style="margin-left: 20px;" nv-file-select uploader="picMaterialUploader" type="file" 
+										ng-click="clearUploader(picMaterialUploader, 'input[uploader=picMaterialUploader]')" />
+		</div>
+		     <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table table-bordered">
+	                    <thead class="table-header">
+	                    <tr>
+	                        <td>素材编号</td>
+	                        <td>素材尺寸</td>
+	                        <td>预览</td>
+	                        <td>操作</td>
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody">
+	                    <tr ng-repeat='result in materialList' >
+	                        <td>{{result.materialId}}</td>
+	                        <td>{{result.size}}</td>
+	                        <td><a ng-click="preview(result.url);" >预览</a></td>
+	                        <td><a ng-click="removeMaterial(result);" >删除</a>、
+	                        <div class="uploadButtomDiv">
+							    <div class="uploadButtomDesc"><a>修改</a></div>
+							     <input class="uploadButtom" nv-file-select uploader="picMaterialUpdateUploader" type="file" 
+										ng-click="clearUploader(picMaterialUpdateUploader, 'input[uploader=picMaterialUpdateUploader]');submitUpLoader(result.materialId);" />
+							</div>
+							</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	   	 </div>
+	   </div>
+	    <div class="breadcrumbs">
+		    <button style=" width: 90px;margin-bottom: 10px;" type="button" class="btn btn-primary" ng-click="saveAdActivity(activityInfoForm.$valid);">新建</button>
+		    <button style=" width: 90px;margin-bottom: 10px;" type="button" class="btn btn-primary" ng-click="reset();">重置</button>
+		</div>
+	</div>
+	</form>
+</div>

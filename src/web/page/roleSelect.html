@@ -1,0 +1,42 @@
+<!-- 
+/***********************************************************************
+ * -----------------------------------------------------------------<br>
+ * 变更序号：<br>
+ * 修改日期：<br>
+ * 修改人员：<br>
+ * 修改原因：<br>
+ * **********************************************************************
+ */
+ -->
+<div ng-controller="roleSelectController as homeCtrl">
+								  <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	               <table class="table">
+	                    <tbody>
+	                   
+	                    <tr>
+	                        <td class="td-label">选择角色:</td>
+	                        <td class="td-value">
+	                            <select class="cps-select" ng-model="queryModel.entityDTO.activityType">
+                                <option selected value="OS">运营人员</option>
+                                 <option value="OE">运营主管</option>
+                                  <option value="OF">财务主管</option>
+                                   <option value="OA">超级管理员</option>
+							  	</select>
+	                        </td>
+	                    </tr>
+						<tr>
+							<td class="td-label"></td>
+							<td class="td-value">
+							   <button type="button" class="btn btn-primary" ng-click="doSaveRole();">确定</button>
+							</td>
+						</tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	    </div>
+</div>
+

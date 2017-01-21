@@ -1,0 +1,206 @@
+<div ng-controller="memberDailySummaryController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>财务管理</li>
+	            <li>财务管理</li>
+	            <li class="active">会员结算明细</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>会员结算明细 </span>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">会员账号：</td>
+	                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.cid"></td>
+	                        <td class="td-label">结算流水号：</td>
+	                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.settlementId"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">结算时间：</td>
+	                        <td class="td-value">
+	                        	<span class="col-xs-5 no-padding">
+                                	<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.settlementStartDate" style="height: 22px; margin-left: 4px;"
+                                       custom-class="entrustStartDatepicker_settlement.className"
+                                       datepicker-popup="{{entrustStartDatepicker_settlement.format}}"
+                                       is-open="entrustStartDatepicker_settlement.status"
+                                       datepicker-options="entrustStartDatepicker_settlement.options"
+                                       current-text="今天" clear-text="清除" close-text="关闭"
+                                       ng-click="entrustStartDatepicker_settlement.status = true" ng-change="parseDate('queryModel.entityDTO.settlementStartDate')" show-weeks= "false"/>
+	                            </span>
+	                            <span class="col-xs-1 no-padding align-center">—</span>
+	                            <span class="col-xs-5 no-padding">
+	                                <input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.settlementEndDate" style="height: 22px;"
+	                                       custom-class="entrustEndDatepicker_settlement.className"
+	                                       datepicker-popup="{{entrustEndDatepicker_settlement.format}}"
+	                                       is-open="entrustEndDatepicker_settlement.status"
+	                                       datepicker-options="entrustEndDatepicker_settlement.options"
+	                                       current-text="今天" clear-text="清除" close-text="关闭"  min-date="queryModel.entityDTO.settlementStartDate"
+	                                       ng-click="entrustEndDatepicker_settlement.status = true" ng-change="parseDate('queryModel.entityDTO.settlementEndDate')" show-weeks= "false"/>
+	                            </span>
+	              
+	                       		<!-- <input type="month" class="h5date" style="margin-left:20px;"> - <input type="month" class="h5date"> -->
+	                        </td>
+	                        <td class="td-label">媒体名称：</td>
+	                        <td class="td-value-R">
+	                      		<input type="text" class="form-control" ng-model="queryModel.entityDTO.websiteName">
+	                        </td>
+	                    </tr>
+	                    <tr ng-show="advanced_query">
+	                        <td class="td-label">高级查询：</td>
+	                        <td class="td-value">
+	                      	  <img style="margin-left:20px;" src="./src/web/static/images/u156.png" ng-click="advanced_query=false;click_hidden=true;">
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                           
+	                        </td>
+	                    </tr>
+	                    <tr ng-show="click_hidden">
+	                        <td class="td-label">隐藏选项：</td>
+	                        <td class="td-value">
+	                      	 	<img style="margin-left:20px;" src="./src/web/static/images/u223.png" ng-click="advanced_query=true;click_hidden=false;">
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                           
+	                        </td>
+	                    </tr>
+	                   
+	                    <tr ng-show="click_hidden">
+	                        <td class="td-label">活动名称：</td>
+	                        <td class="td-value">
+	                        	<input type="text" class="form-control" ng-model="queryModel.entityDTO.activityName">
+	                           
+	                        </td>
+	                        <td class="td-label">CPS商品分类：</td>
+	                        <td class="td-value-R">
+	                           <select class="cps-select" ng-model="queryModel.entityDTO.cpstypeId" ng-options="x.cpstypeId as x.cpstypeName for x in categoryArr">
+										<option selected value="">全部</option>
+							  	</select>
+	                        </td>
+	                    </tr>
+	                    <tr ng-show="click_hidden">
+	                        <td class="td-label">
+	                        	<select style="width: 80%" ng-model="queryModel.entityDTO.condition" ng-options="x.optionKey as x.optionValue for x in settlementConditionArr">
+	                        		<!-- <option selected value=""></option>   -->
+	                        	</select>
+	                        </td>
+	                        <td class="td-value">
+	                      	  <input type="text" class="form-control" ng-model="queryModel.entityDTO.conditionValue">
+	                        </td>
+	                        <td class="td-label">订单状态：</td>
+	                        <td class="td-value-R">
+	                           <select class="cps-select" ng-model="queryModel.entityDTO.orderStatus" ng-options="x.optionKey as x.optionValue for x in orderStatusArr">
+										<option selected value="">全部</option>
+										
+							  	</select>
+	                        </td>
+	                    </tr>
+	                    <tr ng-show="click_hidden">
+	                        <td class="td-label">激励类型：</td>
+	                        <td class="td-value">
+	                      	  <select class="cps-select" ng-model="queryModel.entityDTO.encourageType" ng-options="x.optionKey as x.optionValue for x in encourageTypeArr">
+										<option selected value="">全部</option>
+										
+							  	</select>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        	
+	                           
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        	
+							  </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	        
+	    </div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body" >
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered" >
+		                    <thead class="table-header">
+		                    <tr>
+		                    	<td style="width:40px"><input type="checkbox" value="checkbox" /></td>
+		                        <td>会员账号</td>
+		                        <td>媒体名称</td>
+		                        <td style="width:150px">结算流水号</td>
+		                        <td>订单号</td>
+		                        <td style="width:140px">下单时间</td>
+		                        <td style="width:140px">支付时间</td>
+		                        <td style="width:140px">签收时间</td>
+		                        <td style="width:140px">自定义标签</td>
+		                        <td>订单状态</td>
+		                        <td>商品skuid</td>
+		                        <td>商品名称</td>
+		                        <td>商品单价(元)</td>
+		                        <td>商品数量</td>
+		                        <td style="width: 118px;">实际成交金额(元)</td>
+		                        <td>CPS商品分类</td>
+		                        <td>激励比例</td>
+		                        <td>激励类型</td>
+		                        <td>活动名称</td>
+		                        <td style="width:140px">结算时间</td>
+		                        <td>结算金额</td>
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                    <tr ng-repeat="setlementDetail in searchedMemberSetlementDetailList">
+		                        <td><input type="checkbox" value="checkbox" /></td>
+		                        <td>{{setlementDetail.cid}}</td>
+		                        <td>{{setlementDetail.websiteName}}</td>
+		                        <td>{{setlementDetail.settlementId}}</td>
+		                        <td>{{setlementDetail.orderCode}}</td>
+		                        <td>{{setlementDetail.orderCreateDate}}</td>
+		                        <td>{{setlementDetail.payDate}}</td>
+		                        <td>{{setlementDetail.signDate}}</td>
+		                        <td>{{setlementDetail.wi}}</td>
+		                        <td>{{orderStatusArr | key: 'optionKey': setlementDetail.orderStatus: 'optionValue'}}</td>
+		                        <td>{{setlementDetail.productSku}}</td>
+		                        <td>{{setlementDetail.productName}}</td>
+		                        <td>{{setlementDetail.productPrice}}</td>
+		                        <td>{{setlementDetail.productNum}}</td>
+		                        <td>{{setlementDetail.payMoney}}</td>
+		                        <td>{{setlementDetail.cpstypeName}}</td>
+		                        <td>{{setlementDetail.encourageRatio}}</td>
+		                        <td>{{encourageTypeArr | key: 'optionKey': setlementDetail.encourageType: 'optionValue'}}</td>
+		                        <td>{{setlementDetail.activityName}}</td>
+		                        <td>{{setlementDetail.settlementDate}}</td>
+		                        <td>{{setlementDetail.encourageMoney}}</td>
+		                    </tr>
+		                       
+		                    </tbody>
+		                </table>
+	            	</div>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="10" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>

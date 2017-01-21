@@ -1,0 +1,154 @@
+<div ng-controller="memberBillQueryController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>财务管理</li>
+	            <li>财务管理</li>
+	            <li class="active">会员账单查询</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>会员账单查询 </span>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">会员账号：</td>
+	                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.memberId"></td>
+	                        <td class="td-label">结算流水号：</td>
+	                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.settlementId"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">结算时间：</td>
+	                        <td class="td-value">
+	                        	<span class="col-xs-5 no-padding">
+                                	<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.createDateStart" style="height: 22px; margin-left: 4px;"
+                                       custom-class="entrustStartDatepicker.className"
+                                       datepicker-popup="{{entrustStartDatepicker.format}}"
+                                       is-open="entrustStartDatepicker.status"
+                                       datepicker-options="entrustStartDatepicker.options"
+                                       current-text="今天" clear-text="清除" close-text="关闭"
+                                       ng-click="entrustStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.createDateStart')" show-weeks= "false"/>
+	                            </span>
+	                            <span class="col-xs-1 no-padding align-center">—</span>
+	                            <span class="col-xs-5 no-padding">
+	                                <input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.createDateEnd" style="height: 22px;"
+	                                       custom-class="entrustEndDatepicker.className"
+	                                       datepicker-popup="{{entrustEndDatepicker.format}}"
+	                                       is-open="entrustEndDatepicker.status"
+	                                       datepicker-options="entrustEndDatepicker.options"
+	                                       current-text="今天" clear-text="清除" close-text="关闭"  min-date="queryModel.entityDTO.createDateStart"
+	                                       ng-click="entrustEndDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.createDateEnd')" show-weeks= "false"/>
+	                            </span>
+	              
+	                        </td>
+	                        <td class="td-label">状态：</td>
+	                        <td class="td-value-R">
+	                      		 <select class="cps-select" ng-model="queryModel.entityDTO.status" ng-options="x.optionKey as x.optionValue for x in setlementStatusArr">
+										<option selected value="">全部</option>
+										
+							  	</select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">媒体名称：</td>
+	                        <td class="td-value">
+	                      	  <input type="text" class="form-control" ng-model="queryModel.entityDTO.websiteName">
+	                        </td>
+	                        <td class="td-label">活动名称：</td>
+	                        <td class="td-value-R">
+	                           <input type="text" class="form-control" ng-model="queryModel.entityDTO.name">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        	
+							  </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	         <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;">
+                <button type="button"  class="btn btn-primary" style="padding: 4px;" ng-click="businessAuditBatch(bill)">批量业务审核</button>
+                <button type="button"  class="btn btn-primary btn-follow" style="padding: 4px;" ng-click="managerAuditBatch(bill)">批量主管审核</button>
+    		</div>
+	    </div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered">
+		                    <thead class="table-header">
+		                    <tr>
+		                    	<td><input type="checkbox" value="checkbox" ng-click="checkAllRows()" ng-checked="checkedRows.length == searchedMemberBillList.length"/></td>
+		                        <td>会员账号</td>
+		                        <td>会员状态</td>
+		                        <td>媒体标识</td>
+		                        <td>媒体状态</td>
+		                        <td>结算流水号</td>
+		                        <td>激励类型</td>
+		                        <td>结算时间</td>
+		                        <td>活动名称</td>
+		                        <td>结算金额</td>
+		                        <td>实际结算金额</td>
+		                        <td>生成方式</td>
+		                        <td>状态</td>
+		                        <td>操作</td>
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                    <tr ng-repeat="bill in searchedMemberBillList">
+		                        <td><input type="checkbox" value="checkbox" ng-click="checkRow(bill)" ng-checked="checkedRows.indexOf(bill) != -1"/></td>
+		                        <td>{{bill.memberId}}</td>
+		                        <td>{{accountStatusArr | key: 'optionKey': bill.accountStatus: 'optionValue'}}</td>
+		                        <td>{{bill.mediaId}}</td>
+		                        <td>{{mediaStatusArr | key: 'optionKey': bill.mediaStatus: 'optionValue'}}</td>
+		                        <td>{{bill.settlementId}}</td>
+		                        <td>{{encourageTypeArr | key: 'optionKey': bill.type: 'optionValue'}}</td>
+		                        <td>{{bill.createDate}}</td>
+		                        <td>{{bill.name}}</td>
+		                        <td>{{bill.statisticsMoney}}</td>
+		                        <td>{{bill.finalMoney}}</td>
+		                        <td>{{createWayArr | key: 'optionKey': bill.createWay: 'optionValue'}}</td>
+		                        <td>{{setlementStatusArr | key: 'optionKey': bill.status: 'optionValue'}}</td>
+		                        <td>
+		                        	<a ng-click="viewSetlementDetail(bill)">查看</a>
+		                        	<a ng-click="viewDailySummary()">明细</a>
+		                        	<a ng-show="bill.status==1 && bill.accountStatus==2 && bill.mediaStatus==4" ng-click="businessAudit(bill)">业务审核</a>
+		                        	<a ng-show="bill.status==2 && bill.accountStatus==2 && bill.mediaStatus==4 " ng-click="managerAudit(bill)">主管审核</a>
+		                        	<a ng-show="(bill.status==5 || bill.status==6 || bill.status==7) && bill.accountStatus==2 && bill.mediaStatus==4" ng-click="viewSubmitBusinessAudit(bill)">提交业务审核</a>
+		                        </td>
+		                    </tr>
+		                      
+		                    </tbody>
+		                </table>
+		            </div>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="10" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	       	<el-multip-button-confirm confirm="businessAuditBatchConfirm" title="批量业务审核"></el-multip-button-confirm>
+	        <el-multip-button-confirm confirm="managerAuditBatchConfirm" title="批量主管审核"></el-multip-button-confirm>
+
+	        <el-multip-button-confirm confirm="businessAuditConfirm" title="业务审核"></el-multip-button-confirm>
+	        <el-multip-button-confirm confirm="managerAuditConfirm" title="主管审核"></el-multip-button-confirm>
+	        <el-multip-button-confirm confirm="userAuditConfirm" title="用户确定"></el-multip-button-confirm>
+	    </div>
+	</div>
+</div>

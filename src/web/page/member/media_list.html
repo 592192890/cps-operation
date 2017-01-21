@@ -1,0 +1,163 @@
+<div ng-controller="mediaListController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>媒体管理</li>
+            <li class="active">媒体列表</li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>媒体列表</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td class="td-label">网站名称：</td>
+                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.websiteName"></td>
+                        <td class="td-label">网站域名：</td>
+                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.websiteDomain"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">网站类型：</td>
+                        <td class="td-value">
+								<select ng-model="queryModel.entityDTO.websiteType" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;" ng-options="x.optionKey as x.optionValue for x in websiteTypeArr">
+								    <option selected value="">全部</option>
+								</select>
+                        </td>
+                        <td class="td-label">状态：</td>
+                        <td class="td-value-R">
+                           <select ng-model="queryModel.entityDTO.mediaStatus" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;" ng-options="x.optionKey as x.optionValue for x in mediaStatusArr">
+								    <option selected value="">全部</option>
+								</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">会员账号：</td>
+                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.memberId"></td>
+                        <td class="td-label">媒体类型：</td>
+                        <td class="td-value-R">
+                            <select ng-model="queryModel.entityDTO.mediaType" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;" ng-options="x.optionKey as x.optionValue for x in mediaTypeArr">
+								    <option selected value="">全部</option>
+								</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">登记时间：</td>
+                        <td class="td-value">
+                            
+                            <span class="col-xs-5 no-padding">
+                                <input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.startCreateDate" style="height: 22px; margin-left: 4px;"
+                                       custom-class="entrustStartDatepicker.className"
+                                       datepicker-popup="{{entrustStartDatepicker.format}}"
+                                       is-open="entrustStartDatepicker.status"
+                                       datepicker-options="entrustStartDatepicker.options"
+                                       current-text="今天" clear-text="清除" close-text="关闭"
+                                       ng-click="entrustStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.startCreateDate')" show-weeks= "false"/>
+                            </span>
+                            <span class="col-xs-1 no-padding align-center">—</span>
+                            <span class="col-xs-5 no-padding">
+                                <input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.endCreateDate" style="height: 22px;"
+                                       custom-class="entrustEndDatepicker.className"
+                                       datepicker-popup="{{entrustEndDatepicker.format}}"
+                                       is-open="entrustEndDatepicker.status"
+                                       datepicker-options="entrustEndDatepicker.options"  min-date="queryModel.entityDTO.startCreateDate"
+                                       current-text="今天" clear-text="清除" close-text="关闭"
+                                       ng-click="entrustEndDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.endCreateDate')" show-weeks= "false"/>
+                            </span>
+    					
+                        </td>
+                         <td class="td-label">使用状态：</td>
+                        <td class="td-value-R">
+                           <select ng-model="queryModel.entityDTO.isUse" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;" ng-options="x.optionKey as x.optionValue for x in isUseArr">
+								    <option selected value="">全部</option>
+								</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label"></td>
+                        <td class="td-value">
+                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch()">搜索</button>
+                            <button type="button" class="btn btn-primary btn-follow" ng-click="doResetMedia()">重置</button>
+                        </td>
+                        <td class="td-label"></td>
+                        <td class="td-value-R"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="infoLlist">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="scrollTable" style="overflow:auto">
+                    <table class="table table-bordered">
+                        <thead class="table-header">
+                        <tr>
+                            <td><input type="checkbox" value="checkbox"  ng-click="checkAllRows()" ng-checked="checkedRows.length == searchedMediasList.length"/></td>
+                            <td>网站名称</td>
+                            <td>网站域名</td>
+                            <td>网站类型</td>
+                            <td>媒体类型</td>
+                            <td>推广位数量</td>
+                            <td>会员账号</td>
+                            <td>状态</td>
+                            <td>使用状态</td>
+                            <td>登记时间</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody class="table-tbody">
+                            <tr ng-repeat="media in searchedMediasList">
+                                <td><input type="checkbox" value="checkbox" ng-click="checkRow(media)" ng-checked="checkedRows.indexOf(media) != -1"/></td>
+                                <td>{{media.websiteName}}</td>
+                                <td>{{media.websiteDomain}}</td>
+                                <td>{{websiteTypeArr | key: 'optionKey': media.websiteType: 'optionValue'}}</td>
+                                <td>{{mediaTypeArr | key: 'optionKey': media.mediaType: 'optionValue'}}</td>
+                                <td>{{media.promotePositionNum}}</td>
+                                <td>{{media.memberId}}</td>
+                                <td>{{mediaStatusArr | key: 'optionKey': media.mediaStatus: 'optionValue'}}</td>
+                                <td>{{isUseArr | key: 'optionKey': media.isUse: 'optionValue'}}</td>
+                                <td>{{media.createDate}}</td>
+                                <td>
+                                    <a ng-click="viewMediaInfo(media)" >查看</a>
+                                    <a ng-show="media.mediaStatus==4" ng-click="addBlackList(media.mediaId)">设置黑名单</a>
+                                    <a ng-show="media.mediaStatus==4" ng-click="freeze(media.mediaId)">冻结</a>
+                                    
+                                     <a ng-show="media.mediaStatus==5" ng-click="recoverAudit(media.mediaId)">恢复审核</a>
+
+                                     <a ng-show="media.mediaStatus==6" ng-click="unFreeze(media.mediaId)">解冻</a>
+
+                                 
+                                    <a ng-show="media.mediaStatus==7" ng-click="repleaseBlackList(media.mediaId)">解除黑名单</a>
+                                  
+                                   
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="location-page">
+                    <el-paging total="totalPages" size="10" index="pageIndex"
+                               searcher="doPagingSearch" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <el-confirm confirm="addBlackListConfirm" title="提示" msg="确定设置黑名单?"></el-confirm>
+    <el-confirm confirm="freezeConfirm" title="提示" msg="确定冻结?"></el-confirm>
+    <el-confirm confirm="recoverAuditConfirm" title="提示" msg="确定恢复审核?"></el-confirm>
+    <el-confirm confirm="unFreezeConfirm" title="提示" msg="确定解冻?"></el-confirm>
+    <el-confirm confirm="repleaseBlackListConfirm" title="提示" msg="确定解除黑名单?"></el-confirm>
+</div>
+</div>

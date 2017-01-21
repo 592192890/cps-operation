@@ -1,0 +1,172 @@
+<div ng-controller="memberListController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>会员管理</li>
+            <li class="active">会员列表 </li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>会员列表 </span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td class="td-label">登录名：</td>
+                        <td class="td-value"><input ng-model="queryModel.entityDTO.upAccount" type="text" class="form-control"></td>
+                        <td class="td-label">公司名称/真实姓名：</td>
+                        <td class="td-value-R"><input ng-model="queryModel.entityDTO.companyName" type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">联系人姓名：</td>
+                        <td class="td-value"><input ng-model="queryModel.entityDTO.contactName" type="text" class="form-control"></td>
+                        <td class="td-label">邮箱：</td>
+                        <td class="td-value-R"><input ng-model="queryModel.entityDTO.email" type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">手机号码：</td>
+                        <td class="td-value"><input ng-model="queryModel.entityDTO.phoneNumber" type="text" class="form-control"></td>
+                        <td class="td-label">会员类型：</td>
+                        <td class="td-value-R">
+                                                       <select ng-model="queryModel.entityDTO.memberType" ng-options="result.optionKey as result.optionValue for result in memberTypeResult" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;">
+                                                       <option selected value="">全部</option>
+								</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">账户类型：</td>
+                        <td class="td-value">
+                                                       <select ng-model="queryModel.entityDTO.accountType" ng-options="result.optionKey as result.optionValue for result in accountTypeResult" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;">
+<option selected value="">全部</option>
+								</select>
+                        </td>
+                        <td class="td-label">审核状态：</td>
+                        <td class="td-value-R">
+                                                      <select ng-model="queryModel.entityDTO.approveStatus" ng-options="result.optionKey as result.optionValue for result in memberApproveStatusResult" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;">
+								    <option selected value="">全部</option>
+								</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">账号状态：</td>
+                        <td class="td-value">
+                                                      <select ng-model="queryModel.entityDTO.accountStatus" ng-options="result.optionKey as result.optionValue for result in accountStatusResult" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;">
+								    <option selected value="">全部</option>
+								</select>
+                        </td>
+                        <td class="td-label">注册时间：</td>
+                                                <td class="td-value-R">
+                                                                          								<span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.upRegistDateStart" style="height: 22px; margin-left: 5px;"
+										   custom-class="entrustStartDatepicker.className"
+										   datepicker-popup="{{entrustStartDatepicker.format}}"
+										   is-open="entrustStartDatepicker.status"
+										   datepicker-options="entrustStartDatepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭"
+										   ng-click="entrustStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.upRegistDateStart')" show-weeks= "false"/>
+								</span>
+								<span class="col-xs-1 no-padding align-center">—</span>
+								<span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.upRegistDateEnd" style="height: 22px;"
+										   custom-class="entrustEndDatepicker.className"
+										   datepicker-popup="{{entrustEndDatepicker.format}}"
+										   is-open="entrustEndDatepicker.status"
+										   datepicker-options="entrustEndDatepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭"  min-date="queryModel.entityDTO.upRegistDateStart"
+										   ng-click="entrustEndDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.upRegistDateEnd')" show-weeks= "false"/>
+								</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">审核类型：</td>
+                        <td class="td-value">
+                                                       <select ng-model="queryModel.entityDTO.approveType" ng-options="result.optionKey as result.optionValue for result in memberApproveTypeResult" style="width: 220px; height: 23px; margin-left: 20px; margin-top: 2px;">
+								   <option selected value="">全部</option>
+								</select>
+                        </td>
+                        <td class="td-label"></td>
+                        <td class="td-value-R"></td>
+                    </tr>
+                    <tr>
+                        <td class="td-label"></td>
+                        <td class="td-value">
+                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch()" >搜索</button>
+                            <button type="reset" class="btn btn-primary btn-follow" ng-click="reset()" >重置</button>
+                        </td>
+                        <td class="td-label"></td>
+                        <td class="td-value-R"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="infoLlist">
+        <div class="panel panel-default">
+            <div class="panel-body scrollTable" style="overflow:auto">
+                <table class="table table-bordered">
+                    <thead class="table-header">
+                    <tr>
+                        <td>登录名</td>
+                        <td>公司名称/真实姓名</td>
+                        <td>联系人姓名</td>
+                        <td>邮箱</td>
+                        <td>手机号码</td>
+                        <td>账户类型</td>
+                        <td>会员类型</td>
+                        <td>账号状态</td>
+                        <td>审核类型</td>
+                        <td>审核状态</td>
+                        <td>注册时间</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                    <tr ng-repeat='result in queryMemberListResult'>
+                        <td>{{result.upAccount}}</td>
+                        <td title="{{result.companyName}}">{{result.companyName  |lipsis :'10'}}</td>
+                        <td>{{result.contactName}}</td>
+                        <td>{{result.email}}</td>
+                        <td>{{result.phoneNumber}}</td>
+                        <td>{{accountTypeResult | key: 'optionKey': result.accountType: 'optionValue'}}</td>                        
+                        <td>{{memberTypeResult | key: 'optionKey': result.memberType: 'optionValue'}}</td>
+                        <td>{{accountStatusResult | key: 'optionKey': result.accountStatus: 'optionValue'}}</td>                        
+                        <td>{{memberApproveTypeResult | key: 'optionKey': result.approveType: 'optionValue'}}</td>                        
+                        <td>{{memberApproveStatusResult | key: 'optionKey': result.approveStatus: 'optionValue'}}</td>
+                        <td>{{result.upRegistDate}}</td>
+                        <td>
+                            <a ng-click="viewMemberInfo(result)" >查看</a>
+                            <a ng-show ="result.accountStatus == '2'" ng-click="setBlacklist(result.memberId)" >设置黑名单</a>
+                            <a ng-show ="result.accountStatus == '4'" ng-click="removeBlacklist(result.memberId)" >解除黑名单</a>
+                            <a ng-show ="result.accountStatus == '2'" ng-click="freeze(result.memberId)" >冻结</a>
+                            <a ng-show ="result.accountStatus == '3'" ng-click="unfreeze(result.memberId)" >解冻</a>
+                            <a ng-show ="result.approveStatus == '3'" ng-click="recoverApprove(result.memberId)" >恢复审核</a>
+                        </td>
+                    
+                    </tr>
+
+                    </tbody>
+                </table>
+                </div>
+            <div class="location-page">
+                <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+                           searcher="doPagingSearch" />
+            </div>
+
+        </div>
+    </div>
+    <el-confirm confirm="setBlacklistConfirm" title="提示" msg="确定设置黑名单?"></el-confirm>
+    <el-confirm confirm="removeBlacklistConfirm" title="提示" msg="确定解除黑名单?"></el-confirm>
+    <el-confirm confirm="freezeConfirm" title="提示" msg="确定冻结?"></el-confirm>
+    <el-confirm confirm="unfreezeConfirm" title="提示" msg="确定解冻?"></el-confirm>
+    <el-confirm confirm="recoverApproveConfirm" title="提示" msg="确定恢复审核?"></el-confirm>
+</div>
+</div>

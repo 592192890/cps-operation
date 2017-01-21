@@ -1,0 +1,255 @@
+<div ng-controller="cpsOrderListController ">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>订单管理 </li>
+	            <li class="active">CPS订单管理 </li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>CPS订单管理 </span>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">CPS订单编码：</td>
+	                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.orderId"></td>
+	                        <td class="td-label">订单编码：</td>
+	                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.orderCode"></td>
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label">CID：</td>
+	                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.cid"></td>
+	                        <td class="td-label">MID：</td>
+	                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.mid" ></td>
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label">订单状态：</td>
+	                        <td class="td-value">
+	                      	  <select class="cps-select" ng-model="queryModel.entityDTO.orderStatus">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in orderStatusDropList"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  </select>
+	                        </td>
+	                        <td class="td-label">支付状态：</td>
+	                        <td class="td-value-R">
+	                            <select class="cps-select" ng-model="queryModel.entityDTO.payStatus">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in orderPayStatusDropList"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">支付时间：</td>
+	                        <td class="td-value">
+	                      	<span class="col-xs-5 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.payDateStart" style="height: 22px; margin-left: 4px;"
+										   custom-class="entrustStartDatepicker.className"
+										   datepicker-popup="{{payDateStartpicker.format}}"
+										   is-open="payDateStartpicker.status"
+										   datepicker-options="payDateStartpicker.options" show-weeks="false"
+										   current-text="今天" clear-text="清除" close-text="关闭"
+										   ng-click="payDateStartpicker.status = true" ng-change="parseDate('queryModel.entityDTO.payDateStartStart')" />
+								</span>
+								<span class="col-xs-1 no-padding align-center" style="width: 1px; padding-right: 5px;padding-left: 1px;">—</span>
+								<span class="col-xs-5 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.payDateEnd" style="height: 22px;"
+										   custom-class="payDateEndpicker.className"
+										   datepicker-popup="{{payDateEndpicker.format}}"
+										   is-open="payDateEndpicker.status"
+										   datepicker-options="payDateEndpicker.options" show-weeks="false"
+										   current-text="今天" clear-text="清除" close-text="关闭" min-date="queryModel.entityDTO.payDateStart"
+										   ng-click="payDateEndpicker.status = true" ng-change="parseDate('queryModel.entityDTO.payDateEnd')" />
+								</span>
+	                        </td>
+	                        <td class="td-label">签收时间：</td>
+	                        <td class="td-value-R">
+	                       	 <span class="col-xs-4 no-padding">
+	                      	 	<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.signDateStart" style="height: 22px; margin-left: 4px;"
+										   custom-class="signDateStartpicker.className"
+										   datepicker-popup="{{signDateStartpicker.format}}"
+										   is-open="signDateStartpicker.status"
+										   datepicker-options="signDateStartpicker.options" show-weeks="false"
+										   current-text="今天" clear-text="清除" close-text="关闭"
+										   ng-click="signDateStartpicker.status = true" ng-change="parseDate('queryModel.entityDTO.signDateStart')" />
+								</span>
+								<span class="col-xs-1 no-padding align-center" style="width: 1px; padding-right: 5px;padding-left: 1px;">—</span>
+								<span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.signDateEnd" style="height: 22px;"
+										   custom-class="signDateEndpicker.className"
+										   datepicker-popup="{{signDateEndpicker.format}}"
+										   is-open="signDateEndpicker.status"
+										   datepicker-options="signDateEndpicker.options" show-weeks="false"
+										   current-text="今天" clear-text="清除" close-text="关闭" min-date="queryModel.entityDTO.signDateStart"
+										   ng-click="signDateEndpicker.status = true" ng-change="parseDate('queryModel.entityDTO.signDateEnd')" />
+								</span>
+	                        </td>
+
+	                      
+	                    </tr>
+	                     <tr>
+	                       	<td class="td-label">商品编码：</td>
+	                        <td class="td-value"><input type="text" class="form-control"  ng-model="queryModel.entityDTO.productSku"></td>
+	                        <td class="td-label">商品名称：</td>
+	                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.productName"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">下单时间：</td>
+	                        <td class="td-value">
+	                      	 <span class="col-xs-5 no-padding">
+	                      	 	<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.orderCreateDateStart" style="height: 22px; margin-left: 4px;"
+										   custom-class="orderCreateDateStartpicker.className"
+										   datepicker-popup="{{orderCreateDateStartpicker.format}}"
+										   is-open="orderCreateDateStartpicker.status"
+										   datepicker-options="orderCreateDateStartpicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭" show-weeks="false"
+										   ng-click="orderCreateDateStartpicker.status = true" ng-change="parseDate('queryModel.entityDTO.orderCreateDateStart')" />
+								</span>
+								<span class="col-xs-1 no-padding align-center" style="width: 1px; padding-right: 5px;padding-left: 1px;">—</span>
+								<span class="col-xs-5 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.orderCreateDateEnd" style="height: 22px;"
+										   custom-class="orderCreateDateEndpicker.className"
+										   datepicker-popup="{{orderCreateDateEndpicker.format}}"
+										   is-open="orderCreateDateEndpicker.status"
+										   datepicker-options="orderCreateDateEndpicker.options" show-weeks="false"
+										   current-text="今天" clear-text="清除" close-text="关闭" min-date="queryModel.entityDTO.orderCreateDateStart"
+										   ng-click="orderCreateDateEndpicker.status = true" ng-change="parseDate('queryModel.entityDTO.orderCreateDateEnd')" />
+								</span>
+	                        </td>
+	                        <td class="td-label">导入时间：</td>
+	                        <td class="td-value-R">
+	                       		<span class="col-xs-4 no-padding">
+	                      	 	<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.createDateStart" style="height: 22px; margin-left: 4px;"
+										   custom-class="createDateStartpicker.className"
+										   datepicker-popup="{{createDateStartpicker.format}}"
+										   is-open="createDateStartpicker.status"
+										   datepicker-options="createDateStartpicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭" show-weeks="false"
+										   ng-click="createDateStartpicker.status = true" ng-change="parseDate('queryModel.entityDTO.createDateStart')" />
+								</span>
+								<span class="col-xs-1 no-padding align-center" style="width: 1px; padding-right: 5px;padding-left: 1px;">—</span>
+								<span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.createDateEnd" style="height: 22px;"
+										   custom-class="createDateEndpicker.className"
+										   datepicker-popup="{{createDateEndpicker.format}}"
+										   is-open="createDateEndpicker.status"
+										   datepicker-options="createDateEndpicker.options" show-weeks="false"
+										   current-text="今天" clear-text="清除" close-text="关闭" min-date="queryModel.entityDTO.createDateStart"
+										   ng-click="createDateEndpicker.status = true" ng-change="parseDate('queryModel.entityDTO.createDateEnd')" />
+								</span>
+	                        </td>
+
+	                        
+	                    </tr>
+	                    <tr>
+	                     	
+	                        <td class="td-label">订单获取方式：</td>
+	                        <td class="td-value">
+	                      	  <select class="cps-select" ng-model="queryModel.entityDTO.orderObtanWay">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in orderObtanWayDropList"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  </select>
+	                        </td>
+	                         <td class="td-label"></td>
+	                        <td class="td-value-R"></td>
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+							</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            <div class="scrollTable" style="overflow:auto">
+	                <table class="table table-bordered">
+	                    <thead class="table-header">
+	                    <tr>
+	                        <td>CPS订单编码</td>
+	                        <td>CID</td>
+	                        <td>MID</td>
+	                        <td>FID</td>
+	                        <td>WI</td>
+	                        <td>订单编码</td>
+	                        <td>下单时间</td>
+	                        <td>订单状态</td>
+	                        <td>支付状态</td>
+	                        <td>支付时间</td>
+	                        <td>签收时间</td>
+	                        <td>商品编码</td>
+	                        <td>商品名称</td>
+	                        <td>商品数量</td>
+	                        <td>商品原价</td>
+	                        <td>支付金额</td>
+	                        <td>订单获取方式</td>
+	                        <td>CPS分类</td>
+	                        <td>基本激励结算</td>
+	                        <td>基本激励金额</td>
+	                        <td>基本激励规则编码</td>
+	                        <td>基本激励结算单编码</td>
+	                        <td>基本激励结算时间</td>
+	                        
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody">
+	                   <tr ng-repeat="result in queryResult">
+	                        <td>{{result.orderId}}</td>
+	                        <td>{{result.cid}}</td>
+	                        <td>{{result.mid}}</td>
+	                        <td>{{result.fid}}</td>
+	                        <td>{{result.wi}}</td>
+	                        <td>{{result.orderCode}}</td>
+	                        <td>{{result.orderCreateDate}}</td>
+	                        <td>
+	                        	{{orderStatusDropList | key: 'optionKey': result.orderStatus: 'optionValue'}}
+	                        </td>
+	                         <td>
+	                        	{{orderPayStatusDropList | key: 'optionKey': result.payStatus: 'optionValue'}}
+	                        </td>
+							 <td>{{result.payDate}}</td>
+	                        <td>{{result.signDate}}</td>
+	                        <td>{{result.productSku}}</td>
+	                        <td>{{result.productName}}</td>
+	                        <td>{{result.productNum}}</td>
+	                        <td>{{result.productPrice}}</td>
+	                        <td>{{result.payMoney}}</td>
+	                          <td>
+	                        	{{orderObtanWayDropList | key: 'optionKey': result.orderObtanWay: 'optionValue'}}
+	                        </td>
+	                        <td>{{result.cpstypeName}}
+							</td>
+							 <td>{{result.settlementStatus}}</td>
+	                        <td>{{result.deliveryFee}}</td>
+	                        <td>{{result.encourageRuleId}}</td>
+	                        <td>{{result.baseSettlementId}}</td>
+	                        <td>{{result.settlementDate}}</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	              <div class="location-page">
+	                    <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	                </div>
+	        </div>
+	    </div>
+	</div>
+</div>

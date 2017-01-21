@@ -1,0 +1,88 @@
+<div ng-controller="memberMessageListController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>消息管理 </li>
+            <li class="active">用户消息查询 </li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>用户消息查询</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table">
+                    <tbody>
+
+
+
+                    <tr>
+                        <td class="td-label">会员账号：</td>
+                        <td class="td-value"><input ng-model="queryModel.entityDTO.memberId" type="text" class="form-control"></td>
+                        <td class="td-label"></td>
+                        <td class="td-value-R">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label"></td>
+                        <td class="td-value">
+                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch()" >搜索</button>
+                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset()" >重置</button>
+                        </td>
+                        <td class="td-label"></td>
+                        <td class="td-value-R"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="infoLlist">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="scrollTable" style="overflow:auto">
+                <table class="table table-bordered">
+                    <thead class="table-header">
+                    <tr>
+                        <td><input type="checkbox" value="checkbox" /></td>
+                        <td>会员账号</td>
+                        <td>消息标题</td>
+                        <td>消息类型</td>
+                        <td>用户状态</td>
+                        <td>发送人</td>
+                        <td>发送时间</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                    <tr ng-repeat='result in queryMemberMessageListResult'>
+                    <td><input type="checkbox" value="checkbox" /></td>
+                        <td>{{result.memberId}}</td>
+                        <td title="{{result.title}}">{{result.title |lipsis :'10'}}</td>
+                        <td>{{messageTypeResult | key: 'optionKey': result.messageType: 'optionValue'}}</td>
+                        <td>{{userMessageStatusResult | key: 'optionKey': result.status: 'optionValue'}}</td>
+                        <td>{{result.createBy}}</td>
+                        <td>{{result.sendDate}}</td>
+                        <td>
+                            <a ng-click="viewMessageInfo(result)" >查看</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                    </div>
+                <div class="location-page">
+                    <el-paging total="totalPages" size="10" index="pageIndex"
+                               searcher="doPagingSearch" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

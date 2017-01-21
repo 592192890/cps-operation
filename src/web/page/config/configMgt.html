@@ -1,0 +1,67 @@
+<div class="main_content" ng-controller="configManagementController">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>系统管理</li>
+            <li>配置管理</li>
+            <li class="active">配置项管理</li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>配置项管理</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+
+<table width="1141" border="1" bordercolor="#0099FF">
+  <tr style="height: 33px;">
+  <th style="height: 33px; padding-left: 5px; background-color: #ecf8fb;" colspan="5" scope="col"><div align="left">网店配置</div></th>
+  </tr>
+  <tr style="height: 33px;">
+    <td style="width: 171px; padding-left: 5px; text-align: right;">前台URL信息：</td>
+    <td style="padding-left: 5px;"><input style="width: 308px;" type="text" name="marketingUrlInfo" ng-model="queryModel.entityDTO.marketingUrlInfo"/></td>
+  </tr>
+    <tr style="height: 33px;">
+    <td style="width: 171px; padding-left: 5px; text-align: right;">后台URL信息：</td>
+    <td style="padding-left: 5px;"><input style="width: 308px;" type="text" name="operationUrlInfo" ng-model="queryModel.entityDTO.operationUrlInfo"/></td>
+  </tr>
+
+      <tr style="height: 33px;">
+  <th style="height: 33px; padding-left: 5px; background-color: #ecf8fb;" colspan="5" scope="col"><div align="left">联盟推广设置</div></th>
+  </tr>
+      <tr style="height: 33px;">
+    <td style="padding-left: 5px; text-align: right;">RD有效期：</td>
+    <td style="padding-left: 5px;"><input style="width: 308px;" type="text" name="rdValidDate" ng-model="queryModel.entityDTO.rdValidDate"/></td>
+  </tr>
+  
+
+
+
+
+</table>
+
+	    <div class="breadcrumbs">
+		    <button style=" width: 90px;margin-bottom: 10px;" type="button" class="btn btn-primary" ng-click="updateSystemInfo();">保存</button>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

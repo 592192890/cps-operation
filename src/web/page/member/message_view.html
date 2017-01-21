@@ -1,0 +1,64 @@
+<div ng-controller="messageViewController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>消息管理</li>
+            <li>消息列表</li>
+            <li class="active">消息信息</li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>消息信息</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <table width="1140" border="1" bordercolor="#0099FF">
+
+                  <tr>
+                    <td scope="col" style="height: 33px; padding-left: 5px;text-align:right;" >消息标题：</td>
+                    <td style="padding-left: 5px;" colspan="4">{{messageDetailResult.title}}</td>
+                  </tr>
+                  <tr>
+                    <td style="height: 33px; padding-left: 5px; width: 184px;text-align:right;" >接收范围：</td>
+                    <td style="padding-left: 5px;">{{messageReceiverRangeResult | key: 'optionKey': messageDetailResult.reciverRange: 'optionValue'}}</td>
+                  </tr>
+                  
+                    <tr>
+                    <td style="height: 33px; padding-left: 5px; width: 184px;" ></td>
+                    <td style="padding-left: 5px;">账号类型（{{accountTypeResult | key: 'optionKey': messageDetailResult.accountType: 'optionValue'}}） 会员类型（{{memberTypeResult | key: 'optionKey': messageDetailResult.memberType: 'optionValue'}}） </td>
+                  </tr>
+                  
+                    <tr>
+                    <td style="padding-left: 5px; height: 444px; width: 184px;text-align:right;" scope="col">消息内容：</td>
+                    <td scope="col"><div id="editor" cps-editor  ng-model="messageDetailResult.content"></div>
+                									
+
+                    </td>
+                  </tr>
+                  
+                    <tr>
+                    <td style="height: 33px; padding-left: 5px; width: 184px;text-align:right;" >更新人：</td>
+                    <td style="padding-left: 5px;">{{messageDetailResult.updateBy}}</td>
+                  </tr>
+                  
+                    <tr>
+                    <td style="height: 33px; padding-left: 5px; width: 184px;text-align:right;" >更新时间：</td>
+                    <td style="padding-left: 5px;">{{messageDetailResult.updateDate}}</td>
+                  </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+</div>

@@ -1,0 +1,16 @@
+
+<script type="text/ng-template" id="confirmTpl.html">
+	<dl>
+		<dd class="modal-header">
+			<span class="glyphicon glyphicon-info-sign" style="color: #F0AA48"></span>
+			{{confirmContext.confirmTitle}}
+		</dd>
+		<dd class="modal-body">
+			{{confirmContext.confirmMsg}}
+		</dd>
+		<dd class="modal-footer" style="text-align: center; border-top: none;">
+			<button class="btn btn-primary btn-xs" ng-click="confirmContext.doConfirm()">确定</button>
+			<button class="btn btn-warning btn-xs" ng-click="confirmContext.doCancel()">取消</button>
+		</dd>
+	</dl>
+</script>

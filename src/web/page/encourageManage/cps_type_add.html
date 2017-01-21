@@ -1,0 +1,56 @@
+<div ng-controller="cpsTypeAddController ">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>激励管理 </li>
+	            <li class="">CPS分类管理 </li>
+	            <li class="active"> 添加CPS分类 </li>
+	           
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>添加CPS分类  </span>
+	        <button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+	    </div>
+	</div>
+	<form  name="addCPSTypeForm" novalidate>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	 <table class="table table-bordered">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">编号：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                    		  <input type="text" class="form-control" readOnly="true" ng-model="queryModel.entityDTO.cpstypeId">
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>CPS分类名称：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                    		 	 <input type="text" class="form-control" name="cpstypeName" ng-model="queryModel.entityDTO.cpstypeName" required>
+	                    		 	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="addCPSTypeForm.cpstypeName.$error.required && sumbmited" >CPS分类名称必填</span>
+									 </div>
+	                        </td>
+	                    </tr>
+	                      <tr>
+	                        <td class="td-label">操作：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                    		 	  <button type="button" class="btn btn-primary" ng-click="saveCPSType(addCPSTypeForm.$valid);">保存</button>
+	                           			 <button type="button" class="btn btn-primary btn-follow" ng-click="goBack();">取消</button>
+	                        </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+	   </form>
+	</div>
+</div>

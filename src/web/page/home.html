@@ -1,0 +1,161 @@
+<!-- 
+/***********************************************************************
+ * -----------------------------------------------------------------<br>
+ * 变更序号：<br>
+ * 修改日期：<br>
+ * 修改人员：<br>
+ * 修改原因：<br>
+ * **********************************************************************
+ */
+ -->
+<div ng-controller="homeController as homeCtrl">
+	<div class="breadcrumbs">
+		    <div class="location-list">
+		        <span class="location breadcrumb">您的位置：</span>
+		        <ol class="breadcrumb">
+		            <li>首页</li>
+		        </ol>
+		    </div>
+	</div>
+<table width="1135" border="1" bordercolor="#33CCCC">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px; font-weight: 100;"><div align="left" style="font-size: 13px; padding-left: 5px;">会员管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待审核会员：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goAuditMenberNum();">{{auditMenberNum}}</a></div></td>
+    <td width="183" ><div align="left" style="padding-left: 10px;"></div></td>
+    <td><div align="center"></div></td>
+  </tr>
+</table>
+
+<table width="1135" border="1" bordercolor="#33CCCC" style="margin-top: 10px;">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px;font-weight: 100;"><div align="left" style="font-size: 13px; padding-left: 5px;">媒体管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待审核媒体：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goAuditMediaNum();">{{auditMediaNum}}</a></div></td>
+    <td width="183" ><div align="left" style="padding-left: 10px;"></div></td>
+    <td><div align="center"></div></td>
+  </tr>
+</table>
+
+<table width="1135" border="1" bordercolor="#33CCCC" style="margin-top: 10px;">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px;font-weight: 100;"><div align="left" style="font-size: 13px; padding-left: 5px;">消息管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">未发送消息：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goUnsendMessageNum();">{{unsendMessageNum}}</a></div></td>
+    <td width="183" ><div align="left" style="padding-left: 10px;"></div></td>
+    <td><div align="center"></div></td>
+  </tr>
+</table>
+
+<table width="1135" border="1" bordercolor="#33CCCC" style="margin-top: 10px;">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px;font-weight: 100;"><div align="left" style="font-size: 13px; padding-left: 5px;">广告管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待提交广告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goTodoSubmitNum();">{{todoSubmitNum}}</a></div></td>
+    <td width="187" class=""><div align="right">待审核广告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goTodoApproveNum();">{{todoApproveNum}}</a></div></td>
+  </tr>
+    <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待修改广告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goTodoModifyNum();">{{todoModifyNum}}</a></div></td>
+    <td width="187" class=""><div align="right">暂停广告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goPauseNum();">{{pauseNum}}</a></div></td>
+  </tr>
+</table>
+
+<table width="1135" border="1" bordercolor="#33CCCC" style="margin-top: 10px;">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px;font-weight: 100;"><div align="left" style="font-size: 13px; padding-left: 5px;">激励管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待提交基本激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitSubmitBaseEncourage();">{{waitSubmitBaseEncourage}}</a></div></td>
+    <td width="187" class=""><div align="right">待业务审核基本激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitApproveBaseEncourage('1');">{{waitBizApproveBaseEncourage}}</a></div></td>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待修改基本激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitModifyBaseEncourage();">{{waitModifyBaseEncourage}}</a></div></td>
+    <td width="187" class=""><div align="right">待财经审核基本激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitApproveBaseEncourage('2');">{{waitFinApproveBaseEncourage}}</a></div></td>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待提交活动激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;display: inline;"></div>
+    <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitSubmitActiveEncourage('2');">普通 {{waitSubmitbaseActiveEncourage}}</a></div>
+    <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitSubmitActiveEncourage('3');">达量 {{waitSubmitrAmountActiveEncourage}}</a></div>
+    </td>
+    <td width="187" class=""><div align="right">待业务审核活动激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;display: inline;"></div>
+     <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitApproveActiveEncourage('2','1');">普通 {{waitBizApproveBaseActiveEncourage}}</a></div>
+    <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitApproveActiveEncourage('3','1');">达量 {{waitBizApproveAmountActiveEncourage}}</a></div>
+    </td>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待修改活动激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;display: inline;"></div>
+     <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitModifyActiveEncourage('2');">普通 {{waitModifyBaseActiveEncourage}}</a></div>
+    <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitModifyActiveEncourage('3');">达量 {{waitModifyAmountActiveEncourage}}</a></div></td>
+    <td width="187" class=""><div align="right">待财经审核活动激励：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;display: inline;"></div>
+     <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitApproveActiveEncourage('2','2');">普通 {{waitFinApproveBaseActiveEncourage}}</a></div>
+    <div align="left" style="padding-left: 10px;display: inline;"><a ng-click="goWaitApproveActiveEncourage('3','2');">达量 {{waitFinApproveAmountActiveEncourage}}</a></div></td>
+    </td>
+  </tr>
+</table>
+
+<table width="1135" border="1" bordercolor="#33CCCC" style="margin-top: 10px;">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px;font-weight: 100;"><div align="left" style="font-size: 13px; padding-left: 5px;">公告管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待提交公告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitSubmit();">{{waitSubmit}}</a></div></div></td>
+    <td width="187" class=""><div align="right">待审核公告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitApprove();">{{waitApprove}}</a></div></div></td>
+  </tr>
+    <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">审核不通过公告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goApproveRefuse();">{{approveRefuse}}</a></div></div></td>
+    <td width="187" class=""><div align="right">暂停公告：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goPause();">{{pause}}</a></div></div></td>
+  </tr>
+</table>
+<table width="1135" border="1" bordercolor="#33CCCC" style="margin-top: 10px;">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px;"><div align="left" style="font-size: 13px; padding-left: 5px;font-weight: 100;">结算单管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待业务审核结算单：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitBAudit();">{{settlementsStatics.todoBusinessApproveCount}}</a></div></div></td>
+    <td width="187" class=""><div align="right">待财经审核结算单：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitFAudit();">{{settlementsStatics.todoFinanceApproveCount}}</a></div></div></td>
+  </tr>
+    <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待用户确认：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitUserConf();">{{settlementsStatics.todoMemberConfirmCount}}</a></div></div></td>
+ 	 <td width="187" class=""><div align="right"></div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"></div></td>
+  </tr>
+</table>
+<table width="1135" border="1" bordercolor="#33CCCC" style="margin-top: 10px;">
+  <tr>
+    <th colspan="4" scope="col" class="th-label-home" style="height: 30px;"><div align="left" style="font-size: 13px; padding-left: 5px;font-weight: 100;">付款申请单管理</div></th>
+  </tr>
+  <tr style="height: 30px;">
+    <td width="187" class=""><div align="right">待审核付款申请单：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitAuditPay();">{{paymentApplyStatics.todoApprovePaymentApplyAmount}}</a></div></div></td>
+    <td width="187" class=""><div align="right">待付款：</div></td>
+    <td width="382" ><div align="left" style="padding-left: 10px;"><a ng-click="goWaitPay();">{{paymentApplyStatics.todoPaymentAmount}}</a></div></div></td>
+  </tr>
+</table>
+</div>
+

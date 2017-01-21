@@ -1,0 +1,78 @@
+<div ng-controller="helpCenterAddController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>页面管理</li>
+	            <li>帮助中心管理</li>
+	            <li class="active">添加分类</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>添加分类 </span>
+	    </div>
+	    <form  name="questionInfoForm" novalidate>
+	     <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	               	<table class="table">
+	                    <tbody>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>父分类名称：</td>
+	                        <td class="td-value-config" style="padding-left: 22px;">
+	                        	帮助分类
+	                        </td>
+	                        
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>分类名称：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input ng-model="queryModel.entityDTO.faqTypeName" name="faqTypeName" type="text" style="margin-left:20px" required >
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="questionInfoForm.faqTypeName.$error.required && sumbmited" >分类名称必填</span>
+									 </div>
+	                        </td>
+	                        
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>展示标题：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input ng-model="queryModel.entityDTO.displayTitle" name="displayTitle" type="text" style="margin-left:20px" required >
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="questionInfoForm.displayTitle.$error.required && sumbmited" >分类名称必填</span>
+									 </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>是否为叶子节点：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff;padding-left: 22px;" >
+	                        	是
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>状态：</td>
+	                		<td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input style="margin-left: 20px;" type="radio" name="status" ng-model="queryModel.entityDTO.status">有效
+	                        	<input name="status" value="1" ng-model="queryModel.entityDTO.status" type="radio">无效
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">操作：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="saveAddedCategory(questionInfoForm.$valid)">保存</button>
+	                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="goBack()">取消</button>
+	                        </td>
+	                        
+	                    </tr>
+	                    </tbody>
+	                </table>
+	              
+	            </div>
+	        </div>
+	    </div>
+	    </form>
+	</div>
+	</div>
+</div>

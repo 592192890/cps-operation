@@ -1,0 +1,31 @@
+<!-- 
+/***********************************************************************
+ * 描述：系统主页<br>
+ * -----------------------------------------------------------------<br>
+ * 变更序号：<br>
+ * 修改日期：<br>
+ * 修改人员：<br>
+ * 修改原因：<br>
+ * **********************************************************************
+ */
+ -->
+<div ng-controller="mainController as mainCtrl" >
+	<div class="main-page north">
+		<div ng-include="'src/web/include/main-north.html'"></div>
+	</div>
+	<div class="main-page middle content">
+		<div class="main-page west">
+			<div ng-include="'src/web/include/main-west.html'"></div>
+		</div>
+		<div class="main-page center">
+			<dl>
+				<dd class="main-page content" ng-class="{'lower': notice.show}">
+					<ui-view class="main-page content-view" />
+				</dd>
+			</dl>
+		</div>
+		<div class="main-page south">
+			<div ng-include="'src/web/include/main-south.html'"></div>
+		</div>
+	</div>
+</div>

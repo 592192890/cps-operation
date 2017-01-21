@@ -1,0 +1,160 @@
+<div ng-controller="cpsTypeActivityEncourageAddController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>激励管理 </li>
+	            <li class=""> CPS分类管理 </li>
+	            <li class=""> 激励方案详情 </li>
+	              <li class="active"> 添加激励方案</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>添加激励方案  </span>
+	        <button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+	    </div>
+	</div>
+	<form  name="addCPSEncourageForm" novalidate>
+	 <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	             <table class="table table-bordered">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">编号：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                      	<input type="text" class="form-control" readOnly="true" ng-model="queryModel.entityDTO.cpstypeId">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">CPS分类名称：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" readOnly="true" ng-model="queryModel.entityDTO.cpstypeName">
+	                        </td>
+	                    </tr>
+	                      <tr>
+	                        <td class="td-label">编号：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                      <input type="text" class="form-control" readOnly="true" ng-model="queryModel.entityDTO.ruleId">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>名称：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" name="ruleName" ng-model="queryModel.entityDTO.ruleName" required>
+	                        	 <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="addCPSEncourageForm.ruleName.$error.required && sumbmited" >名称必填</span>
+									 </div>
+	                        </td>
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>激励方式：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        		<input style="margin-left: 20px;" required type="radio" name="encourageMethod" ng-model="queryModel.entityDTO.encourageMethod" value="0">佣金 <input name="encourageMethod"  value="1" ng-model="queryModel.entityDTO.encourageMethod" type="radio">积分
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>激励类型：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                     	    <input type="radio" value="1"  required name="encourageType" ng-model="queryModel.entityDTO.encourageType" style="margin-left: 20px;" >基本激励 
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>激励比例：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                      		 <input type="text" class="form-control" required name="encourageRatio" ng-pattern="/(?!^0\.0?0$)^[0-9][0-9]?(\.[0-9]{1,2})?$|^100$/" ng-model="queryModel.entityDTO.encourageRatio" style="display: inline">%
+	                      		  <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="addActivityEncourageForm.encourageRatio.$error.required && sumbmited" >激励比例必填</span>
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="addActivityEncourageForm.encourageRatio.$error.pattern && sumbmited" >激励比例只能输入0~100之间的数字，小数支持2位</span>
+									 </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"><label style="color:red">*</label>激励开始时间：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	 	<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.enableStartDate" style="border-radius: 0px;"
+									   custom-class="entrustStartDatepicker.className"
+									   datepicker-popup="{{enableStartDatepicker.format}}"
+									   is-open="enableStartDatepicker.status"
+									   datepicker-options="enableStartDatepicker.options"
+									   name ="enableStartDate"
+									   current-text="今天" clear-text="清除" close-text="关闭"
+									   ng-readOnly = "true" show-weeks="false"
+									   ng-click="enableStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.enableStartDate');" required/>
+									   <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="addCPSEncourageForm.enableStartDate.$error.required && sumbmited" >激励开始时间必填</span>
+									 </div>
+	                        </td>
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label"><label style="color:red">*</label>激励结束时间：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	 <input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.enableEndDate" style="border-radius: 0px;"
+									   custom-class="enableEndDatepicker.className"
+									   datepicker-popup="{{enableEndDatepicker.format}}"
+									   is-open="enableEndDatepicker.status" name="enableEndDate"
+									   datepicker-options="enableEndDatepicker.options"  ng-readOnly = "true" show-weeks="false"
+									   current-text="今天" clear-text="清除" close-text="关闭" min-date = "queryModel.entityDTO.enableStartDate"
+									   ng-click="enableEndDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.enableEndDate');" required/>
+									   <div class="errorMessage">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="addCPSEncourageForm.enableEndDate.$error.required && sumbmited" >激励结束时间必填</span>
+									 </div>
+	                        </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	           </div>
+	        </div>
+	        
+   <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	               <table class="table">
+	                    <tbody>
+	                     <tr>
+	                        <td class="td-label">上传附件:</td>
+	                        <td class="td-value">
+	                     		  <input  style="margin-left: 20px;display: inline;" nv-file-select uploader="activityEncourageUploader" type="file" required
+									ng-click="clearUploader(activityEncourageUploader, 'input[uploader=activityEncourageUploader]')"/>
+	                        </td>
+	                        <td class="td-label">备注：</td>
+	                        <td class="td-value-R" style="width: 455px;">多个文件请打包压缩文件上传
+	                        </td>
+	                    </tr>
+	                      <tr ng-show ="showDeleteFlag">
+	                        <td class="td-label">附件名:</td>
+	                        <td class="td-value">
+									<a style="margin-left: 20px;" ng-click="downloadfile();">{{queryModel.entityDTO.fileName}}</a>
+	                        </td>
+	                        <td class="td-label">操作：</td>
+	                        <td class="td-value-R" style="width: 455px;"><a ng-click="removeFile(queryModel.entityDTO.approveAnnexUrl);">删除</a>
+	                        </td>
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label">操作：</td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="saveEncourage(addCPSEncourageForm.$valid);">保存</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="saveToAudit(addCPSEncourageForm.$valid);">提交审核</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+							  </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>	  
+	   </form>
+	</div>
+</div>

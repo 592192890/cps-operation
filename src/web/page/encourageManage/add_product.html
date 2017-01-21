@@ -1,0 +1,78 @@
+<div ng-controller="addProductController" style="width: 95%; margin-left: 20px; margin-top: 1px;">
+     <div class="location-modal">
+	        <button type="button" class="close cps-modal-close" 
+	           data-dismiss="tab-pane" ng-click="close()">
+	           <img style="height: 40px;" src='./src/web/static/images/close.png' />
+	         </button>
+	    </div>
+	 <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">商品名称：</td>
+	                        <td class="td-value" style="width: 359px;"><input type="text" class="form-control" ng-model="queryModel.entityDTO.productName"></td>
+	                        <td class="td-label">商品编码：</td>
+	                        <td class="td-value-R">
+		                        <input type="text" class="form-control"  ng-model="queryModel.entityDTO.productSku">
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">CPS商品分类：</td>
+	                        <td class="td-value">
+								<select class="cps-select" ng-model="queryModel.entityDTO.productType" ng-options="x.cpstypeId as x.cpstypeName for x in categoryArr">
+									<option selected value="">全部</option>
+								</select>
+	                        </td>
+	                        <td class="td-label">商品状态：</td>
+	                        <td class="td-value-R">
+								<select class="cps-select"  ng-model="queryModel.entityDTO.productStatus">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in productStatusDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							    </select>
+	                        </td>
+	                    </tr>
+
+
+	                      <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+							</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+	<div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table table-bordered">
+	                    <thead class="table-header" >
+	                    <tr>
+	                        <td style="width: 123px;"><input type="checkbox" ng-click="checkAllRows()" ng-checked="selectedProductArray.length == queryProductListResult.length && queryProductListResult.length != 0" />选项</td>
+	                        <td>名称</td>
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody" style="text-align: center;">
+	                    <tr ng-repeat='result in queryProductListResult'>
+	                        <td  style=" border-right: 1px solid rgba(161, 205, 226, 0.85);"><input type="checkbox" ng-click="checkRow(result)" ng-checked="selectedProductArray.indexOf(result) != -1" /></td>
+	                        <td>{{result.productName}}</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="10" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	    <button type="button" class="btn btn-primary" ng-click="saveProductList();">确定</button>
+	            </div>
+	        </div>
+	    </div>
+</div>

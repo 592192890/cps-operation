@@ -1,0 +1,65 @@
+<div class="main_content" ng-controller="editeConfigController">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>系统管理</li>
+            <li>配置管理</li>
+            <li>配置项管理</li>
+            <li class="active">修改配置项 </li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>修改配置项</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+
+<table width="1141" border="1" bordercolor="#0099FF">
+  <tr style="height: 33px;">
+    <td style="width: 171px; padding-left: 5px;">配置项名称：</td>
+    <td style="padding-left: 5px;"><input style="width: 308px;" type="text" name="textfield22" ng-model="queryModel.entityDTO.typeName"/></td>
+  </tr>
+  <tr style="height: 33px;">
+    <td style="padding-left: 5px;">key：</td>
+    <td style="padding-left: 5px;"><input ng-disabled="true" style="width: 308px;" type="text" name="textfield22" ng-model="queryModel.entityDTO.optionKey"/></td>
+  </tr>
+  <tr style="height: 33px;">
+    <td style="padding-left: 5px;">value：</td>
+    <td style="padding-left: 5px;"><input style="width: 308px;" type="text" name="textfield22" ng-model="queryModel.entityDTO.optionValue"/></td>
+  </tr>
+  <tr style="height: 33px;">
+    <td style="padding-left: 5px;">备注：</td>
+    <td style="padding-left: 5px;"><input style="width: 308px;" type="text" name="textfield22" ng-model="queryModel.entityDTO.remark"/></td>
+  </tr>
+
+    <tr>
+<td style="width: 171px; height: 45px; padding-left: 5px;">操作：</td>
+                                      <td class="td-value">
+                            <button  style="margin-left: 20px; width: 101px;" type="button" class="btn btn-primary" ng-click="editeConfig()">保存</button>
+                            <button style="width: 101px;" type="button" class="btn btn-primary btn-follow" ng-click="back()">取消</button>
+                        </td>
+
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

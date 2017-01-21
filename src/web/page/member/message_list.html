@@ -1,0 +1,126 @@
+<div ng-controller="messageListController ">
+<div class="main_content">
+<div class="breadcrumbs">
+    <div class="location-list">
+        <span class="location breadcrumb">您的位置：</span>
+        <ol class="breadcrumb">
+            <li>会员管理</li>
+            <li>消息管理</li>
+            <li class="active">消息列表 </li>
+        </ol>
+    </div>
+    <div class="location-end">
+        <span>消息列表</span>
+    </div>
+</div>
+    <div class="info">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table">
+                    <tbody>
+
+
+
+                                       <tr>
+                        <td class="td-label">消息标题：</td>
+                        <td class="td-value"><input ng-model="queryModel.entityDTO.title" type="text" class="form-control"></td>
+                        <td class="td-label">接收范围：</td>
+                        <td class="td-value-R">
+                          <select class="cps-select" ng-model="queryModel.entityDTO.reciverRange" ng-options="result.optionKey as result.optionValue for result in messageReceiverRangeResult">
+								<option  value="">全部</option>
+						  </select>
+                        </td>
+                    </tr>
+                                                          <tr>
+                        <td class="td-label">状态：</td>
+                        <td class="td-value">
+                        <select class="cps-select" ng-model="queryModel.entityDTO.status" ng-options="result.optionKey as result.optionValue for result in messageStatusResult">
+								<option  value="">全部</option>
+						  </select></td>
+                        <td class="td-label">更新时间：</td>
+                        <td class="td-value-R">
+                        <span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.updateDateStart" style="height: 22px; margin-left: 4px;"
+										   custom-class="updateDateStartDatepicker.className"
+										   datepicker-popup="{{updateDateStartDatepicker.format}}"
+										   is-open="updateDateStartDatepicker.status"
+										   datepicker-options="updateDateStartDatepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭"
+										   ng-click="updateDateStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.updateDateStart');" show-weeks= "false" />
+								</span>
+                            	<span class="col-xs-1 no-padding align-center">—</span>
+                            	<span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.updateDateEnd" style="height: 22px; margin-left: 4px;"
+									   custom-class="updateDateEndpicker.className"
+									   datepicker-popup="{{updateDateEndpicker.format}}"
+									   is-open="updateDateEndpicker.status"
+									   datepicker-options="updateDateEndpicker.options"
+									   current-text="今天" clear-text="清除" close-text="关闭"  min-date="queryModel.entityDTO.updateDateStart"
+									   ng-click="updateDateEndpicker.status = true" ng-change="parseDate('queryModel.entityDTO.updateDateEnd');" show-weeks= "false" />
+                            	</span>
+                        </td>
+                    </tr>
+                                       <tr>
+                        <td class="td-label"></td>
+                        <td class="td-value">
+                        <button type="button" class="btn btn-primary" ng-click="doPagingSearch()" >搜索</button>
+                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset()" >重置</button>
+                        </td>
+                        <td class="td-label"></td>
+                        <td class="td-value-R"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+        <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;">
+                                   <button ng-click="createMessage()" type="button" class="btn btn-primary" style="padding: 4px;" >添加发送消息</button>
+    </div>
+    <div class="infoLlist">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="scrollTable" style="overflow:auto">
+                <table class="table table-bordered">
+                    <thead class="table-header">
+                    <tr>
+                        <td><input type="checkbox" value="checkbox" /></td>
+                        <td>消息标题</td>
+                        <td>接收范围</td>
+                        <td>状态</td>
+                        <td>更新人</td>
+                        <td>更新时间</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody class="table-tbody">
+                    <tr ng-repeat='result in queryMessageListResult'>
+                    <td><input type="checkbox" value="checkbox" /></td>
+                        <td title="{{result.title}}">{{result.title |lipsis :'10'}}</td>
+                        <td>{{messageReceiverRangeResult | key: 'optionKey': result.reciverRange: 'optionValue'}}</td>
+                        <td>{{messageStatusResult | key: 'optionKey': result.status: 'optionValue'}}</td>
+                        <td>{{result.updateBy}}</td>
+                        <td>{{result.updateDate}}</td>
+                        <td>
+                            <a ng-click="viewMessage(result)" >查看</a>
+                            <a ng-if="result.status == 0" ng-click="editMessage(result)" >编辑</a>
+                            <a ng-if="result.status == 0" ng-click="sendMessage(result.messageId)" >发送</a>
+                            <a ng-if="result.status == 0" ng-click="deleteMessage(result.messageId)" >删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                    </div>
+                <div class="location-page">
+                    <el-paging total="totalPages" size="10" index="pageIndex"
+                               searcher="doPagingSearch" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <el-confirm confirm="deleteMessageConfirm" title="提示" msg="确定删除此消息?"></el-confirm>
+    <el-confirm confirm="sendMessageConfirm" title="提示" msg="确定发送此消息?"></el-confirm>
+</div>
+</div>

@@ -1,0 +1,142 @@
+<div ng-controller="adActivitiesListController ">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>广告管理 </li>
+	            <li class="active">广告投放活动列表 </li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>广告投放活动列表 </span>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">活动编号：</td>
+	                        <td class="td-value"><input ng-model="queryModel.entityDTO.activityId" type="text" class="form-control"></td>
+	                        <td class="td-label">活动名称：</td>
+	                        <td class="td-value-R"><input ng-model="queryModel.entityDTO.name" type="text" class="form-control"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">活动开始时间：</td>
+	                        <td class="td-value">
+	                           <span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.startDate" style="height: 22px; margin-left: 5px; width: 220px;"
+										   custom-class="entrustStartDatepicker.className"
+										   datepicker-popup="{{entrustStartDatepicker.format}}"
+										   is-open="entrustStartDatepicker.status"
+										   datepicker-options="entrustStartDatepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭"
+										   ng-click="entrustStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.startDate')" show-weeks= "false" />
+								</span>
+	                        </td>
+	                        <td class="td-label">活动结束时间：</td>
+	                        <td class="td-value-R">
+								<span class="col-xs-4 no-padding">
+									<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.endDate" style="height: 22px; width: 220px; margin-left: 5px;"
+										   custom-class="entrustEndDatepicker.className"
+										   datepicker-popup="{{entrustEndDatepicker.format}}"
+										   is-open="entrustEndDatepicker.status"
+										   datepicker-options="entrustEndDatepicker.options"
+										   current-text="今天" clear-text="清除" close-text="关闭"  min-date="queryModel.entityDTO.startDate"
+										   ng-click="entrustEndDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.endDate')" show-weeks= "false" />
+								</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">活动状态：</td>
+	                        <td class="td-value">
+							   <select class="cps-select" ng-model="queryModel.entityDTO.activityStatus" ng-options="result.optionKey as result.optionValue for result in activityStatusDropListResult">
+								<option  value="">全部</option>
+								</select>
+	                        </td>
+	                        <td class="td-label">活动类型：</td>
+	                        <td class="td-value-R">
+	                            <select class="cps-select" ng-model="queryModel.entityDTO.activityType">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in activityTypeDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                        </td>
+	                        <td class="td-label">推广类型：</td>
+	                        <td class="td-value-R">
+	                        	<select class="cps-select" ng-model="queryModel.entityDTO.promoteType">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in promoteTypeDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+							  </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	         <button style=" width: 90px;margin-bottom: 10px;" type="button" class="btn btn-primary" ng-click="goAdActivityAdd();">新建</button>
+	    </div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered">
+		                    <thead class="table-header">
+		                    <tr>
+		                        <td>编号</td>
+		                        <td>名称</td>
+		                        <td>开始时间</td>
+		                        <td>结束时间</td>
+		                        <td>推广类型</td>
+		                        <td>活动状态</td>
+		                        <td>审核状态</td>
+		                        <td>审核方式</td>
+		                        <td>操作</td>
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                    <tr ng-repeat='result in queryAdvertisementListResult' >
+		                        <td>{{result.activityId}}</td>
+		                        <td title="{{result.name}}">{{result.name  |lipsis :'10'}}</td>
+		                        <td>{{result.startDate}}</td>
+		                        <td>{{result.endDate}}</td>	                        
+		                        <td>{{promoteTypeDropListResult | key: 'optionKey': result.promoteType: 'optionValue'}}</td>	                        
+		                        <td>{{activityStatusDropListResult | key: 'optionKey': result.activityStatus: 'optionValue'}}</td>
+		                        <td>{{approveStatusDropListResult | key: 'optionKey': result.approveStatus: 'optionValue'}}</td>
+		                        <td>{{approveMethodDropListResult | key: 'optionKey': result.approveMethod: 'optionValue'}}</td>
+		                        <td>
+		                       		<input class='btn btn-link' type="button" title="查看"  ng-click="viewAdActivity(result)" value="查看" />
+		                       	    <input ng-show ="result.activityStatus == 0" class='btn btn-link' type="button" title="提交审核"  ng-click="sumbitToAudit(result)" value="提交审核" />
+		                       	    <input ng-show ="result.activityStatus == 0 || result.activityStatus == 7 || result.activityStatus == 4" class='btn btn-link' type="button" title="修改"  ng-click="updateAdActivity(result)" value="修改" />
+		                       	    <input ng-show ="result.activityStatus == 2" class='btn btn-link' type="button" title="发布"  ng-click="publishAdActivity(result)" value="发布" />
+		                       	    <input ng-show ="result.activityStatus == 4" class='btn btn-link' type="button" title="暂停"  ng-click="puaseAdActivity(result)" value="暂停" />
+		                       	    <input ng-show ="(result.activityStatus == 1 || result.activityStatus == 4 ) && result.approveStatus == 0 &&result.approveMethod==1 " class='btn btn-link' type="button" title="审核"  ng-click="auditAdActivity(result)" value="审核" />
+		                       	    <input ng-show ="result.activityStatus == 0 || result.activityStatus == 2 || result.activityStatus == 7" class='btn btn-link' type="button" title="删除"  ng-click="deleteAdActivity(result)" value="删除" />
+								</td>
+		                    </tr>
+		                    </tbody>
+		                </table>
+		            </div>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="10" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <el-confirm confirm="subitToAuditConfirm" title="提示" msg="确定提交申请?"></el-confirm>
+	    <el-confirm confirm="deleteAdActivityConfirm" title="提示" msg="确定删除此活动?"></el-confirm>
+	    <el-confirm confirm="publishAdActivityConfirm" title="提示" msg="确定发布?"></el-confirm>
+	    <el-confirm confirm="puaseAdActivityConfirm" title="提示" msg="确定暂停?"></el-confirm>
+	</div>
+</div>

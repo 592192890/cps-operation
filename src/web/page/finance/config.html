@@ -1,0 +1,145 @@
+<div ng-controller="configItemController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>财务管理</li>
+	            <li>财务管理</li>
+	            <li class="active">配置项管理</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>配置项管理 </span>
+	    </div>
+	</div>
+	<form name="configManager">
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table table-bordered">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">结算日：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" style="float:left" name="settlementDate" ng-model="queryModel.entityDTO.settlementDate" ng-pattern="/^[0-9]{1,7}$/" required>
+	                        	<label style="color:red;padding-left: 20px;">缺省每月20号</label>
+	                        	<div class="errorMessage" style="float: right;margin-right: 176px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.settlementDate.$error.required&& sumbmited">结算日必填</span>
+									<span class="glyphicon glyphicon-remove"
+					             	ng-show="configManager.settlementDate.$error.pattern&& sumbmited">结算日格式错误</span>
+					             	<span class="glyphicon glyphicon-remove"
+					             	ng-show="(queryModel.entityDTO.settlementDate<1||queryModel.entityDTO.settlementDate>28)&& sumbmited">结算日为1号到28号之间</span>
+								</div>	 
+	                        </td>                       
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">付款账户：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" style="float:left" name="payAccount" ng-model="queryModel.entityDTO.payAccount" required>
+	                        	<label style="color:red;padding-left: 20px;">系统通过该帐号向用户付款</label>
+	                        	<div class="errorMessage" style="float: right;margin-right: 164px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.payAccount.$error.required&& sumbmited">付款账户必填</span>
+								</div>	 
+	                        </td>
+	                        
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label">订单POD时间：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" style="float:left" name="orderPodDays" ng-pattern="/^[0-9]{1,7}$/" ng-model="queryModel.entityDTO.orderPodDays" required>
+	                        	<label style="color:red;padding-left: 20px;">缺省7天，签收超过7天后可结算</label>
+	                        	<div class="errorMessage" style="float: right;margin-right: 140px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.orderPodDays.$error.required&& sumbmited">订单PDO时间必填</span>
+									<span class="glyphicon glyphicon-remove"
+					             	ng-show="configManager.orderPodDays.$error.pattern&& sumbmited">订单PDO时间格式错误</span>
+								</div>	
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">可申请提现的最低金额：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" style="float:left" name="canExtractMinMoney" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" ng-model="queryModel.entityDTO.canExtractMinMoney" required>
+	                        	<label style="color:red;padding-left: 20px;">缺省100元，超过该值用户才可以提交佣金提取申请</label>
+	                        	<div class="errorMessage" style="float: right;margin-right:95px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.canExtractMinMoney.$error.required&& sumbmited">可申请提现的最低金额必填</span>
+									<span class="glyphicon glyphicon-remove"
+					             	ng-show="configManager.canExtractMinMoney.$error.pattern&& sumbmited">可申请提现的最低金额格式错误</span>
+								</div>	
+	                        </td>
+	                        
+	                    </tr>
+            			<tr>
+	                        <td class="td-label">CPS结算单自动审核金额：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" style="float:left" name="settlementAutoApproveMoney" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" ng-model="queryModel.entityDTO.settlementAutoApproveMoney" required>
+	                        	<label style="color:red;padding-left: 20px;">缺省5万，低于该金额系统自动审核通过，不需要业务参与</label>
+	                        	<div class="errorMessage" style="float: right;margin-right:110px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.settlementAutoApproveMoney.$error.required&& sumbmited">CPS结算单自动审核必填</span>
+									<span class="glyphicon glyphicon-remove"
+					             	ng-show="configManager.settlementAutoApproveMoney.$error.pattern&& sumbmited">CPS结算单自动审核格式错误</span>
+								</div>	
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">代扣代缴税率：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" readOnly="true" style="float:left"  name="withholdTaxRate" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" ng-model="queryModel.entityDTO.withholdTaxRate"required >
+	                        	<label style="color:red;padding-left: 20px;">以PRD为准</label>
+	                        	<div class="errorMessage" style="float: right;margin-right: 145px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.withholdTaxRate.$error.required&& sumbmited">代扣代缴税率必填</span>
+									<span class="glyphicon glyphicon-remove"
+					             	ng-show="configManager.withholdTaxRate.$error.pattern&& sumbmited">代扣代缴税率格式错误</span>
+								</div>	
+	                        </td>
+	                        
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">支付手续费：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<input type="text" class="form-control" readOnly="true" style="float:left"  name="payFee"  ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" ng-model="queryModel.entityDTO.payFee" required>
+	                        	<label style="color:red;padding-left: 20px;">缺省为0</label>
+	                        	<div class="errorMessage" style="float: right;margin-right: 154px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.payFee.$error.required&& sumbmited">支付手续费必填</span>
+									<span class="glyphicon glyphicon-remove"
+					             	ng-show="configManager.payFee.$error.pattern&& sumbmited">支付手续费格式错误</span>
+								</div>	
+	                        </td>                      
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">发票接收信息：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+								<textarea  id="" cols="70" rows="10" style="margin-left:20px" name="invoiceInfo" ng-model="queryModel.entityDTO.invoiceInfo" required ></textarea>
+								<div class="errorMessage" style="float: right;margin-right: 141px;padding-top:0px;">
+									<span class="glyphicon glyphicon-remove"
+								 	ng-show="configManager.invoiceInfo.$error.required&& sumbmited">发票接收信息必填</span>
+									<span class="glyphicon glyphicon-remove"
+					             	ng-show="configManager.invoiceInfo.$error.pattern&& sumbmited">发票接收信息格式错误</span>
+								</div>	
+	                        </td>
+	                        
+	                    </tr>
+	                    
+	                     <tr>
+	                        <td class="td-label">操作：</td>
+	                        <td class="td-value-config" style="border:1px solid #99ccff">
+	                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="saveConfigItem(configManager.$valid)">保存</button>
+	                        </td>      
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>	         
+	    </div>
+	</form>	    
+	</div>
+</div>

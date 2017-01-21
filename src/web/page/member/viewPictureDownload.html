@@ -1,0 +1,39 @@
+<div ng-controller="viewPictureController ">
+
+
+
+		
+		<div class="location-modal">	
+				<span>图片预览</span>
+					        <button type="button" class="close cps-modal-close" 
+	           data-dismiss="tab-pane" ng-click="close()">
+	           <img style="height: 40px;" src='./src/web/static/images/close.png' />
+	         </button>
+	    </div>
+
+			<div class="modal-footer align-center" style="text-align: center;">
+					
+					<div class="form-group" style="text-align: center;display: inline-block;">
+						<img ng-src="{{src}}" style="width:500px;height:345px;display: block;">
+						<div style="display: block;" >
+							{{picName}}
+						 </div>
+					</div>
+					
+					<div class="form-group" style="text-align: center;display: inline-block; margin-left: 10px;">
+						<div style="display: block;text-align: left;" >
+							<input  style="display: inline-block;float: left;" type="checkbox" ng-click="checkAllRows()" ng-checked="checkedRows.length == queryResult.length" />
+							<span style="display: inline-block;"> 全选 </span>
+							  <button type="button" class="btn btn-primary btn-follow"  style=" color: #0E0E0E;background-color: #eee;border-color: #f2dede; width: 70px; height: 30px;margin-left: 10px;" ng-click="downloadPic();">下载</button>
+						 </div>
+						<div style="display: block;    text-align: left;" ng-repeat='result in piccArray'>
+							<input style="display: inline-block;float: left;"  type="checkbox" ng-click="checkRow(result)" ng-checked="checkedRows.indexOf(result) != -1" />
+							<span style="display: inline-block;">{{result.picName}}</span> 
+							<img ng-src="{{result.src}}" style="width:100px;height:60px;display: block;">
+						 </div>
+					</div>
+
+			</div>
+
+
+</div>

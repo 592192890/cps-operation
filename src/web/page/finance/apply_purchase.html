@@ -1,0 +1,133 @@
+<div ng-controller="applyPurchaseController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>财务管理</li>
+	            <li>财务管理</li>
+	            <li class="active">申请付款管理</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>申请付款管理 </span>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">会员账号：</td>
+	                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.memberId"></td>
+	                        <td class="td-label">流水号：</td>
+	                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.serialNumber"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">申请时间：</td>
+	                        <td class="td-value">
+	                       		<span class="col-xs-5 no-padding">
+                                	<input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.createStartDate" style="height: 22px; margin-left: 4px;"
+                                       custom-class="entrustStartDatepicker.className"
+                                       datepicker-popup="{{entrustStartDatepicker.format}}"
+                                       is-open="entrustStartDatepicker.status"
+                                       datepicker-options="entrustStartDatepicker.options"
+                                       current-text="今天" clear-text="清除" close-text="关闭"
+                                       ng-click="entrustStartDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.createStartDate')" show-weeks= "false"/>
+	                            </span>
+	                            <span class="col-xs-1 no-padding align-center">—</span>
+	                            <span class="col-xs-5 no-padding">
+	                                <input type="text" class="datepicker form-control" ng-model="queryModel.entityDTO.createEndDate" style="height: 22px;"
+	                                       custom-class="entrustEndDatepicker.className"
+	                                       datepicker-popup="{{entrustEndDatepicker.format}}"
+	                                       is-open="entrustEndDatepicker.status"
+	                                       datepicker-options="entrustEndDatepicker.options"
+	                                       current-text="今天" clear-text="清除" close-text="关闭"  min-date="queryModel.entityDTO.createStartDate"
+	                                       ng-click="entrustEndDatepicker.status = true" ng-change="parseDate('queryModel.entityDTO.createEndDate')" show-weeks= "false"/>
+	                            </span>
+	                        </td>
+	                        <td class="td-label">状态：</td>
+	                        <td class="td-value-R">
+	                      		 <select class="cps-select" ng-model="queryModel.entityDTO.status" ng-options="x.optionKey as x.optionValue for x in applyStatusArr">
+										<option selected value="">全部</option>
+										
+							  	</select>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        	
+							  </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	
+	        </div>
+	         <div class="location-end" style="margin-bottom: 10px; padding-top: 5px;">
+                <button type="button"  class="btn btn-primary" style="padding: 4px;" ng-click="applyAuditBatch()">批量审核</button>
+                <button  type="button" class="btn btn-primary btn-follow" style="padding: 4px;" ng-click="exports()">导出</button>
+                <button  type="button" class="btn btn-primary btn-follow" style="padding: 4px;" ng-click="applyPurchaseItendifyBatch()">确认已付款</button>
+    		</div>
+	    </div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered">
+		                    <thead class="table-header">
+		                    <tr>
+		                    	<td><input type="checkbox" value="checkbox" ng-click="checkAllRows()" ng-checked="checkedRows.length == applyPurchaseList.length"/></td>
+		                        <td>会员账号</td>
+		                        <td>流水号</td>
+		                        <td>申请时间</td>
+		                        <td>申请支付金额</td>
+		                        <td>代扣税金额</td>
+		                        <td>支付手续费</td>
+		                        <td>实际支付金额</td>
+		                        <td>是否需开具发票</td>
+		                        <td>状态</td>
+		                        <td>操作</td>
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                    <tr ng-repeat="applyPurchase in applyPurchaseList">
+		                        <td><input type="checkbox" value="checkbox" ng-click="checkRow(applyPurchase)" ng-checked="checkedRows.indexOf(applyPurchase) != -1"/></td>
+		                        <td>{{applyPurchase.memberId}}</td>
+		                        <td>{{applyPurchase.serialNumber}}</td>
+		                        <td>{{applyPurchase.createDate}}</td>
+		                        <td>{{applyPurchase.applyMoney}}</td>
+		                        <td>{{applyPurchase.withholdTax}}</td>
+		                        <td>{{applyPurchase.payFee}}</td>
+		                        <td>{{applyPurchase.finalMoney}}</td>
+		                        <td>{{isNeedInvoiceArr | key: 'optionKey': applyPurchase.isNeedInvoice: 'optionValue'}}</td>
+		                        <td>{{applyStatusArr | key: 'optionKey': applyPurchase.status: 'optionValue'}}</td>
+		                        <td>
+		                        	<a ng-show="(applyPurchase.status==0) " ng-click="applyAudit(applyPurchase)">审核</a>
+		                        		<a ng-show="(applyPurchase.status==1) " ng-click="reAudit(applyPurchase)">重新审核</a>
+		                        	<a ng-show="applyPurchase.status==2 " ng-click="applyPurchaseItendify(applyPurchase)">确认已付款</a>
+		                        </td>
+		                    </tr>
+		                       
+		                    </tbody>
+		                </table>
+		            </div>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="10" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	       
+	    </div>
+	    <el-confirm confirm="applyPurchaseConfirm" title="提示" msg="确认已付款？"></el-confirm>
+	    <el-multip-button-confirm confirm="applyAuditConfirm" title="审核"></el-multip-button-confirm>
+	</div>
+</div>

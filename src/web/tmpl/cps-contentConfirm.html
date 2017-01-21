@@ -1,0 +1,17 @@
+
+<script type="text/ng-template" id="contentConfirmTpl.html">
+	<dl>
+		<dd class="modal-header">
+			<span class="glyphicon glyphicon-info-sign" style="color: #F0AA48"></span>
+			{{contentConfirmContext.confirmTitle}}
+		</dd>
+		<dd class="modal-body" style="    display: inline;">
+			{{contentConfirmContext.confirmMsg}}<select ng-model="contentConfirmContext.selecedtype" ng-options="x.optionKey as x.optionValue for x in contentConfirmContext.noPassAuditReasonArr"></select>
+			<textarea type="text" style="margin: 20px 0px 0px 15px;width: 255px;height: 96px;" ng-model="contentConfirmContext.confirmContent"  rows="4" cols="30" ng-show="contentConfirmContext.selecedtype=='other'" style="margin-top:20px"></textarea>
+		</dd>
+		<dd class="modal-footer" style="text-align: center; border-top: none;">
+			<button class="btn btn-primary btn-xs" ng-click="contentConfirmContext.doConfirm()">确定</button>
+			<button class="btn btn-warning btn-xs" ng-click="contentConfirmContext.doCancel()">取消</button>
+		</dd>
+	</dl>
+</script>

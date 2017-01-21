@@ -1,0 +1,43 @@
+<div ng-controller="mediaBlackListController">
+    <div class="main_content">
+        <div class="breadcrumbs">
+            <div class="location-list">
+                <span class="location breadcrumb">您的位置：</span>
+                <ol class="breadcrumb">
+                    <li>会员管理</li>
+                    <li>媒体管理</li>
+                    <li class="active">媒体黑名单 </li>
+                </ol>
+            </div>
+            <div class="location-end">
+                <span>媒体黑名单</span>
+                <button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+            </div>
+        </div>
+            <div class="info">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table width="1141" border="1" bordercolor="#0099FF">
+                            <tr style="height: 33px;">
+                                <td style="width: 171px; padding-left: 5px;">网站域名：</td>
+                                <td style="padding-left: 5px;"><input style="width: 308px;" type="text" name="textfield22" ng-model="websiteDomain" /></td>
+                             </tr>
+
+
+                            <tr>
+                                <td style="width: 171px; height: 45px; padding-left: 5px;">操作：</td>
+                                 <td class="td-value">
+                                    <button  style="margin-left: 20px; width: 101px;" type="button" class="btn btn-primary" ng-click="addBlackListManual()">保存</button>
+                                    <button style="width: 101px;" type="button" class="btn btn-primary btn-follow" ng-click="cancel()">取消</button>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

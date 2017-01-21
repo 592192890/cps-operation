@@ -1,0 +1,81 @@
+<div ng-controller="templateListController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>页面管理</li>
+	            <li>模板管理</li>
+	            <li>模板列表</li>
+	            <li class="active">添加模板</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>添加模板 </span>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<form name="addTemplateForm" novalidate>
+		                <table class="table table-bordered">
+		                    <tbody>
+		                    <tr>
+		                        <td class="td-label"><label style="color:red">*</label>占位符：</td>
+		                        <td class="td-value-config" style="border:1px solid #99ccff">
+		                        	<div class="col-sm-6">
+		                        		<input type="text" class="form-control" name="placeholder" ng-model="queryModel.entityDTO.placeholder" required>
+		                        	</div>
+		                        	 <div class="errorMessage">
+												<span class="glyphicon glyphicon-remove"
+												 ng-show="(addTemplateForm.placeholder.$dirty&&addTemplateForm.placeholder.$error.required)||(addTemplateForm.placeholder.$error.required && sumbmited)" >占位符必填</span>
+										 </div>
+		                        </td>
+		                        
+		                    </tr>
+		                    <tr>
+		                        <td class="td-label"><label style="color:red">*</label>描述：</td>
+		                        <td class="td-value-config" style="border:1px solid #99ccff">
+		                        	<div class="col-sm-6">
+			                        	<input type="text" class="form-control" name="placeholderDesc" ng-model="queryModel.entityDTO.placeholderDesc" required>
+			                        </div>
+		                        	 <div class="errorMessage">
+												<span class="glyphicon glyphicon-remove"
+												 ng-show="(addTemplateForm.placeholderDesc.$dirty&&addTemplateForm.placeholderDesc.$error.required)||(addTemplateForm.placeholderDesc.$error.required && sumbmited)" >描述必填</span>
+										 </div>
+		                        </td>
+		                        
+		                    </tr>
+		                     
+		                    <tr>
+		                        <td class="td-label"><label style="color:red">*</label>内容：</td>
+		                        <td class="td-value-config" style="border:1px solid #99ccff">
+		                        	<div class="errorMessage" id="contentError">
+											<span class="glyphicon glyphicon-remove"
+											 ng-show="error_message == '1'" >内容必填</span>
+									 </div>
+									<div id="editor" cps-editor   ng-model="queryModel.entityDTO.content" name="content"></div>
+									
+		                        </td>
+		                        
+		                    </tr>
+		               
+		                    <tr>
+		                        <td class="td-label">操作：</td>
+		                        <td class="td-value-config" style="border:1px solid #99ccff">
+		                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="addTemplateInstance(addTemplateForm.$valid)">保存</button>
+		                        	<button style="margin-left:20px" type="button" class="btn btn-primary btn-follow" ng-click="back()">取消</button>
+		                        </td>
+		                        
+		                    </tr>
+		                    </tbody>
+		                </table>
+		            </form>
+	            </div>
+	
+	        </div>
+	         
+	    </div>
+	    
+	</div>
+</div>

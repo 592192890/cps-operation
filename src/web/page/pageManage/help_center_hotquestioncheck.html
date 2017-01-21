@@ -1,0 +1,49 @@
+<div ng-controller="helpCenterListController">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>页面管理</li>
+	            <li>帮助中心管理</li>
+	            <li class="active">查看热门问题</li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>查看热门问题</span>
+	    </div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered" style="table-layout:fixed">
+		                    <thead class="table-header">
+		                    <tr>
+		                        <td>标题</td>
+		                        <td>回答</td>
+		                        <td>类型</td>
+		                        <td>是否热门问题</td>
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                    <tr ng-repeat='result in queryQuestionListResult'>
+		                        <td title="{{result.title}}">{{result.title}}</td>
+		                        <td title="{{result.answer}}">{{result.answer}}</td>
+		                        <td>{{isLeafResult | key: 'optionKey': result.type: 'optionValue'}}</td>
+		                        <td>{{isHotquestionResult | key: 'optionKey': result.isHotQuestion: 'optionValue'}}</td>
+		                    </tr>
+		                   
+		                    </tbody>
+		                </table>
+		            </div>
+	                <div class="location-page">
+	                 	<button style="margin-left:20px;margin-top:3px" type="button" class="btn btn-primary btn-follow" ng-click="goBack()">返回</button>
+	                    <el-paging total="totalPages" size="10" index="pageIndex"
+	                               searcher="doPagingHotQuestionSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	</div>
+</div>

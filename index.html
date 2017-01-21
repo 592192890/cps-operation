@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html ng-app="cps_context" xmlns="http://www.w3.org/1999/xhtml" xmlns:math="http://www.w3.org/1999/Math/MathMl">
+	<head>
+		<title>运营平台</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta http-uiv="content-language" content="zh-ch">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-title" content="" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+		<!-- 样式部分 -->
+		<link href="./src/web/static/css/common/bootstrap.min.css" rel="stylesheet">
+		<link href="./src/web/static/css/common/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="./src/web/static/css/common/ng-notify.min.css" />
+
+		 <link href="./src/web/static/css/modules/main.css" type="text/css" rel="stylesheet"/>
+		<link href="./src/web/static/css/modules/main-north.css" type="text/css" rel="stylesheet"/>
+		<link href="./src/web/static/css/modules/main-west.css" type="text/css" rel="stylesheet"/>
+		<link href="./src/web/static/css/modules/member.css" type="text/css" rel="stylesheet"/>
+		<link href="./src/web/static/css/modules/home.css" type="text/css" rel="stylesheet"/>
+
+		<!-- 类库部分 -->
+        <!--<script src="./src/web/static/echart/echarts-all.js"></script>-->
+        <!-- <script src="./lib/requirejs.js"></script> -->
+        <script src="./lib/jquery-2.1.1.min.js"></script>
+        <script src="./lib/jquery.cookie.js"></script>
+        <script src="./lib/jquery.md5.js"></script>
+		<script src="./lib/angular.min.js"></script>
+        <script src="./lib/web-storage-cache.js"></script>
+        <script src="./lib/select.js"></script>
+        <script src="./lib/angular-locale_zh-cn.js"></script>
+		<script src="./lib/angular-route.min.js"></script>
+		<script src="./lib/angular-resource.min.js"></script>
+		<script src="./lib/angular-cookies.min.js"></script>
+		<script src="./lib/angular-ui-router.min.js"></script>
+		<script src="./lib/angular-animate.min.js"></script>
+		<script src="./lib/angular-file-upload.min.js"></script>
+		<script src="./lib/angular-messages.min.js"></script>
+		<script src="./lib/angular-sanitize.min.js"></script>
+		<script src="./lib/spin.2.0.1.min.js"></script>
+		<script src="./lib/ladda.0.9.4.min.js"></script>
+		<script src="./lib/ng-notify.min.js"></script>
+		<script src="./lib/ng-clip.min.js"></script>
+		<script src="./lib/ng-infinite-scroll.min.js"></script>
+		<script src="./lib/bootstrap-treeview.js"></script>
+		
+		<script src="./lib/ui-bootstrap.min.js"></script>
+		<script src="./lib/ui-bootstrap-tpls.min.js"></script>
+		<script src="./lib/underscore-min.js"></script>
+		<script src="./lib/ZeroClipboard.js"></script>
+		<script src="./lib/Json2.min.js"></script>
+        <script src="./lib/colResizable-1.5.min.js"></script>
+        <script src="./lib/requirejs.js"></script>
+        <script src="./src/web/static/CKEditor/ckeditor.js"></script>
+		<!-- 运行时部分 -->
+		<script src="./jsx/jsxVM.js"></script>
+		<script src="./src/config/application-config.js"></script>
+		<script src="./src/config/bean-config.js"></script>
+		<script src="./src/config/service-config.js"></script>
+		<script src="./src/config/context-config.js"></script>
+		<script src="./src/config/context-config-member.js"></script>
+		<script src="./src/config/context-config-promotionManage.js"></script>
+		<script src="./src/config/context-config-finance.js"></script>
+		<script src="./src/config/context-config-encourageManage.js"></script>
+		<script src="./src/config/context-config-operationReport.js"></script>
+		<script src="./src/config/context-config-pageManage.js"></script>
+		<script src="./src/config/context-config-configManage.js"></script>
+
+		<script src="./src/config/context-config-orderManage.js"></script>
+
+		<script src="./src/config/component-config.js"></script>
+		<script src="./src/config/filter-config.js"></script>
+		<!-- 框架部分 -->
+		<script src="./framework/application/context/ContextSupport.js"></script>
+		<script src="./framework/application/role/RoleSupport.js"></script>
+		<script src="./framework/application/service/ApiService.js"></script>
+		<script src="./framework/common/util/ReflectionUtil.js"></script>
+		<script src="./framework/common/util/BeanUtil.js"></script>
+		<script src="./framework/common/util/TypeofUtil.js"></script>
+		<script src="./framework/common/util/InstanceUtil.js"></script>
+		<script src="./framework/common/util/UserUtil.js"></script>
+		<script src="./framework/core/context/AppContext.js"></script>
+		<script src="./framework/core/context/ApiContext.js"></script>
+		<script src="./framework/core/context/WebContext.js"></script>
+		<script src="./framework/core/factory/ManagerFactory.js"></script>
+		<script src="./framework/core/manager/Manager.js"></script>
+		<script src="./framework/core/manager/AngularManager.js"></script>
+		<script src="./framework/core/container/Container.js"></script>
+		<script src="./framework/core/container/AngularContainer.js"></script>
+		<!-- 共同部分 -->
+		<script src="./src/common/component/ConfirmComponent.js"></script>
+		<script src="./src/common/component/ContentConfirmComponent.js"></script>
+		<script src="./src/common/component/MultipButtonConfirmComponent.js"></script>
+		<script src="./src/common/component/ValidationComponent.js"></script>
+		<script src="./src/common/component/RuleEqualsComponent.js"></script>
+		<script src="./src/common/component/RuleRemoteComponent.js"></script>
+		<script src="./src/common/component/SizeFitComponent.js"></script>
+		<script src="./src/common/component/PagingComponent.js"></script>
+		<script src="./src/common/component/MenuBoxComponent.js"></script>
+		<script src="./src/common/component/AutoPanelComponent.js"></script>
+        <script src="./src/common/component/ColResizeComponent.js"></script>
+        <script src="./src/common/component/DatepickerComponent.js"></script>
+        <script src="./src/common/component/WorkFlowComponent.js"></script>
+        <script src="./src/common/component/LaddaButtonComponent.js"></script>
+		<script src="./src/common/component/CKEditorComponent.js"></script>
+		<script src="./src/common/component/MergeTableComponent.js"></script>
+		<script src="./src/common/component/ProductAttributeTreeViewComponent.js"></script>
+		<script src="./src/common/component/DynamicFormValidationComponent.js"></script>
+
+		<script src="./src/common/filter/LipsisFilter.js"></script>
+		<script src="./src/common/filter/KeyFilter.js"></script>
+        <script src="./src/common/filter/HighlightFilter.js"></script>
+        <script src="./src/common/filter/CurrencyFilter.js"></script>
+        <script src="./src/common/filter/EnterFilter.js"></script>
+
+		<script src="./src/common/constant/Constants.js"></script>
+		<script src="./src/common/constant/ApiDefines.js"></script>
+		<script src="./src/common/constant/MsgDefines.js"></script>
+		<script src="./src/common/constant/ModalPath.js"></script>
+		<script src="./src/common/constant/MenuData.js"></script>
+		<script src="./src/common/util/ModalUtil.js"></script>
+		<script src="./src/common/util/UploaderUtil.js"></script>
+		<script src="./src/common/util/AlgUtil.js"></script>
+		<script src="./src/common/util/LocalEnvUtil.js"></script>
+		<script src="./src/common/util/jqueryRowspan.js"></script>
+
+        <script src="./src/common/constant/DropDownDefines.js"></script>
+
+		<!-- 主场景部分 -->
+		<script src="./src/application/context/IndexContext.js"></script>
+		<script src="./src/application/context/RoleSelectContext.js"></script>
+		<script src="./src/application/context/HomeContext.js"></script>
+		<script src="./src/application/context/CheckLoginContext.js"></script>
+		<script src="./src/application/context/MainContext.js"></script>
+		<script src="./src/application/context/member/MemberListContext.js"></script>
+		<script src="./src/application/context/member/MediaListContext.js"></script>
+		<script src="./src/application/context/member/MediaAuditContext.js"></script>
+		<script src="./src/application/context/member/MemberMessageListContext.js"></script>
+		<script src="./src/application/context/configManage/ConfigManagementContext.js"></script>
+		<script src="./src/application/context/configManage/CreateConfigContext.js"></script>
+		<script src="./src/application/context/configManage/EditeConfigContext.js"></script>
+		<script src="./src/application/context/member/MessageCreateContext.js"></script>
+		<script src="./src/application/context/member/MediaAuditInfoContext.js"></script>		
+		<script src="./src/application/context/member/MessageEditContext.js"></script>		
+		<script src="./src/application/context/member/MessageListContext.js"></script>
+		<script src="./src/application/context/member/MemberInfoContext.js"></script>
+		<script src="./src/application/context/member/MessageDetailContext.js"></script>
+		<script src="./src/application/context/member/MessageViewContext.js"></script>
+		<script src="./src/application/context/member/MediaInfoContext.js"></script>
+		<script src="./src/application/context/member/MemberAuditContext.js"></script>	
+		<script src="./src/application/context/member/MediaBlackListContext.js"></script>
+		<script src="./src/application/context/member/ViewPictureContext.js"></script>
+		<script src="./src/application/context/member/MemberDetailContext.js"></script>
+		<script src="./src/application/context/member/MemberAuditInfoContext.js"></script>
+		<script src="./src/application/context/promotionManage/AdActivitiesListContext.js"></script>
+		<script src="./src/application/context/promotionManage/AdActivitiesAddContext.js"></script>
+		<script src="./src/application/context/promotionManage/AdActivitiesAuditContext.js"></script>
+		<script src="./src/application/context/promotionManage/AdActivitiesUpdateContext.js"></script>
+		<script src="./src/application/context/promotionManage/AdActivitiesViewContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSTypeListContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSTypeAddContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSTypeUpdateContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSTypeDetailContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSProductListContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSTypeActivityEncourageAddContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSTypeEncourageAuditContext.js"></script>
+		<script src="./src/application/context/encourageManage/CPSTypeActivityEncourageUpdateContext.js"></script>
+		<script src="./src/application/context/encourageManage/ActivityEncourageListContext.js"></script>
+		<script src="./src/application/context/encourageManage/ActivityEncourageViewContext.js"></script>
+		<script src="./src/application/context/encourageManage/ActivityEncourageUpdateContext.js"></script>
+		<script src="./src/application/context/encourageManage/ActivityEncourageAuditContext.js"></script>
+		<script src="./src/application/context/encourageManage/ActivityEncourageAddContext.js"></script>
+		<script src="./src/application/context/encourageManage/AddProductContext.js"></script>
+		<script src="./src/application/context/encourageManage/ProductBrandContext.js"></script>
+		<script src="./src/application/context/encourageManage/ProductTypeContext.js"></script>
+		<script src="./src/application/context/encourageManage/ProductCPSContext.js"></script>
+		<script src="./src/application/context/operationReport/PromotionDetailReportContext.js"></script>
+		<script src="./src/application/context/operationReport/PromotionEffectReportContext.js"></script>
+		<script src="./src/application/context/orderManage/CPSOrderListContext.js"></script>
+		<script src="./src/application/context/orderManage/AdditionalOrderSettleContext.js"></script>
+		<script src="./src/application/context/orderManage/ExceptionOrderImportContext.js"></script>			
+		<script src="./src/application/context/finance/MemberBillQueryContext.js"></script>
+		<script src="./src/application/context/finance/MemberDailySummaryContext.js"></script>
+		<script src="./src/application/context/finance/ConfigItemContext.js"></script>
+		<script src="./src/application/context/finance/ApplyPurchaseContext.js"></script>
+		<script src="./src/application/context/finance/AccountQueryContext.js"></script>
+		<script src="./src/application/context/finance/MemberSetlementDetailContext.js"></script>
+		<script src="./src/application/context/finance/SubmitBusinessAuditContext.js"></script>
+		<script src="./src/application/context/pageManage/NotificationListContext.js"></script>
+		<script src="./src/application/context/pageManage/TemplateListContext.js"></script>
+		<script src="./src/application/context/pageManage/EditTemplateContext.js"></script>
+		<script src="./src/application/context/pageManage/HelpCenterListContext.js"></script>
+		<script src="./src/application/context/pageManage/HelpCenterAddContext.js"></script>
+		<script src="./src/application/context/pageManage/HelpCenterUpdateContext.js"></script>
+		<script src="./src/application/context/pageManage/NoticeCreateContext.js"></script>
+		<script src="./src/application/context/pageManage/NoticeUpdateContext.js"></script>
+		<script src="./src/application/context/pageManage/NoticeApproveContext.js"></script>		
+		<!-- 启动部分 -->
+		<script src="./src/startup.js"></script>
+
+
+	</head>
+	<body ng-controller="indexController as indexCtrl" >
+		<div id="indexAlert" class="alert-fixed-top">
+			<alert type="{{alert.type}}" ng-if="alert.opened" close="alert.opened = false" dismiss-on-timeout="3000">{{alert.msg}}</alert>
+		</div>
+		<ui-view />
+	</body>
+</html>

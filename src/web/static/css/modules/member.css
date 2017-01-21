@@ -1,0 +1,322 @@
+.content {
+	padding: 0px 0px 20px 0px;
+	width: 100%;
+	overflow: auto;
+	background-color: white;
+	font-size: 12px;
+	color: #000000;
+	font-family: "微软雅黑 Bold", "微软雅黑";
+}
+.left {
+	background-image: url(../../images/u17.png);
+	background-repeat:round;
+	height: 1200px;
+	float: left;
+	width: 171px;
+	font-size: 13px;
+	font-family: "微软雅黑 Bold", "微软雅黑";
+	padding-top: 15px;
+	
+}
+.left_nav {
+	margin-right: 7px;
+}
+
+.left_nav a {
+	color: #212121 !important;
+}
+
+.left_nav a:focus, .left_nav a:hover {
+	font-weight:bold;
+}
+
+.main_content {
+	float: left;
+	margin-left: 10px;
+	width: 1141px;
+	/*min-height: 945px;*/
+}
+
+.panel-body {
+	padding: 0 !important;
+}
+
+.location {
+	float: left;
+}
+
+.nav-tabs > li {
+	float: none !important;
+}
+
+.left_nav > .panel {
+	margin-bottom: 0px;
+	border: none;
+	border-collapse: collapse;
+}
+.left_nav > .panel > .panel-heading {
+	border-collapse: collapse;
+	margin-bottom: 0;
+	margin-left: 0;
+	height: 31px !important;
+	background-image: url(../../images/u22.png);
+	color:#FFFFFF;
+	padding: 5px 10px 5px 2px !important;
+}
+
+.left_nav > .panel-body {
+	padding: 0;
+	border-collapse: collapse;
+}
+
+.left_nav > .panel-body > .nav-tabs > li > a {
+	padding: 5px 10px 5px 10px;
+	border: none !important;
+}
+
+.left_nav > .panel-body > .nav-tabs  {
+	border-collapse: collapse;
+	margin: -1px -1px 0px 0px;
+}
+
+.left_nav > .panel-body > .nav-tabs > li {
+	background-image: url(../../images/u26.png);
+	background-repeat:repeat-x;
+}
+
+.left_nav > .panel-body > .nav-tabs > li > a:focus, .nav > li > a:hover {
+	background-image: url(../../images/u26.png);
+	background-repeat:repeat-x;
+}
+
+.left_nav > .panel-body > .nav-tabs > li > .collapse > .accordion-inner {
+	background-image: url(../../images/u24.png);
+	background-repeat:repeat-x;
+	border: none;
+	border-collapse: collapse;
+	padding: 5px 10px 5px 15px;
+	margin: -1px 0px -1px 0px;
+}
+
+.left_nav > .panel-body > .nav-tabs > li > .collapseChild > .accordion-inner {
+		background-image: url(../../images/u26.png);
+	background-repeat:repeat-x;
+	border: none;
+	border-collapse: collapse;
+	padding: 5px 10px 5px 25px;
+	margin: -1px 0px -1px 0px;
+}
+
+.breadcrumb {
+	margin-bottom: 2px !important;
+	padding-left: 2px !important;
+	background-color: transparent !important;
+}
+
+.breadcrumbs{
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+}
+
+.location-list, .location-end {
+	width: 1140px;
+	height: 41px;
+	padding-left: 10px;
+	/*background-image: url(../../images/u233.png);*/
+	background-color: #ecf8fb;
+    border: 1px solid #99ccff;
+}
+.location-modal {
+	height: 41px;
+	padding-left: 10px;
+	/*background-image: url(../../images/u233.png);*/
+	background-color: #ecf8fb;
+    border: 1px solid #99ccff;
+    margin-bottom: 10px;
+}
+.location-end {
+	font-size: 16px;
+	font-family: "微软雅黑 Bold", "微软雅黑";
+	font-weight: 700;
+	padding: 10px;
+}
+
+.location-page {
+	height: 41px;
+	padding-left: 10px;
+	/*background-image: url(../../images/u233.png);*/
+	background-color: #ecf8fb;
+    border: 1px solid #99ccff;
+}
+
+.info > .panel{
+	border: none;
+	margin-bottom: 10px;
+}
+
+.info > .panel > .panel-body > .table {
+	margin-bottom: 2px;
+}
+
+.info > .panel > .panel-body > .table > tbody > tr > .td-label{
+	text-align: right;
+	width: 204px;
+	/*background-image: url(../../images/u530.png);*/
+	background-color: #ecf8fb;
+    border: 1px solid #99ccff;
+    /*line-height:25px;*/
+	vertical-align:middle;
+}
+
+.info > .panel > .panel-body > .table > tbody > tr > .td-label.update-audit,
+.info > .panel > .panel-body > .table > tbody > tr > .td-value.update-audit{
+	color: red;
+}
+
+
+.info > .panel > .panel-body > .table > tbody > tr > .td-value{
+	width: 339px;
+	/*background-image: url(../../images/u532.png);*/
+	border: 1px solid #99ccff;
+}
+.info > .panel > .panel-body > .table > tbody > tr > .td-value-R{
+	width: 440px;
+	/*background-image: url(../../images/u536.png);*/
+	border: 1px solid #99ccff;
+}
+.info > .panel > .panel-body > .table > tbody > tr .h5date{
+	border: 1px solid #ccc;border-radius: 4px;
+}
+.info > .panel > .panel-body > .table > tbody > tr > td{
+	padding: 3px 3px;
+	height: 30px;
+	border: none;
+}
+
+.info > .panel > .panel-body > .table > tbody > tr > td > .form-control{
+	margin-top: 2px;
+	margin-left: 20px;
+	height: 24px;
+	width: 220px;
+	display: inline;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+.info{
+	margin-right:1px;
+}
+.info > .panel > .panel-body > .table > tbody > tr > td > .btn-group > .btn-default {
+	margin-top: 2px;
+	padding-top: 0px;
+	margin-left: 20px;
+	height: 22px;
+	width: 220px;
+
+}
+
+.info > .panel > .panel-body > .table > tbody > tr > td > .btn{
+	padding-top: 1px;
+	margin: 0.5px 2px 0.5px 20px;
+	height: 25px;
+}
+
+.info > .panel > .panel-body > .table > tbody > tr > td > .btn-follow{
+	margin: 0.5px 0px;
+}
+.infoLlist{
+	margin-right:1px;
+}
+.table-bordered {
+	border:1px solid #99ccff!important;
+}
+.infoLlist .table-bordered td{
+	border: 1px solid #99ccff;
+	vertical-align: middle;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+
+}
+.infoLlist .table-bordered th{
+	border: 1px solid #99ccff;
+
+}
+.infoLlist > .panel > .panel-body > .table > .table-header > tr > td{
+	background-color:#EBF3FC;
+	height: 40px;
+	text-align: center;
+
+}
+.infoLlist > .panel > .panel-body .scrollTable >.table thead td{
+	width:80px;
+	background-color:#EBF3FC;
+	height: 40px;
+	text-align: center;
+}
+.click_hidden{
+	display:none;
+}
+
+.errorMessage{
+  color: red;
+  text-align: left;
+  padding-top: 8px;
+  display: inline-block;
+}
+
+.uploadButtom{
+	width: 144px;
+    height: 41px;
+    cursor: pointer;
+    font-size: 30px;
+    outline: medium none;
+    position: absolute;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    opacity:0; 
+    left:0px;
+    top: 0px;
+}
+
+.uploadButtomDiv{
+	position:relative;
+	display: inline-block;
+}
+
+.uploadButtomDesc{
+}
+
+.dropdown-menu{
+	left:-60px!important;
+}
+.td-value-config_validation .dropdown-menu{
+	left:160px!important;
+}
+select{
+	width: 150px;
+	height: 23px;
+	margin-left: 20px;
+	margin-top: 2px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+.datepicker{
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+.breadcrumb>li+li:before {
+	padding: 0 5px;
+	color: #333;
+	content: ">>"
+}
+
+.memberInfoForm table tr td:nth-child(odd){
+	text-align:right;
+	background-color:#ecf8fb;
+}
+
+.messageInfoForm table tr td:nth-child(odd){
+	text-align:right;
+}

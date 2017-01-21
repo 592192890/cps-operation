@@ -1,0 +1,119 @@
+<div ng-controller="cpsProductListController ">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>激励管理 </li>
+	            <li class="active">CPS商品管理 </li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>CPS商品管理  </span>
+	    </div>
+	</div>
+	  <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">商品名称：</td>
+	                        <td class="td-value"><input type="text" class="form-control" ng-model="queryModel.entityDTO.productName"></td>
+	                        <td class="td-label">商品SKU编号：</td>
+	                        <td class="td-value-R"><input type="text" class="form-control" ng-model="queryModel.entityDTO.productSku"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">商品状态：</td>
+	                        <td class="td-value">
+	                      	  <select class="cps-select" ng-model="queryModel.entityDTO.productStatus">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in productStatusDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  </select>
+	                        </td>
+	                        <td class="td-label">CPS商品分类：</td>
+	                        <td class="td-value-R">
+								<select class="cps-select" ng-model="queryModel.entityDTO.productType" ng-options="x.cpstypeId as x.cpstypeName for x in categoryArr">
+									<option selected value="">全部</option>
+								</select>
+	                        </td>
+	                    </tr>
+	                     <tr>
+	                        <td class="td-label">销售渠道：</td>
+	                        <td class="td-value">
+	                          	<select class="cps-select" ng-model="queryModel.entityDTO.salesWay">
+										<option selected value="">全部</option>
+										<option ng-repeat = "result in salesChannelsDropListResult"  ng-value="result.optionKey">{{result.optionValue}}</option>
+							  	</select>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+							  </td>
+	                    </tr>
+
+
+
+	                      <tr>
+	                        <td class="td-label"></td>
+	                        <td class="td-value">
+	                            <button type="button" class="btn btn-primary" ng-click="doPagingSearch();">搜索</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="exportData();">导出</button>
+	                            <button type="button" class="btn btn-primary btn-follow" ng-click="reset();">重置</button>
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+							</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="breadcrumbs">
+		      	<button type="button" class="btn btn-primary" ng-click="editSelectedCPSType();">编辑选中的CPS分类</button>
+                <button type="button" class="btn btn-primary btn-follow" ng-click="editAllCPSType();">编辑所有CPS分类</button>
+                <button type="button" class="btn btn-primary btn-follow" ng-click="deleteSelectedCPSType();">删除选择的CPS分类</button>
+		</div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table table-bordered">
+	                    <thead class="table-header">
+	                    <tr>
+	                        <td>
+								<input type="checkbox" ng-click="checkAllRows()" ng-checked="checkedRows.length == queryResult.length" />
+							</td>
+	                        <td>商品编号</td>
+	                        <td>商品名称</td>
+	                        <td>CPS分类</td>
+	                        <td>激励比例</td>
+	                        <td>操作</td>
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody">
+	                   <tr ng-repeat="result in queryResult">
+	                        <td>
+								<input type="checkbox" ng-click="checkRow(result)" ng-checked="checkedRows.indexOf(result) != -1" />
+							</td>
+	                        <td>{{result.productSku}}</td>
+	                        <td>{{result.productName}}</td>
+	                        <td>{{result.productCpstype}}</td>
+	                        <td>{{result.encourageRatio}}</td>
+	                        <td>
+	                       	   <input class='btn btn-link' type="button" title="修改分类"  ng-click="editSelectedCPSType(result);" value="修改分类" />
+	                       	   <input class='btn btn-link' type="button" title="删除分类"  ng-click="deleteSelectedCPSType(result)" value="删除分类" />
+							</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <el-confirm confirm="delConfirm" title="提示" msg="是否确定要删除这些商品的CPS分类?"></el-confirm>
+	</div>
+</div>

@@ -1,0 +1,110 @@
+<div ng-controller="cpsTypeDetailController ">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>激励管理 </li>
+	            <li class="">CPS分类管理 </li>
+	            <li class="active"> 激励方案详情 </li>
+	           
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>激励方案详情  </span>
+	        <button style=" width: 90px;float: right;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goBack();">返回</button>
+	    </div>
+	</div>
+	    <div class="info">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<form class="form-horizontal " role="form" name="addCPSTypeForm" novalidate>
+	               <table class="table">
+	                    <tbody>
+	                    <tr>
+	                        <td class="td-label">编号:</td>
+	                        <td class="td-value"><input type="text" class="form-control" readOnly="true" ng-model="queryModel.entityDTO.cpstypeId"></td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R"  style="width: 460px;"></td>
+	                    </tr>
+	                    <tr>
+	                        <td class="td-label">CPS分类名称:</td>
+	                        <td class="td-value">
+	                       	 <input type="text" class="form-control" readOnly="true" ng-model="queryModel.entityDTO.cpstypeName">
+	                        </td>
+	                        <td class="td-label"></td>
+	                        <td class="td-value-R">
+	                        </td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <div class="breadcrumbs">
+		    <div class="location-end">
+		        <button style=" width: 120px;float: left;padding-bottom: 5px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goAddEncourage();">添加激励方案</button>
+		    </div>
+		</div>
+		<div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="scrollTable" style="overflow:auto">
+		                <table class="table table-bordered">
+		                    <thead class="table-header">
+		                    <tr>
+		                        <td>编号</td>
+		                        <td>名称</td>
+		                        <td>激励方式</td>
+		                        <td>激励类型</td>
+		                        <td>激励比例</td>
+		                        <td>激励有效期</td>
+		                        <td>状态</td>
+		                        <td>更新时间</td>
+		                        <td>操作</td>
+		                    </tr>
+		                    </thead>
+		                    <tbody class="table-tbody">
+		                    <tr ng-repeat="result in queryResult">
+		                        <td>{{result.ruleId}}</td>
+		                        <td>{{result.ruleName}}</td>
+		                         <td style="width: 90px;">
+		                        	{{encourageMethodDropList | key: 'optionKey': result.encourageMethod: 'optionValue'}}
+		                     	</td>
+		                        <td style="width: 90px;">
+		                        	{{encourageTypeDropList | key: 'optionKey': result.encourageType: 'optionValue'}}
+		                     	</td>
+		                        <td>{{result.encourageDecimalRatio}}%</td>
+		                        <td>{{result.ruleStartDate}} - {{result.ruleEndDate}}</td>
+		                         <td style="width: 80px;">
+		                         	{{encourageStatusDropList | key: 'optionKey': result.ruleStatus: 'optionValue'}}
+		                         </td>
+		                        <td>{{result.updateDate}}</td>
+		                        <td>
+		                       	  <input class='btn btn-link' ng-show="result.ruleStatus != 5 && result.ruleStatus != 6 " type="button" title="查看"  ng-click="goViewEncourage(result)" value="查看" />
+		                       	   <input class='btn btn-link' ng-show="result.ruleStatus == 0||result.ruleStatus == 4" type="button" title="提交审核"  ng-click="submitAduit(result.ruleId)" value="提交审核" />
+		                       	  <input class='btn btn-link' ng-show="result.ruleStatus == 0||result.ruleStatus == 4 || (result.enableStatus == 0 && result.ruleStatus == 3)" type="button" title="修改"  ng-click="goUpdateEncourage(result)" value="修改" />
+		                       	    <input class='btn btn-link' ng-show="result.ruleStatus == 0||result.ruleStatus == 4 || (result.enableStatus != 0 && result.ruleStatus == 3)" type="button" title="删除"  ng-click="deleteEncourage(result)" value="删除" />
+		                       	     <input class='btn btn-link'  ng-show="result.ruleStatus == 3" type="button" title="发布"  ng-click="publishEncourage(result.ruleId)" value="发布" />
+		                       	   <input class='btn btn-link' ng-show="result.ruleStatus == 1 " type="button" title="业务审核"  ng-click="businessAudite(result)" value="业务审核 " />
+		                       	    <input class='btn btn-link' ng-show="result.ruleStatus == 2 " type="button" title="财务审核"  ng-click="financeAudite(result)" value="财务审核" />
+								</td>
+							</tr>
+		                    </tbody>
+		                </table>
+		            </div>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	   <el-confirm confirm="submitAduitConfirm" title="提示" msg="您确定提交审核?"></el-confirm>
+	   <el-confirm confirm="deleteConfirm" title="提示" msg="您确定要删除?"></el-confirm>
+	    <el-confirm confirm="publishConfirm" title="提示" msg="您确定要发布?"></el-confirm>
+</div>

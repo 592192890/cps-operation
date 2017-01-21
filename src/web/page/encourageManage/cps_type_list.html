@@ -1,0 +1,59 @@
+<div ng-controller="cpsTypeListController ">
+	<div class="main_content">
+	<div class="breadcrumbs">
+	    <div class="location-list">
+	        <span class="location breadcrumb">您的位置：</span>
+	        <ol class="breadcrumb">
+	            <li>推广管理</li>
+	            <li>激励管理 </li>
+	            <li class="active">CPS分类管理 </li>
+	        </ol>
+	    </div>
+	    <div class="location-end">
+	        <span>CPS分类管理  </span>
+	    </div>
+	</div>
+	<div class="breadcrumbs">
+		 <div class="location-end">
+	         <button style=" width: 120px;margin-bottom: 10px;margin-top: -7px;" type="button" class="btn btn-primary" ng-click="goCPSTypeAdd();">+添加CPS分类</button>
+	    </div>
+	</div>
+	    <div class="infoLlist">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class="table table-bordered">
+	                    <thead class="table-header">
+	                    <tr>
+	                        <td>编号</td>
+	                        <td>CPS分类</td>
+	                        <td>当前激励比例</td>
+	                        <td>当前激励有效期</td>
+	                        <td>最后修改时间</td>
+	                        <td>操作</td>
+	                    </tr>
+	                    </thead>
+	                    <tbody class="table-tbody">
+	                    <tr ng-repeat="result in queryResult">
+	                        <td>{{result.cpstypeId}}</td>
+	                        <td>{{result.cpstypeName}}</td>
+	                        <td>{{result.encourageRatio}}</td>
+	                        <td>{{result.ruleStartDate}} - {{result.ruleEndDate}}</td>
+	                        <td>{{result.updateDate}}</td>
+	                        <td>
+	                       	   <input class='btn btn-link' type="button" title="详情"  ng-click="detailSelectedCPSType(result)" value="详情" />
+	                       	   <input class='btn btn-link' type="button" title="修改分类"  ng-click="updateSelectedCPSType(result)" value="修改分类" />
+	                       	   <input class='btn btn-link' type="button" title="删除"  ng-click="deleteSelectedCPSType(result.cpstypeId)" value="删除" />
+							</td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	                <div class="location-page">
+	                    <el-paging total="totalPages" size="{{pageSize}}" index="pageIndex"
+	                               searcher="doPagingSearch" />
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	      <el-confirm confirm="delConfirm" title="提示" msg="您确定删除?"></el-confirm>
+	</div>
+</div>
